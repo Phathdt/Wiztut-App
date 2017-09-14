@@ -5,20 +5,20 @@ import {
   Text,
   View
 } from 'react-native';
+import I18n from './config/i18n';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to Wiztut
+          {I18n.t('welcome')}
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+          {I18n.t('instructions')}
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+          {I18n.t('miss_translation')}
         </Text>
       </View>
     );
