@@ -8,7 +8,6 @@ import Search from './Screens/Search'
 import Upload from './Screens/Upload'
 import Notification from './Screens/Notification'
 import Profile from './Screens/Profile'
-import Picture from './Screens/Picture'
 
 
 import SignUp from "./Screens/SignUp";
