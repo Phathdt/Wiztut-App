@@ -75,12 +75,6 @@ export const HomeStack = StackNavigator({
       title: `Home`,
     })
   },
-  Picture: {
-    screen: Picture,
-    navigationOptions: ({navigation}) => ({
-      title: `Picture`,
-    })
-  },
   Profile: {
     screen: Profile,
     navigationOptions: ({navigation}) => ({
@@ -94,12 +88,6 @@ export const SearchStack = StackNavigator({
     screen: Search,
     navigationOptions: ({navigation}) => ({
       title: `Search`,
-    })
-  },
-  Picture: {
-    screen: Picture,
-    navigationOptions: ({navigation}) => ({
-      title: `Picture`,
     })
   },
   Profile: {
