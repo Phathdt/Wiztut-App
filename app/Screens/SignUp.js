@@ -14,7 +14,7 @@ export default class SignUp extends Component {
           backgroundColor="transparent"
           textStyle={{ color: "#bcbec1" }}
           title="Sign Up"
-          onPress={() => this.props.navigation.navigate("SignedIn")}
+          onPress={() => this.props.navigation.navigate("AddAvatar")}
         />
       </View>
     );

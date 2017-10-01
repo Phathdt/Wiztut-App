@@ -3,17 +3,18 @@ import React, { Component } from 'react';
 import { TabNavigator } from 'react-navigation'
 import { StackNavigator } from 'react-navigation'
 
-import Home from './Screen/Home'
-import Search from './Screen/Search'
-import Upload from './Screen/Upload'
-import Notification from './Screen/Notification'
-import Profile from './Screen/Profile'
-import Picture from './Screen/Picture'
+import Home from './Screens/Home'
+import Search from './Screens/Search'
+import Upload from './Screens/Upload'
+import Notification from './Screens/Notification'
+import Profile from './Screens/Profile'
+import Picture from './Screens/Picture'
 
 
-import SignUp from "./Screen/SignUp";
-import SignIn from "./Screen/SignIn";
-import Introduction from "./Screen/Introduction";
+import SignUp from "./Screens/SignUp";
+import SignIn from "./Screens/SignIn";
+import Introduction from "./Screens/Introduction";
+import AddAvatar from "./Screens/AddAvatar";
 
 import styles from './src/stylesheet/style'
 
@@ -41,6 +42,32 @@ export const createRootNavigator = (signedIn = false) => {
   );
 };
 
+export const SignedOut = StackNavigator({
+  Introduction: {
+    screen: Introduction,
+    navigationOptions: {
+      title: "Introduction"
+    }
+  },
+  SignIn: {
+    screen: SignIn,
+    navigationOptions: {
+      title: "Sign In"
+    }
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      title: "Sign Up"
+    }
+  },
+  AddAvatar: {
+    screen: AddAvatar,
+    navigationOptions: {
+      title: "Add Avatar"
+    }
+  }
+});
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -132,25 +159,7 @@ export const ProfileStack = StackNavigator({
 //   }
 // })
 
-export const SignedOut = StackNavigator({
-  Introduction: {
-    screen: Introduction,
-    navigationOptions: {
-      title: "Introduction"
-    }
-  },SignIn: {
-    screen: SignIn,
-    navigationOptions: {
-      title: "Sign In"
-    }
-  },
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      title: "Sign Up"
-    }
-  }
-});
+
 
 export const SignedIn = TabNavigator({
   Home: {
