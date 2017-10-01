@@ -5,9 +5,8 @@ import { StackNavigator } from 'react-navigation'
 
 import Home from './Screens/Home'
 import Search from './Screens/Search'
-import Upload from './Screens/Upload'
-import Notification from './Screens/Notification'
 import Profile from './Screens/Profile'
+import Location from './Screens/Location'
 
 
 import SignUp from "./Screens/SignUp";
@@ -98,20 +97,11 @@ export const SearchStack = StackNavigator({
   }
 })
 
-export const UploadStack = StackNavigator({
-  Upload: {
-    screen: Upload,
+export const LocationStack = StackNavigator({
+  Location: {
+    screen: Location,
     navigationOptions: ({navigation}) => ({
-      title: `Upload`,
-    })
-  }
-})
-
-export const NotificationStack = StackNavigator({
-  Notification: {
-    screen: Notification,
-    navigationOptions: ({navigation}) => ({
-      title: `Notification`,
+      title: `Location`,
     })
   }
 })
@@ -173,25 +163,13 @@ export const SignedIn = TabNavigator({
       ),
     })
   },
-  Upload: {
-    screen: UploadStack,
+  Location: {
+    screen: LocationStack,
     navigationOptions: ({navigation}) => ({
-      tabBarLabel: `Upload`,
+      tabBarLabel: `Location`,
       tabBarIcon: ({ tintColor }) => (
         <Image
-          source={require('./src/images/upload.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      ),
-    })
-  },
-  Notification: {
-    screen: NotificationStack,
-    navigationOptions: ({navigation}) => ({
-      tabBarLabel: `Notification`,
-      tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('./src/images/notification.png')}
+          source={require('./src/images/location.png')}
           style={[styles.icon, {tintColor: tintColor}]}
         />
       ),

@@ -14,13 +14,6 @@ export default class Home extends Component {
           buttonStyle={{ marginTop: 20 }}
           backgroundColor="transparent"
           textStyle={{ color: "#bcbec1" }}
-          title="Picture"
-          onPress={() => this.props.navigation.navigate("Picture")}
-        />
-        <Button
-          buttonStyle={{ marginTop: 20 }}
-          backgroundColor="transparent"
-          textStyle={{ color: "#bcbec1" }}
           title="Profile"
           onPress={() => this.props.navigation.navigate("Profile")}
         />
