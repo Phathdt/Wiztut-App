@@ -3,16 +3,23 @@ import React, { Component } from 'react';
 import { TabNavigator } from 'react-navigation'
 import { StackNavigator } from 'react-navigation'
 
+import AddAvatar from './Screens/AddAvatar'
+import CoursePost from './Screens/CoursePost'
+import FilterCoursePost from './Screens/FilterCoursePost'
+import FilterTeacherPost from './Screens/FilterTeacherPost'
 import Home from './Screens/Home'
-import Search from './Screens/Search'
-import Profile from './Screens/Profile'
+import Introduction from './Screens/Introduction'
+import ListCoursePost from './Screens/ListCoursePost'
+import ListProfile from './Screens/ListProfile'
+import ListTeacherPost from './Screens/ListTeacherPost'
 import Location from './Screens/Location'
-
-
-import SignUp from "./Screens/SignUp";
-import SignIn from "./Screens/SignIn";
-import Introduction from "./Screens/Introduction";
-import AddAvatar from "./Screens/AddAvatar";
+import Profile from './Screens/Profile'
+import Search from './Screens/Search'
+import SearchProfile from './Screens/SearchProfile'
+import SignIn from './Screens/SignIn'
+import SignUp from './Screens/SignUp'
+import TeacherPost from './Screens/TeacherPost'
+import Notification from './Screens/Notification'
 
 import styles from './src/stylesheet/style'
 
@@ -74,25 +81,61 @@ export const HomeStack = StackNavigator({
       title: `Home`,
     })
   },
-  Profile: {
-    screen: Profile,
+
+  // Course Post Stack
+  ListCoursePost: {
+    screen: ListCoursePost,
     navigationOptions: ({navigation}) => ({
-      title: `Profile`,
+      title: `ListCoursePost`,
+    })
+  },
+  CoursePost: {
+    screen: CoursePost,
+    navigationOptions: ({navigation}) => ({
+      title: `CoursePost`,
+    })
+  },
+
+  // Teacher Post Stack
+  ListTeacherPost: {
+    screen: ListTeacherPost,
+    navigationOptions: ({navigation}) => ({
+      title: `ListTeacherPost`,
+    })
+  },
+  TeacherPost: {
+    screen: TeacherPost,
+    navigationOptions: ({navigation}) => ({
+      title: `TeacherPost`,
+    })
+  },
+
+  //  Profile Stack
+  ListProfile: {
+    screen: ListProfile,
+    navigationOptions: ({navigation}) => ({
+      title: `ListProfile`,
     })
   }
 })
 
 export const SearchStack = StackNavigator({
-  Search: {
-    screen: Search,
+  FilterCoursePost: {
+    screen: FilterCoursePost,
     navigationOptions: ({navigation}) => ({
-      title: `Search`,
+      title: `FilterCoursePost`,
     })
   },
-  Profile: {
-    screen: Profile,
+  FilterTeacherPost: {
+    screen: FilterTeacherPost,
     navigationOptions: ({navigation}) => ({
-      title: `Profile`,
+      title: `FilterTeacherPost`,
+    })
+  },
+  SearchProfile: {
+    screen: SearchProfile,
+    navigationOptions: ({navigation}) => ({
+      title: `SearchProfile`,
     })
   }
 })
@@ -106,6 +149,16 @@ export const LocationStack = StackNavigator({
   }
 })
 
+export const NotificationStack = StackNavigator({
+  Notification: {
+    screen: Notification,
+    navigationOptions: ({navigation}) => ({
+      title: `Notification`,
+    })
+  }
+})
+
+
 export const ProfileStack = StackNavigator({
   Profile: {
     screen: Profile,
@@ -115,31 +168,8 @@ export const ProfileStack = StackNavigator({
   }
 })
 
-// export const Stack2 = StackNavigator({
-//   Upload: {
-//     screen: Upload,
-//     navigationOptions: ({navigation}) => ({
-//       title: `Upload`,
-//     })
-//   },
-//   Notification: {
-//     screen: Notification,
-//     navigationOptions: ({navigation}) => ({
-//       title: `Notification`,
-//     })
-//   },
-//   Profile: {
-//     screen: Profile,
-//     navigationOptions: ({navigation}) => ({
-//       title: `Profile`,
-//     })
-//   }
-// })
-
-
-
 export const SignedIn = TabNavigator({
-  Home: {
+  HomeStack: {
     screen: HomeStack,
     navigationOptions: ({navigation}) => ({
       tabBarLabel: `Home`,
@@ -151,7 +181,7 @@ export const SignedIn = TabNavigator({
       ),
     })
   },
-  Search: {
+  SearchStack: {
     screen: SearchStack,
     navigationOptions: ({navigation}) => ({
       tabBarLabel: `Search`,
@@ -163,7 +193,7 @@ export const SignedIn = TabNavigator({
       ),
     })
   },
-  Location: {
+  LocationStack: {
     screen: LocationStack,
     navigationOptions: ({navigation}) => ({
       tabBarLabel: `Location`,
@@ -175,7 +205,19 @@ export const SignedIn = TabNavigator({
       ),
     })
   },
-  Profile: {
+  NotificationStack: {
+    screen: NotificationStack,
+    navigationOptions: ({navigation}) => ({
+      tabBarLabel: `Notification`,
+      tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={require('./src/images/location.png')}
+          style={[styles.icon, {tintColor: tintColor}]}
+        />
+      ),
+    })
+  },
+  ProfileStack: {
     screen: ProfileStack,
     navigationOptions: ({navigation}) => ({
       tabBarLabel: `Profile`,
