@@ -2,7 +2,7 @@
 
 git clone git@github.com:Phathdt/Wiztut-App.git
 
-npm install
+yarn install or npm install
 
 react-native run ios
 
