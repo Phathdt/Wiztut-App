@@ -7,6 +7,13 @@ import { StackNavigator } from 'react-navigation'
 import SignIn from './Screens/SignedOut/SignIn'
 import SignUp from './Screens/SignedOut/SignUp'
 
+// Conversation
+import AddNewConversation from './Screens/Conversation/AddNewConversation'
+import DetailConversation from './Screens/Conversation/DetailConversation'
+import InformationConversation from './Screens/Conversation/InformationConversation'
+import ListConversation from './Screens/Conversation/ListConversation'
+import UpdateConversation from './Screens/Conversation/UpdateConversation'
+
 // Signed In
 import Home from './Screens/SignedIn/HomeStack/Home'
 import ListCoursePost from './Screens/SignedIn/HomeStack/ListCoursePost'
@@ -41,6 +48,12 @@ export const createRootNavigator = (signedIn = false) => {
         navigationOptions: {
           gesturesEnabled: false
         }
+      },
+      Conversation: {
+        screen: Conversation,
+        navigationOptions: {
+          gesturesEnabled: false
+        }
       }
     },
     {
@@ -50,6 +63,39 @@ export const createRootNavigator = (signedIn = false) => {
     }
   );
 };
+
+export const Conversation = StackNavigator({
+  ListConversation: {
+    screen: ListConversation,
+    navigationOptions: ({navigation}) => ({
+      title: `ListConversation`,
+    })
+  },
+  DetailConversation: {
+    screen: DetailConversation,
+    navigationOptions: ({navigation}) => ({
+      title: `DetailConversation`,
+    })
+  },
+  InformationConversation: {
+    screen: InformationConversation,
+    navigationOptions: ({navigation}) => ({
+      title: `InformationConversation`,
+    })
+  },
+  AddNewConversation: {
+    screen: AddNewConversation,
+    navigationOptions: ({navigation}) => ({
+      title: `AddNewConversation`,
+    })
+  },
+  UpdateConversation: {
+    screen: UpdateConversation,
+    navigationOptions: ({navigation}) => ({
+      title: `UpdateConversation`,
+    })
+  }
+});
 
 export const SignedOut = StackNavigator({
   SignIn: {
