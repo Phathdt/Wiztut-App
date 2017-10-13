@@ -11,11 +11,10 @@ export default class SignUp extends Component {
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      re_password:''
+      email                 : '',
+      password              : '',
+      password_confirmation :''
     };
-    this.ClickSignIn=this.ClickSignIn.bind(this)
   }
   render() {
     return (
@@ -42,19 +41,24 @@ export default class SignUp extends Component {
           Re-password:
         </Text>
         <TextInput
-          value = {this.state.re_password}
-          onChangeText={(re_password) => this.setState({re_password})}
+          value = {this.state.password_confirmation}
+          onChangeText={(password_confirmation) => this.setState({password_confirmation})}
         />
         <Button
           title="Sign up"
-          onPress={this.ClickSignIn}
+          onPress={() => this.ClickSignIn()}
         />
       </View>
       
     );
   }
   async ClickSignIn(){
-    if(this.state.password==this.state.re_password && this.state.email!=''&& this.state.password!='')
+    if(
+      this.state.password==this.state.password_confirmation 
+      && this.state.email!=''
+      && this.state.password!=''
+    )
+    {
     try {
       let response = await fetch('https://mysterious-shore-50693.herokuapp.com/api/v1/users/sign_up', {
         method: 'POST',
@@ -70,12 +74,13 @@ export default class SignUp extends Component {
         })
       });
       if(response.status==200){
-        this.props.navigation.navigate("SignedIn");
+        this.props.navigation.navigate("SignedOut");
       }
       
     } catch(error) {
       
     }
+  }
   
   }
   

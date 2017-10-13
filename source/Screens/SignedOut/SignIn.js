@@ -11,10 +11,9 @@ export default class SignIn extends Component {
   constructor(props){
     super(props);
     this.state = {
-      email: '',
-      password: ''
+      email     : '',
+      password  : ''
     };
-    this.ClickSignIn=this.ClickSignIn.bind(this)
   }
   render() {
     return (
@@ -35,35 +34,36 @@ export default class SignIn extends Component {
         />
         <Button
           title="SignedIn"
-          onPress={this.ClickSignIn}
+          onPress={() => this.ClickSignIn()}
         />
         <Button
           title="Sign up"
-          onPress={()=> this.props.navigation.navigate("SignUp")}
+          onPress={() => this.props.navigation.navigate("SignUp")}
         />
       </View>
     )
   }
   async ClickSignIn(){
-    if(this.state.email!=''&& this.state.password!=''){
-    try {
-      let response = await fetch('https://mysterious-shore-50693.herokuapp.com/api/v1/users/sign_in', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          session:{
-            email: this.state.email,
-            password: this.state.password
-          }
-        })
-      });
-      if(response.status==200){
-        this.props.navigation.navigate("SignedIn");
+    if(this.state.email != '' && this.state.password != ''){
+      try {
+        let response = await fetch('https://mysterious-shore-50693.herokuapp.com/api/v1/users/sign_in', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            session:{
+              email     : this.state.email,
+              password  : this.state.password
+            }
+          })
+        });
+        if(response.status==200){
+          this.props.navigation.navigate("SignedIn");
+        }
       }
-    } catch(error) {
-      
+      catch(error) {
+        
       }
     }
   }
