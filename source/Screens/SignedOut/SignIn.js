@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 
-import { View, Button,Text,TextInput } from 'react-native';
+import { 
+  View, 
+  Button,
+  Text,
+  TextInput 
+} from 'react-native';
 
 export default class SignIn extends Component {
   constructor(props){
     super(props);
-    this.state = {email: '',password: ''};
-    this.ClickMe = this.ClickMe.bind(this)
-    this.getAPI=this.getAPI.bind(this)
-  }
-  ClickMe() {
-    this.getAPI();
+    this.state = {
+      email: '',
+      password: ''
+    };
+    this.ClickSignIn=this.ClickSignIn.bind(this)
   }
   render() {
     return (
       <View>
-        <Button
-          title="SignedIn"
-          onPress={this.ClickMe}
-        />
         <Text>
           Email:
         </Text>
@@ -34,13 +34,17 @@ export default class SignIn extends Component {
           onChangeText={(password) => this.setState({password})}
         />
         <Button
+          title="SignedIn"
+          onPress={this.ClickSignIn}
+        />
+        <Button
           title="Sign up"
           onPress={()=> this.props.navigation.navigate("SignUp")}
         />
       </View>
     )
   }
-  async getAPI(){
+  async ClickSignIn(){
     if(this.state.email!=''&& this.state.password!=''){
     try {
       let response = await fetch('https://mysterious-shore-50693.herokuapp.com/api/v1/users/sign_in', {

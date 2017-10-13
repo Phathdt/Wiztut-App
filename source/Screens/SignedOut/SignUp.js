@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
-import { View, Button,Text,TextInput } from 'react-native';
+import { 
+  View, 
+  Button,
+  Text,
+  TextInput 
+} from 'react-native';
 
 export default class SignUp extends Component {
   constructor(props){
     super(props);
-    this.state = {email: '',password: '',re_password:''};
-    this.ClickMe = this.ClickMe.bind(this)
-    this.getAPI=this.getAPI.bind(this)
-  }
-  ClickMe() {
-    this.getAPI();
+    this.state = {
+      email: '',
+      password: '',
+      re_password:''
+    };
+    this.ClickSignIn=this.ClickSignIn.bind(this)
   }
   render() {
     return (
@@ -42,13 +47,13 @@ export default class SignUp extends Component {
         />
         <Button
           title="Sign up"
-          onPress={this.ClickMe}
+          onPress={this.ClickSignIn}
         />
       </View>
       
     );
   }
-  async getAPI(){
+  async ClickSignIn(){
     if(this.state.password==this.state.re_password && this.state.email!=''&& this.state.password!='')
     try {
       let response = await fetch('https://mysterious-shore-50693.herokuapp.com/api/v1/users/sign_up', {
@@ -58,9 +63,9 @@ export default class SignUp extends Component {
         },
         body: JSON.stringify({
           registration:{
-            email: this.state.email,
-            password: this.state.password,
-            password_confirmation:this.state.re_password
+            email                 : this.state.email,
+            password              : this.state.password,
+            password_confirmation :this.state.re_password
           }
         })
       });
