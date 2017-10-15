@@ -51,7 +51,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#E08C0D'
+    backgroundColor: '#52e61c'
   },
 
   //css cho slide swiper thang Viet Anh
@@ -59,7 +59,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#dbd528'
+    backgroundColor: '#23afc4'
   },
 
   text: {
