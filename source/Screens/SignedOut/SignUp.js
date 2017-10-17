@@ -33,14 +33,14 @@ export default class SignUp extends Component {
           },
           body: JSON.stringify({
             registration:{
-              email                : this.state.email,
+              email                : this.state.email.toLowerCase(),
               password             : this.state.password,
               password_confirmation: this.state.password_confirmation
             }
           })
         });
         if(response.status==200){
-          this.props.navigation.navigate("SignedOut");
+          this.props.navigation.navigate("SignedIn");
         }
       }
       catch(error) {
@@ -51,10 +51,6 @@ export default class SignUp extends Component {
   render() {
     return (
       <View>
-        <Button
-          title   = "SignedIn"
-          onPress = {() => this.props.navigation.navigate("SignedIn")}
-        />
         <Text>
           Email: 
         </Text>
@@ -81,6 +77,10 @@ export default class SignUp extends Component {
         <Button
           title   = "Sign up"
           onPress = {() => this.SignIn()}
+        />
+        <Button
+          title   = "You had a account? Sign In"
+          onPress = {() => this.props.navigation.navigate("SignIn")}
         />
       </View>
       

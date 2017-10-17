@@ -27,7 +27,7 @@ export default class SignIn extends Component {
           },
           body: JSON.stringify({
             session:{
-              email   : this.state.email,
+              email   : this.state.email.toLowerCase(),
               password: this.state.password
             }
           })
