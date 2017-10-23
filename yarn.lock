@@ -1930,6 +1930,10 @@ http-signature@~1.2.0:
     jsprim "^1.2.2"
     sshpk "^1.7.0"
 
+i18n-js@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/i18n-js/-/i18n-js-3.0.1.tgz#a7d88b6c6796ab8a1d6c24aa860844022877afab"
+
 iconv-lite@0.4.11:
   version "0.4.11"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.11.tgz#2ecb42fd294744922209a2e7c404dac8793d8ade"
@@ -3383,6 +3387,12 @@ react-native-drawer-layout@1.3.2:
   resolved "https://registry.yarnpkg.com/react-native-drawer-layout/-/react-native-drawer-layout-1.3.2.tgz#b9740d7663a1dc4f88a61b9c6d93d2d948ea426e"
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
+
+react-native-i18n@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-2.0.8.tgz#8e539df0f41b6c2c8eabd244e39412b1638730f2"
+  dependencies:
+    i18n-js "^3.0.1"
 
 react-native-tab-view@^0.0.69:
   version "0.0.69"
