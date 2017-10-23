@@ -1,8 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { View, Button } from 'react-native';
+import { View, Button, AsyncStorage, Text } from "react-native";
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      token: null
+    };
+    this.takeToken();
+  }
+
+  async takeToken() {
+    try {
+      let value = await AsyncStorage.getItem("Token");
+      if (value !== null) {
+        this.setState({
+          token: value
+        });
+      }
+    } catch (error) {}
+  }
+
   render() {
     return (
       <View>

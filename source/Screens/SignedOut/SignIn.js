@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, Button, Text, TextInput } from "react-native";
+import { View, Button, Text, TextInput, AsyncStorage } from "react-native";
 
 import { SignInUrl } from "../../helper/LinkUrl";
 import I18n from "../../i18n/i18n";
@@ -13,6 +13,7 @@ export default class SignIn extends Component {
       password: ""
     };
   }
+
   async SignIn() {
     if (this.state.email != "" && this.state.password != "") {
       try {
@@ -29,6 +30,11 @@ export default class SignIn extends Component {
           })
         });
         if (response.status == 200) {
+          let responseJson = await response.json();
+          await AsyncStorage.setItem(
+            "Token",
+            responseJson.data.authentication_token
+          );
           this.props.navigation.navigate("SignedIn");
         }
       } catch (error) {}

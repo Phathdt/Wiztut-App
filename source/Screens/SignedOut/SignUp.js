@@ -9,8 +9,8 @@ export default class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email                : "",
-      password             : "",
+      email: "",
+      password: "",
       password_confirmation: ""
     };
   }
@@ -35,6 +35,11 @@ export default class SignUp extends Component {
           })
         });
         if (response.status == 200) {
+          let responseJson = await response.json();
+          await AsyncStorage.setItem(
+            "Token",
+            responseJson.data.authentication_token
+          );
           this.props.navigation.navigate("SignedIn");
         }
       } catch (error) {}
