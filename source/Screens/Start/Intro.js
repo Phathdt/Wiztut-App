@@ -1,65 +1,62 @@
 import React, { Component } from 'react'
 import {
   Text,
-  View
+  View,
+  TouchableOpacity,
+  StatusBar
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
+
+// press Skip or Done => Home(or SignIn)
 export default class extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      items: []
-    }
-  }
-  componentDidMount () {
-    this.setState({
-      items: [
-        { title: 'Thang Nhat', css: styles.slide1 },
-        { title: 'Thang Phat', css: styles.slide2 },
-        { title: 'Thang Viet Anh', css: styles.slide3 }
-      ]
-    })
-  }
   render () {
     return (
-      <Swiper showsButtons>
-        {this.state.items.map((item, key) => {
-          return (
-            <View key={key} style={item.css}>
-              <Text style={styles.text}>{item.title}</Text>
-            </View>
-          )
-        })}
+      <Swiper style={styles.wrapper} showsButtons>
+      <StatusBar Hidden="true" />
+        <View style={styles.slide1}>
+          <Text style={styles.text}>Intro1</Text>
+          <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
+          <Text style={{color:'#fff', fontSize: 20, padding: 10}}>Skip</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.slide2}>
+          <Text style={styles.text}>Intro2</Text>
+          <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
+          <Text style={{color:'#fff', fontSize: 20, padding: 10}}>Skip</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.slide3}>
+          <Text style={styles.text}>Intro3</Text>
+          <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
+          <Text style={{color:'#fff', fontSize: 20, padding: 10}}>Done</Text>
+          </TouchableOpacity>
+        </View>
       </Swiper>
     )
   }
 }
 
-//custom css cho 3 slide swiper
 const styles = {
-  //css cho slide swiper thang Nhat
   slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#e01010'// set color cho slide swiper
+    backgroundColor: '#9DD6EB'
   },
 
-  //css cho slide swiper thang Phat
   slide2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#52e61c'
+    backgroundColor: '#97CAE5'
   },
 
-  //css cho slide swiper thang Viet Anh
   slide3: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#23afc4'
+    backgroundColor: '#92BBD9'
   },
 
   text: {
