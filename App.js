@@ -3,7 +3,8 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar
 } from 'react-native';
 
 import  { SignedIn, SignedOut, createRootNavigator } from './source/Router'
@@ -17,6 +18,10 @@ export default class App extends Component {
       signedIn: false,
     };
   }
+
+  componentDidMount() {
+       StatusBar.setHidden(true);
+    }
 
   render() {
     const { checkedSignIn, signedIn } = this.state;
