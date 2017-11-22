@@ -2,19 +2,24 @@ import React, { Component } from "react";
 
 import {
   View,
-  Button,
-  Text,
-  TextInput,
-  AsyncStorage,
   Image,
-  StyleSheet,
-  TouchableOpacity,
-  Alert
+  AsyncStorage,
+  StyleSheet
 } from "react-native";
+
+import {
+  Body,
+  Form,
+  Item,
+  Input,
+  Label,
+  Button,
+  Text
+} from 'native-base';
 
 import { SignInUrl } from "../../helper/LinkUrl";
 import I18n from "../../i18n/i18n";
-import { Form, Item, Input, Label, Body } from "native-base";
+import { SignedIn } from "../../Router";
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -24,26 +29,26 @@ export default class SignIn extends Component {
       password: ""
     };
   }
-
+  validasteEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
   async SignIn() {
-    let regexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let email = this.state.email;
-    let password = this.state.password;
-    if (email.length == 0 || password.length == 0) {
+    if (
+      this.state.email == "" ||
+      this.state.password == ""
+    ) {
       Alert.alert("Error", "Email/ Password not blank");
       return false;
     }
-
-    if ( password.length < 6) {
+    if (!this.validasteEmail(this.state.email)) {
+      alert("Error", "Email wrong format");
+      return false;
+    }
+    if (this.state.password.length < 6) {
       Alert.alert("Error", "Password length must >= 6");
       return false;
     }
-
-    if (!email.match(regexEmail)) {
-      Alert.alert("Error", "Email wrong format");
-      return false;
-    }
-
     try {
       let response = await fetch(SignInUrl, {
         method: "POST",
@@ -58,37 +63,35 @@ export default class SignIn extends Component {
         })
       });
       if (response.status == 200) {
+        this.state.response = "";
         let responseJson = await response.json();
         await AsyncStorage.setItem(
           "Token",
           responseJson.data.authentication_token
         );
         this.props.navigation.navigate("SignedIn");
-      } else {
-        Alert.alert("Error", "Email/Password wrong");
-        return false;
       }
-    } catch (error) {}
+      else alert("Error", "Email or password is incorrect");
+    } catch (error) { }
   }
   render() {
     return (
-      <View style={{backgroundColor: 'white' }}>
-        <Body>
+      <View style={styles.container}>
+        <View style={styles.logoContain}>
           <Image
-            style={{ width: 400, height: 200, marginTop: 20 }}
+            style={styles.logo}
             source={require('../../src/images/logo.png')}
           />
-        </Body>
-        <Form style={styles.form}>
+        </View>
+        <Form>
           <Item floatingLabel>
             <Label>{I18n.t("email")}</Label>
             <Input
-              keyboardType={"email-address"}
               value={this.state.email}
               onChangeText={email => this.setState({ email })}
             />
           </Item>
-          <Item floatingLabel>
+          <Item floatingLabel last>
             <Label>{I18n.t("password")}</Label>
             <Input
               value={this.state.password}
@@ -96,44 +99,47 @@ export default class SignIn extends Component {
               onChangeText={password => this.setState({ password })}
             />
           </Item>
-          <TouchableOpacity
-            style={[styles.buttonStyle, { marginTop: 55, marginLeft: 10 }]}
-            onPress={() => this.SignIn()}
-          >
-            <Text style={styles.buttonText}>{I18n.t("sign_in")}</Text>
-          </TouchableOpacity>
-          <Text style={{ marginTop: 37, marginLeft: 20, fontSize: 16 }}>
-            <Text>{I18n.t("dont_have_a_account")}</Text>
-            <Text
-              style={{ color: "#E96758" }}
-              onPress={() => this.props.navigation.navigate("SignUp")}
-            >
-              {I18n.t("sign_up")}
-            </Text>
-          </Text>
+          <Body>
+            <Button
+              style={styles.button}
+              block warning
+              onPress={() => this.SignIn()}>
+              <Text>{I18n.t("sign_in")}</Text>
+            </Button>
+          </Body>
         </Form>
+        <View style={styles.logoContain}>
+          <Text
+            style={styles.text}
+            onPress={() => this.props.navigation.navigate("SignUp")}>
+            {I18n.t("dont_have_a_account")}
+          </Text>
+        </View>
       </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
-  form: {
-    marginTop: 250,
-    marginHorizontal: 35
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
   },
-  buttonStyle: {
-    borderWidth: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    width: 300,
-    height: 52,
-    borderColor: "#ffffff",
-    backgroundColor: "#FF8548",
-    borderRadius: 20
+  logoContain: {
+    marginTop: 30,
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  buttonText: {
-    color: "white",
-    fontSize: 20
+  logo: {
+    height: 100,
+    width: 230,
+  },
+  text: {
+    color: 'gray',
+    textDecorationLine: 'underline',
+  },
+  button: {
+    marginTop: 30,
+    width: 250,
   }
 });
