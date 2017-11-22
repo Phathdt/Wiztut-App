@@ -118,7 +118,7 @@ export default class DetailCoursePost extends Component {
               <Text style={styles.title}>Giới tính</Text>
             </Left>
             <Body>
-              <Text style={styles.content}>{sex[item.sex_require]}</Text>
+              <Text style={styles.content}>{sex_require[item.sex_require]}</Text>
             </Body>
           </CardItem>
           <CardItem>
@@ -126,7 +126,7 @@ export default class DetailCoursePost extends Component {
               <Text style={styles.title}>Trình độ</Text>
             </Left>
             <Body>
-              <Text style={styles.content}>{degree[item.degree_require]}</Text>
+              <Text style={styles.content}>{degree_require[item.degree_require]}</Text>
             </Body>
           </CardItem>
           <CardItem>

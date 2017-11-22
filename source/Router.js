@@ -182,7 +182,7 @@ export const SignedIn = TabNavigator(
         Location: {
           screen: Location,
           navigationOptions: ({ navigation }) => ({
-            title: `Location`
+            title: `Notification`
           })
         }
       }),
@@ -190,7 +190,7 @@ export const SignedIn = TabNavigator(
         tabBarLabel: `Home`,
         tabBarIcon: ({ tintColor }) => (
           <Image
-            source={require("./src/images/location.png")}
+            source={require("./src/images/notification.png")}
             style={[styles.icon, { tintColor: tintColor }]}
           />
         )

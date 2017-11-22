@@ -36,7 +36,7 @@ export default class Home extends Component {
         );
       case "Course":
         return (
-          <Container style={{ flex: 1 }}>
+          <Container style={{ flex: 1, backgroundColor: 'white' }}>
             <ListCoursePost navigation={this.props.navigation} />
           </Container>
         );
