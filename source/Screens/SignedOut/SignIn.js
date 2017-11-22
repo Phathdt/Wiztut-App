@@ -34,6 +34,11 @@ export default class SignIn extends Component {
       return false;
     }
 
+    if ( password.length < 6) {
+      Alert.alert("Error", "Password length must >= 6");
+      return false;
+    }
+
     if (!email.match(regexEmail)) {
       Alert.alert("Error", "Email wrong format");
       return false;
@@ -116,31 +121,6 @@ export default class SignIn extends Component {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  container: {
-    flex: 1
-  },
-  icon: {
-    width: 28,
-    height: 28
-  },
-  logo: {
-    marginLeft: 143,
-    marginTop: 52,
-    width: 132,
-    height: 103
-  },
-  wallpaper: {
-    flex: 1,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center"
-  },
   form: {
     marginTop: 250,
     marginHorizontal: 35
@@ -158,160 +138,5 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontSize: 20
-  },
-  item: {
-    padding: 10,
-    flexDirection: "column"
-  },
-  itemTop: {
-    height: 30,
-    width: "100%",
-    flexDirection: "row",
-    marginBottom: 10,
-    marginTop: 10
-  },
-  itemTopLeft: {
-    flex: 1
-  },
-  itemTopRight: {
-    flex: 7,
-    justifyContent: "center"
-  },
-  itemImage: {
-    height: 257
-  },
-  itemBot: {
-    height: 100,
-    flexDirection: "column",
-    marginBottom: 20
-  },
-  itemBotEmotion: {
-    marginTop: 15,
-    flex: 1,
-    flexDirection: "row"
-  },
-  itemBotLike: {
-    flex: 1
-  },
-  itemBotComment: {
-    flex: 1
-  },
-  comment: {
-    marginTop: -22,
-    flexDirection: "column"
-  },
-  commentItem: {
-    height: 37,
-    marginLeft: 10,
-    flexDirection: "row"
-  },
-  commentItemAvatar: {
-    width: 30,
-    height: 30,
-    flex: 1
-  },
-  commentItemContent: {
-    flex: 6,
-    flexDirection: "column"
-  },
-  commentContent: {
-    flex: 1
-  },
-  commentTime: {
-    flex: 1
-  },
-  commentItemEmotion: {
-    flex: 1
-  },
-  input: {
-    height: 30,
-    width: "94%",
-    backgroundColor: "white",
-    marginBottom: 20,
-    color: "#4E173C",
-    paddingHorizontal: "3%",
-    borderWidth: 2,
-    borderRadius: 5,
-    textAlign: "center"
-  },
-  avatars: {
-    marginHorizontal: "3%",
-    height: 100,
-    width: "94%",
-    marginTop: -5
-  },
-  listFlexBox: {
-    width: "100%",
-    height: 520,
-    flexDirection: "column"
-  },
-  flexImage: {
-    width: "100%",
-    height: "100%"
-  },
-  profile: {
-    marginHorizontal: "3%",
-    height: 175,
-    width: "94%",
-    marginTop: -5
-  },
-  profileTop: {
-    height: 100,
-    flexDirection: "row"
-  },
-  profileItem: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  editProfile: {
-    height: "80%",
-    width: "90%",
-    marginHorizontal: "5%",
-
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 1,
-    borderRadius: 5
-  },
-  profileMid: {
-    height: 43,
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    borderTopWidth: 1,
-    borderColor: "#4E173C"
-  },
-  profileBot: {
-    height: 1656,
-    width: "100%"
-  },
-  buttonDash: {
-    width: 110,
-    height: 35,
-    borderRadius: 17,
-    borderWidth: 1,
-    borderStyle: "dashed",
-    marginHorizontal: 10
-  },
-  buttonChosen: {
-    width: 110,
-    height: 35,
-    marginLeft: 10,
-    textAlign: "center",
-    paddingTop: 5,
-    borderRadius: 17,
-    borderWidth: 1,
-    borderColor: "white",
-    overflow: "hidden",
-    fontSize: 15,
-    color: "white"
-  },
-  buttonMix: {
-    backgroundColor: "#2D8EFF",
-    borderRadius: 5,
-    width: 130,
-    marginLeft: 0
   }
 });
