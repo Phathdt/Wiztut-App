@@ -11,7 +11,9 @@ import {
   Body,
   Right,
   Thumbnail,
-  Text
+  Text,
+  Button,
+  Icon
 } from "native-base";
 
 import api from "../../../api/api.js";
@@ -98,7 +100,13 @@ export default class ListCoursePost extends Component {
   render() {
     return (
       <Container>
+      <Content>
+        <Button iconLeft success onPress={() => this.props.navigation.navigate("AddCoursePost")}>
+          <Icon name='home' />
+          <Text>Them bai dang</Text>
+        </Button>
         {this.state.ListCoursePost ? this.renderListItem() : null}
+        </Content>
       </Container>
     );
   }
