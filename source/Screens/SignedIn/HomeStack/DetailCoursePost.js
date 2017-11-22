@@ -100,7 +100,7 @@ export default class DetailCoursePost extends Component {
               <Text style={styles.title}>Lương</Text>
             </Left>
             <Body>
-              <Text style={styles.content}>{item.salary} 000 vnd</Text>
+              <Text style={styles.content}>{item.salary} vnd</Text>
             </Body>
           </CardItem>
           <CardItem>
