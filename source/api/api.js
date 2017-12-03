@@ -2,7 +2,8 @@ import {
   GetListCoursePostsUrl,
   GetCoursePostUrl,
   SignInUrl,
-  SignUpUrl
+  SignUpUrl,
+  CreateCoursePostUrl
 } from "../helper/LinkUrl";
 
 exports.getListCoursePost = async function(q) {
@@ -69,6 +70,34 @@ exports.signUp = async function(user) {
     } catch (error) {}
 };
 
+exports.AddCoursePost = async function(cp, token) {
+  try {
+    let res = await fetch(CreateCoursePostUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        course_posts: {
+          "title": cp.title,
+          "grade": parseInt(cp.grade),
+          "subject": parseInt(cp.subject),
+          "time": parseInt(cp.time),
+          "address": parseInt(cp.address),
+          "real_address": cp.real_address,
+          "salary": parseInt(cp.salary),
+          "sex_require": parseInt(cp.sex_require),
+          "degree_require": parseInt(cp.degree_require),
+          "frequency": parseInt(cp.frequency),
+          "phone": cp.phone,
+          "note": cp.note
+        }
+      })
+    });
+    return res
+    } catch (error) {}
+};
 
 exports.upcoming = async function(q) {
   try {

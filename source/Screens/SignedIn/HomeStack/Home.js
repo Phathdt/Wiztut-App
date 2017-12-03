@@ -2,15 +2,13 @@ import React, { Component } from "react";
 import {
   Container,
   Header,
-  Left,
-  Body,
-  Right,
   Button,
   Icon,
-  Title,
   Segment,
   Content,
-  Text
+  Text,
+  Input,
+  Item
 } from "native-base";
 import { StackNavigator } from "react-navigation";
 
@@ -18,14 +16,33 @@ import ListCoursePost from "./ListCoursePost";
 import AddCoursePost from "./AddCoursePost";
 import DetailCoursePost from "./DetailCoursePost";
 
+import styles from "../../../helper/styles";
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeSegment: "Course"
+      activeSegment: "Course",
+      is_teacher: true,
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNDk0MjU4Nn0.P8aQy8KWz_j4MERsaOVXP7S0XDMaGVJC0pqvYn5yD9A'
     };
   }
+
+  addNew() {
+    const { navigate } = this.props.navigation;
+    switch (this.state.activeSegment) {
+      case "Teacher":
+        navigate('AddTeacherPost', {token: this.state.token})
+        break;
+      case "Course":
+        navigate('AddCoursePost', {token: this.state.token})
+        break;
+      default:
+        break;
+    }
+  }
+
   renderCom() {
     switch (this.state.activeSegment) {
       case "Teacher":
@@ -36,7 +53,7 @@ export default class Home extends Component {
         );
       case "Course":
         return (
-          <Container style={{ flex: 1, backgroundColor: 'white' }}>
+          <Container style={{ flex: 1, backgroundColor: "white" }}>
             <ListCoursePost navigation={this.props.navigation} />
           </Container>
         );
@@ -49,81 +66,102 @@ export default class Home extends Component {
     }
   }
 
+  renderSegment() {
+    const activeSegment = this.state.activeSegment
+    return (
+      <Header style={styles.segment}>
+        <Segment style={{ backgroundColor: "white", paddingLeft: 10 }}>
+          <Button
+            first
+            style={{
+              backgroundColor:
+                activeSegment === "Course" ? "#578F86" : "#FFFFFF",
+              borderColor: "#578F86"
+            }}
+            active={activeSegment === "Course"}
+            onPress={() => this.setState({ activeSegment: "Course" })}
+          >
+            <Text
+              style={{
+                color:
+                  activeSegment === "Course" ? "#FFFFFF" : "#000000"
+              }}
+            >
+              Course
+            </Text>
+          </Button>
+          <Button
+            style={{
+              backgroundColor:
+                activeSegment === "Teacher" ? "#578F86" : "#FFFFFF",
+              borderColor: "#578F86"
+            }}
+            active={activeSegment === "Teacher"}
+            onPress={() => this.setState({ activeSegment: "Teacher" })}
+          >
+            <Text
+              style={{
+                color:
+                  activeSegment === "Teacher" ? "#FFFFFF" : "#000000"
+              }}
+            >
+              Teacher
+            </Text>
+          </Button>
+
+          <Button
+            last
+            style={{
+              backgroundColor:
+                activeSegment === "Profile" ? "#578F86" : "#FFFFFF",
+              borderColor: "#578F86"
+            }}
+            active={activeSegment === "Profile"}
+            onPress={() => this.setState({ activeSegment: "Profile" })}
+          >
+            <Text
+              style={{
+                color:
+                  activeSegment === "Profile" ? "#FFFFFF" : "#000000"
+              }}
+            >
+              Profile
+            </Text>
+          </Button>
+        </Segment>
+        <Item>
+          <Input placeholder="Underline Textbox" />
+        </Item>
+      </Header>
+    );
+  }
+
+  renderSearch() {
+    const { activeSegment, is_teacher} = this.state
+    return (
+      <Header searchBar rounded style={styles.searchBar}>
+        <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" />
+        </Item>
+        <Button transparent
+          onPress={() => this.addNew()}
+        >
+          { ( activeSegment == "Course") || ( activeSegment == "Teacher" && is_teacher ) ? <Text>Add</Text> : null}
+        </Button>
+      </Header>
+    );
+  }
+
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: "white" }}>
-          <Segment style={{ backgroundColor: "white" }}>
-            <Button
-              first
-              style={{
-                backgroundColor:
-                  this.state.activeSegment === "Course" ? "#578F86" : "#FFFFFF",
-                borderColor: "#578F86"
-              }}
-              active={this.state.activeSegment === "Course"}
-              onPress={() => this.setState({ activeSegment: "Course" })}
-            >
-              <Text
-                style={{
-                  color:
-                    this.state.activeSegment === "Course"
-                      ? "#FFFFFF"
-                      : "#000000"
-                }}
-              >
-                Course
-              </Text>
-            </Button>
-            <Button
-              style={{
-                backgroundColor:
-                  this.state.activeSegment === "Teacher"
-                    ? "#578F86"
-                    : "#FFFFFF",
-                borderColor: "#578F86"
-              }}
-              active={this.state.activeSegment === "Teacher"}
-              onPress={() => this.setState({ activeSegment: "Teacher" })}
-            >
-              <Text
-                style={{
-                  color:
-                    this.state.activeSegment === "Teacher"
-                      ? "#FFFFFF"
-                      : "#000000"
-                }}
-              >
-                Teacher
-              </Text>
-            </Button>
+        {this.renderSearch()}
+        {this.renderSegment()}
 
-            <Button
-              last
-              style={{
-                backgroundColor:
-                  this.state.activeSegment === "Profile"
-                    ? "#578F86"
-                    : "#FFFFFF",
-                borderColor: "#578F86"
-              }}
-              active={this.state.activeSegment === "Profile"}
-              onPress={() => this.setState({ activeSegment: "Profile" })}
-            >
-              <Text
-                style={{
-                  color:
-                    this.state.activeSegment === "Profile"
-                      ? "#FFFFFF"
-                      : "#000000"
-                }}
-              >
-                Profile
-              </Text>
-            </Button>
-          </Segment>
-        </Header>
-        <Content padder>{this.renderCom()}</Content>
+        <Content style={styles.contentHome} padder>
+          {this.renderCom()}
+        </Content>
       </Container>
     );
   }

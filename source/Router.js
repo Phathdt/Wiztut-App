@@ -111,31 +111,52 @@ export const SignedOut = StackNavigator({
   }
 });
 
+export const HomeStack = StackNavigator({
+  Home: {
+    screen: Home,
+    headerMode: "none",
+    header: null,
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    })
+  },
+  DetailCoursePost: {
+    screen: DetailCoursePost
+  },
+  AddCoursePost: {
+    screen: AddCoursePost,
+    navigationOptions: ({ navigation }) => ({
+      title: `Add Course Post`
+    })
+  },
+  DetailTeacherPost: {
+    screen: DetailTeacherPost
+  },
+  AddTeacherPost: {
+    screen: AddTeacherPost
+  }
+},{
+  navigationOptions: {
+    headerStyle: {
+        backgroundColor: 'white',
+        height: 55,
+        borderBottomWidth: 3,
+        borderBottomColor: '#578F86',
+        marginTop: -15
+    },
+    headerTitleStyle: {
+        color: 'black',
+    },
+    headerBackTitleStyle: {
+        color: '#578F86',
+    },
+    headerTintColor: '#578F86',
+  }
+})
 export const SignedIn = TabNavigator(
   {
     HomeStack: {
-      screen: StackNavigator({
-        Home: {
-          screen: Home,
-          headerMode: "none",
-          header: null,
-          navigationOptions: ({ navigation }) => ({
-            header: null
-          })
-        },
-        DetailCoursePost: {
-          screen: DetailCoursePost
-        },
-        AddCoursePost: {
-          screen: AddCoursePost
-        },
-        DetailTeacherPost: {
-          screen: DetailTeacherPost
-        },
-        AddTeacherPost: {
-          screen: AddTeacherPost
-        }
-      }),
+      screen: HomeStack,
       navigationOptions: ({ navigation }) => ({
         tabBarLabel: `Home`,
         tabBarIcon: ({ tintColor }) => (

@@ -13,10 +13,13 @@ import {
   Thumbnail,
   Text,
   Button,
-  Icon
+  Icon,
+  Item,
+  Input
 } from "native-base";
 
 import api from "../../../api/api.js";
+import { address } from '../../../helper/constain'
 
 export default class ListCoursePost extends Component {
   constructor(props) {
@@ -30,12 +33,13 @@ export default class ListCoursePost extends Component {
 
   getListCoursePost(page) {
     api.getListCoursePost(page).then(data => this.addData(data));
+    console.log(this.state.ListCoursePost)
   }
 
   addData(data) {
     if (this.state.page > 1) {
       this.setState({
-        ListCoursePost: [...this.state.ListCoursePost, ...data]
+        ListCoursePost: [...this.state.ListCoursePost, ...data].filter((elem, pos, arr) => arr.indexOf(elem) == pos)
       });
     } else {
       this.setState({
@@ -67,7 +71,7 @@ export default class ListCoursePost extends Component {
         onEndReached={() => this.onEndReached()}
         extraData={this.state}
         data={this.state.ListCoursePost}
-        keyExtractor={item => item.id}
+        keyExtractor={item => `${item.id}-${item.name}`}
         renderItem={({ item }) => this.renderItem(item)}
       />
     );
@@ -87,7 +91,7 @@ export default class ListCoursePost extends Component {
         <Body>
           <Text>{item.title}</Text>
           <Text note>
-            {item.real_address}, {item.address}
+            {item.real_address}, {address[item.address]}
           </Text>
         </Body>
         <Right style={{ justifyContent: "center" }}>
@@ -100,11 +104,9 @@ export default class ListCoursePost extends Component {
   render() {
     return (
       <Container>
+
       <Content>
-        <Button iconLeft success onPress={() => this.props.navigation.navigate("AddCoursePost")}>
-          <Icon name='home' />
-          <Text>Them bai dang</Text>
-        </Button>
+
         {this.state.ListCoursePost ? this.renderListItem() : null}
         </Content>
       </Container>
