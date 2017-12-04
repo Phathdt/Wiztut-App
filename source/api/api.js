@@ -2,7 +2,9 @@ import {
   GetListCoursePostsUrl,
   GetCoursePostUrl,
   SignInUrl,
-  SignUpUrl
+  SignUpUrl,
+  GetListConversationsUrl,
+  CreateMessageUrl
 } from "../helper/LinkUrl";
 
 exports.getListCoursePost = async function(q) {
@@ -106,3 +108,54 @@ exports.getCast = async function(id) {
   } catch (error) {
   }
 };
+exports.getListConversation = async function(q,tokken) {
+  try {
+    let url = `${GetListConversationsUrl}?page=${q}`;
+    let res = await fetch(url,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + tokken
+      }
+    });
+    let resJson = await res.json();
+    return resJson.conversations;
+  } catch (error) {}
+};
+
+exports.getConversation  = async function(q,tokken) {
+  try {
+    let url = `${GetListConversationsUrl}/${q}`;
+    let res = await fetch(url,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${tokken}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson;
+  } catch (error) {}
+};
+
+exports.postMessage = async function(tokken,_body,_conversation_id) {
+  try {
+    let url = `${CreateMessageUrl}`;
+    let response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${tokken}`
+      },
+      body: JSON.stringify({
+        messages: {
+          body: _body,
+          conversation_id: _conversation_id
+        }
+      })
+    });
+    let resJson = await res.json();
+    return resJson;
+  }
+  catch (error) { }
+}
