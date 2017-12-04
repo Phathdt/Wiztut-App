@@ -40,8 +40,8 @@ export const GetConversationUrl = `${HOST}/api/v1/conversations/`
 export const DestroyConversationUrl = `${HOST}/api/v1/conversations/`
 
 // Message
-export const CreateMessageUrl = `${HOST}/api/v1/messages`
-export const DestroyMessageUrl = `${HOST}/api/v1/messages/`
+export const CreateMessageUrl = `${HOST}/api/v1/users/messages`
+export const DestroyMessageUrl = `${HOST}/api/v1/users/messages/`
 
 // Rating
 export const CreateRatingUrl = `${HOST}/api/v1/users/ratings`
