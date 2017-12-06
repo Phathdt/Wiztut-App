@@ -18,60 +18,25 @@ import {
   Input
 } from "native-base";
 
-import api from "../../../api/api.js";
 import { address } from '../../../helper/constain'
 
 export default class ListCoursePost extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ListCoursePost: null,
+      ListCoursePost: this.props.listCp,
       page: 1
     };
-    this.getListCoursePost(this.state.page);
-  }
-
-  getListCoursePost(page) {
-    api.getListCoursePost(page).then(data => this.addData(data));
-    console.log(this.state.ListCoursePost)
-  }
-
-  addData(data) {
-    if (this.state.page > 1) {
-      this.setState({
-        ListCoursePost: [...this.state.ListCoursePost, ...data].filter((elem, pos, arr) => arr.indexOf(elem) == pos)
-      });
-    } else {
-      this.setState({
-        ListCoursePost: data
-      });
-    }
-  }
-
-  onRefresh() {
-    this.setState({
-      page: 1
-    });
-    this.getListCoursePost(this.state.page);
-  }
-
-  async onEndReached() {
-    await this.setState({
-      page: this.state.page + 1
-    });
-    this.getListCoursePost(this.state.page);
   }
 
   renderListItem() {
     return (
       <FlatList
         refreshing={false}
-        onRefresh={() => this.onRefresh()}
         onEndReachedThreshold={-0.2}
-        onEndReached={() => this.onEndReached()}
         extraData={this.state}
         data={this.state.ListCoursePost}
-        keyExtractor={item => `${item.id}-${item.name}`}
+        keyExtractor={item => `${item.id}-${Math.random()}`}
         renderItem={({ item }) => this.renderItem(item)}
       />
     );

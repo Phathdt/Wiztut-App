@@ -16,7 +16,13 @@ import ListCoursePost from "./ListCoursePost";
 import AddCoursePost from "./AddCoursePost";
 import DetailCoursePost from "./DetailCoursePost";
 
+
+import ListTeacherPost from "./ListTeacherPost";
+import AddTeacherPost from "./AddTeacherPost";
+import DetailTeacherPost from "./DetailTeacherPost";
+
 import styles from "../../../helper/styles";
+import api from "../../../api/api.js";
 
 export default class Home extends Component {
   constructor(props) {
@@ -25,8 +31,13 @@ export default class Home extends Component {
     this.state = {
       activeSegment: "Course",
       is_teacher: true,
+      listCp: null,
+      listTp: null,
+      search: "",
+      page: 1,
       token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNDk0MjU4Nn0.P8aQy8KWz_j4MERsaOVXP7S0XDMaGVJC0pqvYn5yD9A'
     };
+    this.getData();
   }
 
   addNew() {
@@ -43,20 +54,72 @@ export default class Home extends Component {
     }
   }
 
+  getListCoursePost(page) {
+    api.getListCoursePost(page, this.state.search).then(data => this.addData(data));
+  }
+
+  getListTeacherPost(page) {
+    api.getListTeacherPost(page).then(data => this.addData(data));
+  }
+
+  getData() {
+    switch (this.state.activeSegment) {
+      case "Teacher":
+        this.getListTeacherPost(this.state.page)
+        break
+      case "Course":
+        this.getListCoursePost(this.state.page)
+        break;
+      case "Profile":
+    }
+  }
+
+  addData(data) {
+    console.log(data)
+    switch (this.state.activeSegment) {
+      case "Teacher":
+        this.setState({
+          listTp: data
+        });
+        return null;
+      case "Course":
+        this.setState({
+          listCp: null,
+          listCp: data
+        });
+
+        return null;
+      case "Profile":
+    }
+  }
+
+
   renderCom() {
     switch (this.state.activeSegment) {
       case "Teacher":
-        return (
-          <Container>
-            <Text>Teacher</Text>
-          </Container>
-        );
+        while(this.state.listTp !== null ) {
+          return (
+            <Container style={{ flex: 1, backgroundColor: "white" }}>
+              <ListTeacherPost
+                navigation={this.props.navigation}
+                listTp={this.state.listTp}
+                />
+            </Container>
+          );
+        }
+        break;
       case "Course":
-        return (
-          <Container style={{ flex: 1, backgroundColor: "white" }}>
-            <ListCoursePost navigation={this.props.navigation} />
-          </Container>
-        );
+        while(this.state.listCp !== null ) {
+          return (
+            <Container style={{ flex: 1, backgroundColor: "white" }}>
+              <ListCoursePost
+                navigation={this.props.navigation}
+                listCp={this.state.listCp}
+              />
+            </Container>
+          );
+        }
+        break;
       case "Profile":
         return (
           <Container>
@@ -64,6 +127,16 @@ export default class Home extends Component {
           </Container>
         );
     }
+  }
+
+  changeSegment(segment){
+    this.setState({ activeSegment: segment })
+    this.getData()
+  }
+
+  changeTextSearch(text){
+    this.setState({search: text})
+    this.getData()
   }
 
   renderSegment() {
@@ -79,7 +152,7 @@ export default class Home extends Component {
               borderColor: "#578F86"
             }}
             active={activeSegment === "Course"}
-            onPress={() => this.setState({ activeSegment: "Course" })}
+            onPress={() => this.changeSegment("Course")}
           >
             <Text
               style={{
@@ -97,7 +170,7 @@ export default class Home extends Component {
               borderColor: "#578F86"
             }}
             active={activeSegment === "Teacher"}
-            onPress={() => this.setState({ activeSegment: "Teacher" })}
+            onPress={() => this.changeSegment("Teacher")}
           >
             <Text
               style={{
@@ -117,7 +190,7 @@ export default class Home extends Component {
               borderColor: "#578F86"
             }}
             active={activeSegment === "Profile"}
-            onPress={() => this.setState({ activeSegment: "Profile" })}
+            onPress={() => this.changeSegment("Profile")}
           >
             <Text
               style={{
@@ -142,7 +215,10 @@ export default class Home extends Component {
       <Header searchBar rounded style={styles.searchBar}>
         <Item>
           <Icon name="ios-search" />
-          <Input placeholder="Search" />
+          <Input
+            placeholder="Search"
+            onChangeText={(text) => this.changeTextSearch(text)}
+            />
         </Item>
         <Button transparent
           onPress={() => this.addNew()}

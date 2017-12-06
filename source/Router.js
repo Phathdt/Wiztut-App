@@ -21,7 +21,7 @@ import ListProfile from "./Screens/SignedIn/HomeStack/ListProfile";
 import AddCoursePost from "./Screens/SignedIn/HomeStack/AddCoursePost";
 import DetailCoursePost from "./Screens/SignedIn/HomeStack/DetailCoursePost";
 import AddTeacherPost from "./Screens/SignedIn/HomeStack/AddTeacherPost";
-import DetailTeacherPost from "./Screens/SignedIn/HomeStack/DetailCoursePost";
+import DetailTeacherPost from "./Screens/SignedIn/HomeStack/DetailTeacherPost";
 
 import FilterCoursePost from "./Screens/SignedIn/SearchStack/FilterCoursePost";
 import FilterTeacherPost from "./Screens/SignedIn/SearchStack/FilterTeacherPost";
@@ -133,7 +133,10 @@ export const HomeStack = StackNavigator({
     screen: DetailTeacherPost
   },
   AddTeacherPost: {
-    screen: AddTeacherPost
+    screen: AddTeacherPost,
+    navigationOptions: ({ navigation }) => ({
+      title: `Add Teacher Post`
+    })
   }
 },{
   navigationOptions: {
