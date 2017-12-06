@@ -125,8 +125,8 @@ exports.AddTeacherPost = async function(tp, token) {
           "title": tp.title,
           "grade": parseInt(tp.grade),
           "subject": parseInt(tp.subject),
-          "time": parseInt(tp.time),
-          "address": parseInt(tp.address),
+          "time": `\{${parseInt(tp.time)}\}`,
+          "address": `\{${parseInt(tp.address)}\}`,
           "salary": parseInt(tp.salary),
           "note": tp.note
         }

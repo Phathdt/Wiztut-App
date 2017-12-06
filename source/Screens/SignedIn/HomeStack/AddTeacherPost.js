@@ -17,7 +17,6 @@ import styles from "../../../helper/styles";
 import api from "../../../api/api.js";
 
 import { teacher_posts } from "../../../helper/tcomb-form-model";
-// option
 import { options } from "../../../helper/tcomb-form-option";
 import { Form } from "../../../helper/tcomb-form";
 
