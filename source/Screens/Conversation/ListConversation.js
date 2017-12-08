@@ -90,13 +90,13 @@ export default class ListConversation extends Component {
         <Body>
           <Text>{item.user_name}</Text>
           <Text note>
-            {item.last_message.body}
+            {item.last_message?item.last_message.body:null}
           </Text>
         </Body>
         <Right>
-          <Text note>>{item.last_message.updated_at
+          <Text note>>{item.last_message?item.last_message.updated_at
                   .match(/\d{4}-\d{2}-\d{2}/i)[0]
-                  .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1")}</Text>
+                  .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1"):null}</Text>
         </Right>
       </ListItem>
     );

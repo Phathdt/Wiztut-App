@@ -72,9 +72,6 @@ export const Conversation = StackNavigator({
   },
   DetailConversation: {
     screen: DetailConversation,
-    navigationOptions: ({ navigation }) => ({
-      title: `DetailConversation`
-    })
   },
   InformationConversation: {
     screen: InformationConversation,

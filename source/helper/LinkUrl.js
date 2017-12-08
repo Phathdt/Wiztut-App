@@ -1,4 +1,4 @@
-const HOST = 'https://mysterious-shore-50693.herokuapp.com'
+const HOST = 'https://wiztut.herokuapp.com'
 // const HOST = 'http://192.168.1.7:3000'
 
 // User
@@ -40,8 +40,8 @@ export const GetConversationUrl = `${HOST}/api/v1/conversations/`
 export const DestroyConversationUrl = `${HOST}/api/v1/conversations/`
 
 // Message
-export const CreateMessageUrl = `${HOST}/api/v1/users/messages`
-export const DestroyMessageUrl = `${HOST}/api/v1/users/messages/`
+export const CreateMessageUrl = `${HOST}/api/v1//messages`
+export const DestroyMessageUrl = `${HOST}/api/v1/messages/`
 
 // Rating
 export const CreateRatingUrl = `${HOST}/api/v1/users/ratings`
