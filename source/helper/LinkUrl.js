@@ -1,5 +1,5 @@
 // const HOST = 'https://wiztut.herokuapp.com'
-const HOST = 'http://192.168.1.7:3000'
+const HOST = 'http://192.168.1.5:3000'
 
 // User
 export const SignInUrl = `${HOST}/api/v1/users/sign_in`

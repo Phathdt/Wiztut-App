@@ -10,11 +10,14 @@ import I18n from "../../config/i18n";
 import styles from "../../helper/styles";
 import api from "../../api/api.js";
 
+import { connect } from 'react-redux';
+import { setUser} from '../../redux/actionCreators';
+
 import { user } from "../../helper/tcomb-form-model";
 import { options } from "../../helper/tcomb-form-option";
 import { Form } from "../../helper/tcomb-form";
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   async SignIn() {
     const user = this.refs.form.getValue();
     if (user) {
@@ -22,9 +25,8 @@ export default class SignIn extends Component {
 
       if (res.status == 200) {
         const resJson = await res.json();
-        this.props.navigation.navigate("SignedIn", {
-          authentication_token: resJson.data.authentication_token
-        });
+        this.props.setUser(resJson.data)
+        this.props.navigation.navigate("SignedIn");
       } else {
         Alert.alert(I18n.t("error"), I18n.t("email_password_wrong"));
       }
@@ -68,3 +70,4 @@ export default class SignIn extends Component {
     );
   }
 }
+export default connect( null ,{ setUser })(SignIn);

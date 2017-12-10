@@ -11,6 +11,7 @@ import {
   Item
 } from "native-base";
 import { StackNavigator } from "react-navigation";
+import { connect } from 'react-redux';
 
 import ListCoursePost from "./ListCoursePost";
 import AddCoursePost from "./AddCoursePost";
@@ -24,7 +25,7 @@ import DetailTeacherPost from "./DetailTeacherPost";
 import styles from "../../../helper/styles";
 import api from "../../../api/api.js";
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -37,6 +38,7 @@ export default class Home extends Component {
       page: 1,
       token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNDk0MjU4Nn0.P8aQy8KWz_j4MERsaOVXP7S0XDMaGVJC0pqvYn5yD9A'
     };
+    console.log(this.props.user)
     this.getData();
   }
 
@@ -75,7 +77,6 @@ export default class Home extends Component {
   }
 
   addData(data) {
-    console.log(data)
     switch (this.state.activeSegment) {
       case "Teacher":
         this.setState({
@@ -258,3 +259,12 @@ class Profile extends Component {
     </Container>;
   }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+    };
+}
+
+export default connect(mapStateToProps)(Home);
+
