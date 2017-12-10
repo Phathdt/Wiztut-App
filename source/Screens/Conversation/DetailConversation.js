@@ -104,7 +104,7 @@ export default class DetailConversation extends Component {
    
     this.getConversation(this.state.tokken)
     this.setState({
-      refreshing: true
+      refreshing: !this.state.refreshing
     })
     
   }

@@ -43,9 +43,6 @@ export default class AddNewConversation extends Component {
         loaded: true
       });
     })
-    if(this.state.listSearchProfile !=null){
-    Alert.alert("OK")
-    }
   }
   onRefresh() {
     this.setState({
