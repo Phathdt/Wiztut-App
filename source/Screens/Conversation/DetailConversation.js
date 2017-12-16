@@ -18,7 +18,7 @@ import {
   Right,
 } from "native-base";
 
-
+import I18n from "../../config/i18n";
 import { CreateMessageUrl } from "../../helper/LinkUrl";
 import api from "../../api/api";
 
@@ -29,13 +29,14 @@ export default class DetailConversation extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id:this.props.navigation.state.params.user_id,
       id: this.props.navigation.state.params.id,
       refreshing: false,
       listmessages: null,
       conversation: null,
       loaded: false,
       message: "",
-      tokken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJlbWFpbCI6InZpZXRhbmg0QGdtYWlsLmNvbSIsImV4cCI6MTUxNDUyMDIxOH0.FotijC_S9qypNt-TQTq2rtqE9UGVaSSQomNgvPG-Iy0"
+      tokken: this.props.navigation.state.params.tokken
     };
     this.getConversation(this.state.tokken);
   }
@@ -92,7 +93,7 @@ _onRefresh() {
     );
   }
   renderItem(item) {
-    if (this.state.conversation.sender_id == item.user_id) {
+    if (this.state.user_id== item.user_id) {
       return (
         <Button
           rounded
@@ -141,7 +142,7 @@ _onRefresh() {
             <Button
               rounded info
               onPress={() => this.Send()}>
-              <Text>Send</Text>
+              <Text>{I18n.t("send_message")}</Text>
             </Button>
           </Item>
       </Container>

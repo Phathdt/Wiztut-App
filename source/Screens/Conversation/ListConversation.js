@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 
-import { FlatList } from "react-native";
+import { FlatList, Alert } from "react-native";
 import {
   Container,
   Header,
@@ -17,15 +17,20 @@ import {
   Icon
 } from "native-base";
 
+import I18n from "../../config/i18n";
+import { connect } from 'react-redux';
 import api from "../../api/api";
 
-export default class ListConversation extends Component {
+class ListConversation extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header:null
+  });
   constructor(props) {
     super(props);
     this.state = {
       ListConversations: null,
       page: 1,
-      tokken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJlbWFpbCI6InZpZXRhbmg0QGdtYWlsLmNvbSIsImV4cCI6MTUxNDUyMDIxOH0.FotijC_S9qypNt-TQTq2rtqE9UGVaSSQomNgvPG-Iy0"
+      tokken: this.props.user.authentication_token
 
     };
     this.getListConversation(this.state.page);
@@ -82,7 +87,12 @@ export default class ListConversation extends Component {
           avatar
           button={true}
           onPress={() =>
-            this.props.navigation.navigate("DetailConversation", { id: item.id, user_name: item.user_name })}
+            this.props.navigation.navigate("DetailConversation", { 
+              id: item.id, 
+              user_name: item.user_name,
+              tokken:this.state.tokken, 
+              user_id:this.props.user.id
+            })}
         >
           <Left>
             <Thumbnail source={{ uri: item.avatar }} />
@@ -105,13 +115,20 @@ export default class ListConversation extends Component {
   render() {
     return (
       <Container>
+        <Header style={{height:65}}>
+          <Body>
+            <Text>List Conversation</Text>
+            </Body>
+          <Right>
         <Button
           iconLeft success
-          onPress={() => this.props.navigation.navigate("AddNewConversation")}
+          onPress={() => this.props.navigation.navigate("AddNewConversation",{tokken:this.state.tokken})}
         >
           <Icon name='add' />
-          <Text>Them Hoi Thoai</Text>
+          <Text>{I18n.t("add_conversation")}</Text>
         </Button>
+        </Right>
+        </Header>
         <Content style={{marginRight:15}}>
           {this.state.ListConversations ? this.renderListItem() : null}
         </Content>
@@ -119,3 +136,10 @@ export default class ListConversation extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+      user: state.user,
+  };
+}
+
+export default connect(mapStateToProps)(ListConversation);

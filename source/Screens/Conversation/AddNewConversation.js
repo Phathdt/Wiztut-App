@@ -19,17 +19,19 @@ import {
   Icon,
 } from "native-base";
 
+import I18n from "../../config/i18n";
 import api from "../../api/api";
 
 export default class AddNewConversation extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id:this.props.navigation.state.params.user_id,
       idConversation: 0,
       name: ``,
       listSearchProfile: null,
       page: 1,
-      tokken: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJlbWFpbCI6InZpZXRhbmg0QGdtYWlsLmNvbSIsImV4cCI6MTUxNDUyMDIxOH0.FotijC_S9qypNt-TQTq2rtqE9UGVaSSQomNgvPG-Iy0`,
+      tokken: this.props.navigation.state.params.tokken,
       refreshing:false,
       loaded:false
     };
@@ -69,7 +71,11 @@ export default class AddNewConversation extends Component {
       });
       Alert.alert(data.message)
       if(this.state.idConversation!=null){
-        this.props.navigation.navigate("DetailConversation", {id: this.state.idConversation,user_name: item.name })
+        this.props.navigation.navigate("DetailConversation", {
+          id: this.state.idConversation,
+          user_name: item.name,
+          user_id:this.state.user_id
+        })
       }
     });
     
@@ -127,7 +133,7 @@ export default class AddNewConversation extends Component {
             transparent
             onPress={() => this.Search()}
           >
-            <Text>Search</Text>
+            <Text>{I18n.t("search")}</Text>
           </Button>
         </Header>
       <Content style={{marginRight:15}}>
