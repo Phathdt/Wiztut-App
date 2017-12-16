@@ -26,13 +26,13 @@ export default class ListConversation extends Component {
       ListConversations: null,
       page: 1,
       tokken: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJlbWFpbCI6InZpZXRhbmg0QGdtYWlsLmNvbSIsImV4cCI6MTUxNDUyMDIxOH0.FotijC_S9qypNt-TQTq2rtqE9UGVaSSQomNgvPG-Iy0"
-      
+
     };
     this.getListConversation(this.state.page);
   }
 
   getListConversation(page) {
-    api.getListConversation(page,this.state.tokken).then(data => this.addData(data));
+    api.getListConversation(page, this.state.tokken).then(data => this.addData(data));
   }
 
   addData(data) {
@@ -78,42 +78,42 @@ export default class ListConversation extends Component {
 
   renderItem(item) {
     return (
-      <ListItem
-        avatar
-        button={true}
-        onPress={() =>
-          this.props.navigation.navigate("DetailConversation", {id: item.id,user_name:item.user_name })}
-      >
-        <Left>
-          <Thumbnail source={{ uri: item.avatar }} />
-        </Left>
-        <Body>
-          <Text>{item.user_name}</Text>
-          <Text note>
-            {item.last_message?item.last_message.body:null}
-          </Text>
-        </Body>
-        <Right>
-          <Text note>>{item.last_message?item.last_message.updated_at
-                  .match(/\d{4}-\d{2}-\d{2}/i)[0]
-                  .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1"):null}</Text>
-        </Right>
-      </ListItem>
+        <ListItem
+          avatar
+          button={true}
+          onPress={() =>
+            this.props.navigation.navigate("DetailConversation", { id: item.id, user_name: item.user_name })}
+        >
+          <Left>
+            <Thumbnail source={{ uri: item.avatar }} />
+          </Left>
+          <Body>
+            <Text>{item.user_name}</Text>
+            <Text note>
+              {item.last_message ? item.last_message.body : null}
+            </Text>
+          </Body>
+          <Right style={{ justifyContent: "center" }}>
+            <Text note>{item.last_message ? item.last_message.updated_at
+              .match(/\d{4}-\d{2}-\d{2}/i)[0]
+              .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1") : null}</Text>
+          </Right>
+        </ListItem>
     );
   }
 
   render() {
     return (
       <Container>
-      <Content>
-        <Button 
+        <Button
           iconLeft success
-          onPress={() => this.props.navigation.navigate("AddNewConversation")}          
-          >
-          <Icon name='home' />
+          onPress={() => this.props.navigation.navigate("AddNewConversation")}
+        >
+          <Icon name='add' />
           <Text>Them Hoi Thoai</Text>
         </Button>
-        {this.state.ListConversations ? this.renderListItem() : null}
+        <Content style={{marginRight:15}}>
+          {this.state.ListConversations ? this.renderListItem() : null}
         </Content>
       </Container>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, StyleSheet, FlatList, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, FlatList, ScrollView, Alert,RefreshControl, Animated } from "react-native";
 import {
   Button,
   Input,
@@ -50,8 +50,13 @@ export default class DetailConversation extends Component {
       });
     });
   }
+  
   renderScrollComponent = ({ style, refreshing, ...props }) => (
-    <ScrollView style={[style, styles.flip]} {...props} />
+    <ScrollView 
+      
+      style={[style, styles.flip]} 
+      {...props} 
+    />
   );
   onRefresh() {
     this.setState({
@@ -61,13 +66,25 @@ export default class DetailConversation extends Component {
       this.getConversation(this.state.tokken)
     })
 }
+_onRefresh() {
+  this.setState({refreshing: true});
+  fetchData().then(() => {
+    Alert.alert("Ok")
+    this.getConversation(this.state.tokken)
+  });
+  
+}
   renderListItem() {
     return (
       <FlatList
         extraData={this.state}
         data={this.state.listmessages}
-        refreshing={this.state.refreshing}
-        onRefresh={()=>this.onRefresh()}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
         keyExtractor={item => item.id}
         renderScrollComponent={this.renderScrollComponent}
         renderItem={({ item }) => this.renderItem(item)}
@@ -100,20 +117,22 @@ export default class DetailConversation extends Component {
     if (this.state.message == "") {
       return false;
     }
+ 
     api.postMessage(this.state.tokken, this.state.message, this.state.conversation.id)
-   
     this.getConversation(this.state.tokken)
     this.setState({
-      refreshing: !this.state.refreshing
+      refreshing: true
     })
-    
   }
   render() {
     return (
-      <Container>
+      <Container >
         <Content>
+          
           {this.state.loaded ? this.renderListItem() : null}
-          <Item rounded>
+          
+        </Content>
+        <Item rounded>
             <Input
               placeholder='Write message'
               value={this.state.message}
@@ -125,7 +144,6 @@ export default class DetailConversation extends Component {
               <Text>Send</Text>
             </Button>
           </Item>
-        </Content>
       </Container>
     );
   }

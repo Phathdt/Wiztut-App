@@ -68,10 +68,11 @@ export default class AddNewConversation extends Component {
         idConversation: data.conversation.id
       });
       Alert.alert(data.message)
+      if(this.state.idConversation!=null){
+        this.props.navigation.navigate("DetailConversation", {id: this.state.idConversation,user_name: item.name })
+      }
     });
-    if(this.state.idConversation!=null){
-      this.props.navigation.navigate("DetailConversation", {id: this.state.idConversation,user_name: item.name })
-    }
+    
   }
   renderListItem() {
     return (
@@ -82,6 +83,7 @@ export default class AddNewConversation extends Component {
         data={this.state.listSearchProfile}
         keyExtractor={item => item.id}
         renderItem={({ item }) => this.renderItem(item)}
+        
       />
     );
   }
@@ -101,8 +103,9 @@ export default class AddNewConversation extends Component {
             {item.about_me}
           </Text>
         </Body>
-        <Right>
-          <Text note>>{item.degree}</Text>
+        <Right style={{ justifyContent: "center" }}>
+          <Text note
+          >{item.degree}</Text>
         </Right>
       </ListItem>
     );
@@ -127,7 +130,7 @@ export default class AddNewConversation extends Component {
             <Text>Search</Text>
           </Button>
         </Header>
-      <Content>
+      <Content style={{marginRight:15}}>
         {this.renderListItem()}
         </Content>
       </Container>
