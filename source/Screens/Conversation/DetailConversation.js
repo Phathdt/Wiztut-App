@@ -36,13 +36,13 @@ export default class DetailConversation extends Component {
       conversation: null,
       loaded: false,
       message: "",
-      tokken: this.props.navigation.state.params.tokken
+      token: this.props.navigation.state.params.token
     };
-    this.getConversation(this.state.tokken);
+    this.getConversation(this.state.token);
   }
 
-  getConversation(tokken) {
-    api.getConversation(this.state.id, tokken).then(data => {
+  getConversation(token) {
+    api.getConversation(this.state.id, token).then(data => {
       this.setState({
         conversation: data.conversation,
         listmessages: data.messages,
@@ -64,14 +64,14 @@ export default class DetailConversation extends Component {
       refreshing: true
     },
     ()=> {
-      this.getConversation(this.state.tokken)
+      this.getConversation(this.state.token)
     })
 }
 _onRefresh() {
   this.setState({refreshing: true});
   fetchData().then(() => {
     Alert.alert("Ok")
-    this.getConversation(this.state.tokken)
+    this.getConversation(this.state.token)
   });
   
 }
@@ -119,8 +119,8 @@ _onRefresh() {
       return false;
     }
  
-    api.postMessage(this.state.tokken, this.state.message, this.state.conversation.id)
-    this.getConversation(this.state.tokken)
+    api.createMessage(this.state.token, this.state.message, this.state.conversation.id)
+    this.getConversation(this.state.token)
     this.setState({
       refreshing: true
     })

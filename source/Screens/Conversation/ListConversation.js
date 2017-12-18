@@ -30,14 +30,14 @@ class ListConversation extends Component {
     this.state = {
       ListConversations: null,
       page: 1,
-      tokken: this.props.user.authentication_token
+      token: this.props.user.authentication_token
 
     };
     this.getListConversation(this.state.page);
   }
 
   getListConversation(page) {
-    api.getListConversation(page, this.state.tokken).then(data => this.addData(data));
+    api.getListConversation(page, this.state.token).then(data => this.addData(data));
   }
 
   addData(data) {
@@ -90,7 +90,7 @@ class ListConversation extends Component {
             this.props.navigation.navigate("DetailConversation", { 
               id: item.id, 
               user_name: item.user_name,
-              tokken:this.state.tokken, 
+              token:this.state.token, 
               user_id:this.props.user.id
             })}
         >
@@ -122,7 +122,7 @@ class ListConversation extends Component {
           <Right>
         <Button
           iconLeft success
-          onPress={() => this.props.navigation.navigate("AddNewConversation",{tokken:this.state.tokken})}
+          onPress={() => this.props.navigation.navigate("AddNewConversation",{token:this.state.token})}
         >
           <Icon name='add' />
           <Text>{I18n.t("add_conversation")}</Text>

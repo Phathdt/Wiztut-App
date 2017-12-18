@@ -7,9 +7,14 @@ export default class Profile extends Component {
     return (
       <View>
         <Button
+          title="List Conversation"
+          onPress={() => this.props.navigation.navigate("ListConversation")}
+        />
+        <Button
           title="SignedOut"
           onPress={() => this.props.navigation.navigate("SignedOut")}
         />
+        
       </View>
     );
   }

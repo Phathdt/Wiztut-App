@@ -31,14 +31,14 @@ export default class AddNewConversation extends Component {
       name: ``,
       listSearchProfile: null,
       page: 1,
-      tokken: this.props.navigation.state.params.tokken,
+      token: this.props.navigation.state.params.token,
       refreshing:false,
       loaded:false
     };
-    this.getlistSearchProfile(this.state.tokken,this.state.name);
+    this.getlistSearchProfile(this.state.token,this.state.name);
   }
-  getlistSearchProfile(tokken,name) {
-    api.getListSearchProfile(tokken,name).then(data => {
+  getlistSearchProfile(token,name) {
+    api.getListSearchProfile(token,name).then(data => {
       this.setState({
         listSearchProfile: data.users,
         refreshing: false,
@@ -51,7 +51,7 @@ export default class AddNewConversation extends Component {
       refreshing: true
     },
     ()=> {
-      this.getlistSearchProfile(this.state.tokken,this.state.name)
+      this.getlistSearchProfile(this.state.token,this.state.name)
     })
   }
 
@@ -59,13 +59,13 @@ export default class AddNewConversation extends Component {
     if (this.state.name.length==0) {
       return false;
     }
-    this.getlistSearchProfile(this.state.tokken, this.state.name)
+    this.getlistSearchProfile(this.state.token, this.state.name)
   }
   async Create(item) {
     if (this.state.listSearchProfile == null) {
       return false;
     }
-    api.postConversation(this.state.tokken, item.id).then(data => {
+    api.createConversation(this.state.token, item.id).then(data => {
       this.setState({
         idConversation: data.conversation.id
       });

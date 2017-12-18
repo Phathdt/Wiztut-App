@@ -110,42 +110,42 @@ exports.getCast = async function(id) {
   } catch (error) {
   }
 };
-exports.getListConversation = async function(q,tokken) {
+exports.getListConversation = async function(q,token) {
   try {
     let url = `${GetListConversationsUrl}?page=${q}`;
     let res = await fetch(url,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokken}`
+        "Authorization": `Bearer ${token}`
       }
     });
     let resJson = await res.json();
     return resJson.conversations;
   } catch (error) {}
 };
-exports.getConversation  = async function(q,tokken) {
+exports.getConversation  = async function(q,token) {
   try {
     let url = `${GetListConversationsUrl}/${q}`;
     let res = await fetch(url,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokken}`
+        "Authorization": `Bearer ${token}`
       }
     });
     let resJson = await res.json();
     return resJson;
   } catch (error) {}
 };
-exports.postMessage = async function(tokken,_body,_conversation_id) {
+exports.createMessage = async function(token,_body,_conversation_id) {
   try {
     let url = `${CreateMessageUrl}`;
     let res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokken}`
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         messages: {
@@ -159,27 +159,27 @@ exports.postMessage = async function(tokken,_body,_conversation_id) {
   }
   catch (error) { }
 };
-exports.getListSearchProfile = async function(tokken,name) {
+exports.getListSearchProfile = async function(token,name) {
   try {
     let url = `${GetListProfilesUrl}?page=1&&name=${name.toLowerCase()}`;
     let res= await fetch(url, {
       method: "GET",
       headers: {
-        "Authorization": `Bearer ${tokken}`
+        "Authorization": `Bearer ${token}`
       }
     });
     let resJson = await res.json();
     return resJson;
   } catch (error) {}
 };
-exports.postConversation = async function(tokken,id) {
+exports.createConversation = async function(token,id) {
   try {
     let url = `${CreateConversationUrl}`;
     let res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${tokken}`
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         conversations: {
