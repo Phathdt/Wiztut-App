@@ -1,4 +1,6 @@
-import { View, Button,TouchableHighlight } from 'react-native';
+import React, { Component } from 'react';
+
+import { View, Button,TouchableHighlight,Text } from 'react-native';
 
 import I18n from "../../../config/i18n";
 import styles from "../../../helper/styles";

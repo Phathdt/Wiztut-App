@@ -52,7 +52,7 @@ export const filter_course_posts = t.struct({
   grade: t.maybe(Grade),
   subject: t.maybe(Subject),
   address: t.maybe(Address),
-  salary: t.Number
+  salary: t.maybe(t.Number)
 });
 export const filter_teacher_posts = t.struct({
   grade: t.maybe(Grade),
@@ -62,7 +62,7 @@ export const filter_teacher_posts = t.struct({
 });
 export const filter_profile = t.struct({
   sex_require: t.maybe(Sex),
-  salary:t.Number,
+  salary: t.maybe(t.Number),
   degree_require: t.maybe(Degree),
 });
 
