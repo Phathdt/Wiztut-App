@@ -33,6 +33,8 @@ import Profile from "./Screens/SignedIn/ProfileStack/Profile";
 
 import styles from "./src/stylesheet/style";
 
+
+
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(
     {
