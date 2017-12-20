@@ -36,6 +36,7 @@ class DetailConversation extends Component {
       listmessages: null,
       conversation: null,
       loaded: false,
+      loading: false,
       message: "",
       token: this.props.user.authentication_token
     };
@@ -60,20 +61,14 @@ class DetailConversation extends Component {
       {...props} 
     />
   );
-  onRefresh() {
-    this.setState({
-      refreshing: true
-    },
-    ()=> {
-      this.getConversation(this.state.token)
-    })
-}
+
 _onRefresh() {
   this.setState({refreshing: true});
+  if(this.state.loading==true){
   fetchData().then(() => {
-    Alert.alert("Ok")
-    this.getConversation(this.state.token)
+    this.setState({refreshing: false})
   });
+  }
   
 }
   renderListItem() {
@@ -122,7 +117,8 @@ _onRefresh() {
     api.createMessage(this.state.token, this.state.message, this.state.conversation.id)
     this.getConversation(this.state.token)
     this.setState({
-      refreshing: true
+      refreshing:true,
+      loading: true
     })
   }
   render() {
