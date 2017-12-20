@@ -23,6 +23,7 @@ import DetailCoursePost from "./Screens/SignedIn/HomeStack/DetailCoursePost";
 import AddTeacherPost from "./Screens/SignedIn/HomeStack/AddTeacherPost";
 import DetailTeacherPost from "./Screens/SignedIn/HomeStack/DetailTeacherPost";
 
+import Filter from "./Screens/SignedIn/SearchStack/Filter";
 import FilterCoursePost from "./Screens/SignedIn/SearchStack/FilterCoursePost";
 import FilterTeacherPost from "./Screens/SignedIn/SearchStack/FilterTeacherPost";
 import SearchProfile from "./Screens/SignedIn/SearchStack/SearchProfile";
@@ -169,6 +170,12 @@ export const SignedIn = TabNavigator(
     },
     SearchStack: {
       screen: StackNavigator({
+        Filter: {
+          screen: Filter,
+          navigationOptions: ({ navigation }) => ({
+            title: `Filter`
+          })
+        },
         FilterCoursePost: {
           screen: FilterCoursePost,
           navigationOptions: ({ navigation }) => ({

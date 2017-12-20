@@ -48,3 +48,21 @@ export const teacher_posts = t.struct({
   note: t.maybe(t.String)
 });
 
+export const filter_course_posts = t.struct({
+  grade: t.maybe(Grade),
+  subject: t.maybe(Subject),
+  address: t.maybe(Address),
+  salary: t.Number
+});
+export const filter_teacher_posts = t.struct({
+  grade: t.maybe(Grade),
+  subject: t.maybe(Subject),
+  address: t.maybe(Address),
+  degree_require: t.maybe(Degree),
+});
+export const filter_profile = t.struct({
+  sex_require: t.maybe(Sex),
+  salary:t.Number,
+  degree_require: t.maybe(Degree),
+});
+
