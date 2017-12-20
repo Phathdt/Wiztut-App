@@ -52,5 +52,6 @@ export default {
   create_new_cp: 'Create new Cp',
   add_conversation: 'Add',
   send_message: 'Send',
-  search: 'Search'
+  search: 'Search',
+  create_new_cp: 'Create new Cp'
 };

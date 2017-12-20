@@ -2,21 +2,15 @@ import {
   GetListCoursePostsUrl,
   GetCoursePostUrl,
   SignInUrl,
-  SignUpUrl,
   GetListConversationsUrl,
   CreateMessageUrl,
   GetListProfilesUrl,
-  CreateConversationUrl
+  CreateConversationUrl,
+  CreateCoursePostUrl,
+  GetListTeacherPostsUrl,
+  GetTeacherPostUrl,
+  CreateTeacherPostUrl,
 } from "../helper/LinkUrl";
-
-exports.getListCoursePost = async function(q) {
-  try {
-    let url = `${GetListCoursePostsUrl}?page=${q}`;
-    let res = await fetch(url);
-    let resJson = await res.json();
-    return resJson.course_posts;
-  } catch (error) {}
-};
 
 exports.getCoursePost = async function(q) {
   try {
@@ -27,9 +21,10 @@ exports.getCoursePost = async function(q) {
   } catch (error) {}
 };
 
-exports.getListCoursePost = async function(q) {
+exports.getListCoursePost = async function(q, title) {
   try {
     let url = `${GetListCoursePostsUrl}?page=${q}`;
+    url += title ? `&&title=${title}` : ''
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.course_posts;
@@ -73,6 +68,76 @@ exports.signUp = async function(user) {
     } catch (error) {}
 };
 
+exports.AddCoursePost = async function(cp, token) {
+  try {
+    let res = await fetch(CreateCoursePostUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        course_posts: {
+          "title": cp.title,
+          "grade": parseInt(cp.grade),
+          "subject": parseInt(cp.subject),
+          "time": parseInt(cp.time),
+          "address": parseInt(cp.address),
+          "real_address": cp.real_address,
+          "salary": parseInt(cp.salary),
+          "sex_require": parseInt(cp.sex_require),
+          "degree_require": parseInt(cp.degree_require),
+          "frequency": parseInt(cp.frequency),
+          "phone": cp.phone,
+          "note": cp.note
+        }
+      })
+    });
+    return res
+    } catch (error) {}
+};
+
+exports.getListTeacherPost = async function(q) {
+  try {
+    let url = `${GetListTeacherPostsUrl}?page=${q}`;
+    let res = await fetch(url);
+    let resJson = await res.json();
+    return resJson.teacher_post;
+  } catch (error) {}
+};
+
+exports.getTeacherPost = async function(q) {
+  try {
+    let url = `${GetTeacherPostUrl}${q}`;
+    let res = await fetch(url);
+    let resJson = await res.json();
+    return resJson;
+  } catch (error) {}
+};
+
+exports.AddTeacherPost = async function(tp, token) {
+  try {
+    let res = await fetch(CreateTeacherPostUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        teacher_posts: {
+          "title": tp.title,
+          "grade": parseInt(tp.grade),
+          "subject": parseInt(tp.subject),
+          "time": `\{${parseInt(tp.time)}\}`,
+          "address": `\{${parseInt(tp.address)}\}`,
+          "salary": parseInt(tp.salary),
+          "note": tp.note
+        }
+      })
+    });
+    return res
+    } catch (error) {}
+};
 
 exports.upcoming = async function(q) {
   try {

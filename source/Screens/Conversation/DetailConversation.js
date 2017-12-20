@@ -23,21 +23,21 @@ import { CreateMessageUrl } from "../../helper/LinkUrl";
 import api from "../../api/api";
 import { connect } from 'react-redux';
 
-export default class DetailConversation extends Component {
+class DetailConversation extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: `${navigation.state.params.user_name}`
   });
   constructor(props) {
     super(props);
     this.state = {
-      user_id:this.props.navigation.state.params.user_id,
+      user_id: this.props.user.id,
       id: this.props.navigation.state.params.id,
       refreshing: false,
       listmessages: null,
       conversation: null,
       loaded: false,
       message: "",
-      token: this.props.navigation.state.params.token
+      token: this.props.user.authentication_token
     };
     this.getConversation(this.state.token);
   }
@@ -119,7 +119,6 @@ _onRefresh() {
     if (this.state.message == "") {
       return false;
     }
- 
     api.createMessage(this.state.token, this.state.message, this.state.conversation.id)
     this.getConversation(this.state.token)
     this.setState({
@@ -150,6 +149,15 @@ _onRefresh() {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+      user: state.user,
+  };
+}
+
+export default connect(mapStateToProps)(DetailConversation);
+
 const styles = StyleSheet.create({
   flip: {
     transform: [{ scaleY: -1 }]

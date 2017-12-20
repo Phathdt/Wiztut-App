@@ -7,8 +7,9 @@ import {
   StatusBar
 } from 'react-native';
 
-import  { SignedIn, SignedOut, createRootNavigator } from './source/Router'
-
+import  { SignedIn, SignedOut, createRootNavigator } from './Router'
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 export default class App extends Component {
   constructor(props) {
@@ -27,7 +28,11 @@ export default class App extends Component {
     const { checkedSignIn, signedIn } = this.state;
 
     const Layout = createRootNavigator(signedIn);
-    return <Layout />;
+    return(
+          <Provider store={store}>
+            <Layout />
+          </Provider>
+    )
   }
 }
 

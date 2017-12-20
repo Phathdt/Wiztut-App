@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet } from "react-native";
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     padding: 20,
@@ -31,5 +31,20 @@ export default (styles = StyleSheet.create({
   logoAuthentica: {
     width: 350,
     height: 200
-  }
-}));
+  },
+  searchBar:{
+    backgroundColor: "white",
+    paddingTop: -10,
+    height: 40,
+    borderBottomWidth: 0,
+  },
+  segment: {
+    backgroundColor: "white",
+    height: 50,
+    paddingTop: -10
+  },
+  contentHome: {
+    marginTop: -10,
+    marginHorizontal: -10
+  },
+});

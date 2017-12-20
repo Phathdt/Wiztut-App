@@ -32,7 +32,7 @@ class AddNewConversation extends Component {
       name: ``,
       listSearchProfile: null,
       page: 1,
-      token: this.props.navigation.state.params.token,
+      token: this.props.user.authentication_token,
       refreshing:false,
       loaded:false
     };
@@ -74,8 +74,7 @@ class AddNewConversation extends Component {
       if(this.state.idConversation!=null){
         this.props.navigation.navigate("DetailConversation", {
           id: this.state.idConversation,
-          user_name: item.name,
-          user_id:this.state.user_id
+          user_name: item.name
         })
       }
     });
