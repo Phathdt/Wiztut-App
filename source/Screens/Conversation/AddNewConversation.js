@@ -21,12 +21,13 @@ import {
 
 import I18n from "../../config/i18n";
 import api from "../../api/api";
+import { connect } from 'react-redux';
 
-export default class AddNewConversation extends Component {
+class AddNewConversation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id:this.props.navigation.state.params.user_id,
+      user_id: this.props.user.id,
       idConversation: 0,
       name: ``,
       listSearchProfile: null,
@@ -143,4 +144,12 @@ export default class AddNewConversation extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+      user: state.user,
+  };
+}
+
+export default connect(mapStateToProps)(AddNewConversation);
 

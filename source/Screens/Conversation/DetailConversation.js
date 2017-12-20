@@ -21,6 +21,7 @@ import {
 import I18n from "../../config/i18n";
 import { CreateMessageUrl } from "../../helper/LinkUrl";
 import api from "../../api/api";
+import { connect } from 'react-redux';
 
 export default class DetailConversation extends Component {
   static navigationOptions = ({ navigation }) => ({

@@ -90,8 +90,6 @@ class ListConversation extends Component {
             this.props.navigation.navigate("DetailConversation", { 
               id: item.id, 
               user_name: item.user_name,
-              token:this.state.token, 
-              user_id:this.props.user.id
             })}
         >
           <Left>
@@ -122,7 +120,7 @@ class ListConversation extends Component {
           <Right>
         <Button
           iconLeft success
-          onPress={() => this.props.navigation.navigate("AddNewConversation",{token:this.state.token})}
+          onPress={() => this.props.navigation.navigate("AddNewConversation")}
         >
           <Icon name='add' />
           <Text>{I18n.t("add_conversation")}</Text>
