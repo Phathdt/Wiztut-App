@@ -53,7 +53,7 @@ export default class FilterTeacherPost extends Component {
             underlayColor="red"
             onPress={() => this.FilterClick()}
           >
-          <Text style={styles.buttonText}>Filter</Text>
+          <Text style={styles.buttonText}>{I18n.t("filter_button")}</Text>
           </TouchableHighlight>
          </Content> 
       </Container>
