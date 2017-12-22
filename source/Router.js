@@ -27,6 +27,7 @@ import Filter from "./Screens/SignedIn/SearchStack/Filter";
 import FilterCoursePost from "./Screens/SignedIn/SearchStack/FilterCoursePost";
 import FilterTeacherPost from "./Screens/SignedIn/SearchStack/FilterTeacherPost";
 import SearchProfile from "./Screens/SignedIn/SearchStack/SearchProfile";
+import FilterDetail from "./Screens/SignedIn/SearchStack/FilterDetail";
 
 import Location from "./Screens/SignedIn/LocationStack/Location";
 
@@ -193,7 +194,13 @@ export const SignedIn = TabNavigator(
           navigationOptions: ({ navigation }) => ({
             title: `SearchProfile`
           })
-        }
+        },
+        FilterDetail: {
+          screen: FilterDetail,
+          navigationOptions: ({ navigation }) => ({
+            title: `FilterDetail`
+          })
+        },
       }),
       navigationOptions: ({ navigation }) => ({
         tabBarLabel: `Home`,

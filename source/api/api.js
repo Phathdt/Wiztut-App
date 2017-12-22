@@ -10,6 +10,7 @@ import {
   GetListTeacherPostsUrl,
   GetTeacherPostUrl,
   CreateTeacherPostUrl,
+  GetListCoursesUrl,
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function(q) {
@@ -257,5 +258,52 @@ exports.createConversation = async function(token,id) {
   }
   catch (error) { }
 };
+exports.getFilterCoursePost = async function(fcp,token) {
+  try {
+    let url = `${GetListCoursePostsUrl}?page=1`;
+    url += fcp.grade ? `&&grade=${parseInt(fcp.grade)}` : ''
+    url += fcp.subject ? `&&subject=${parseInt(fcp.subject)}` : ''
+    url += fcp.address ? `&&address=${parseInt(fcp.address)}` : ''
+    url += fcp.salary ? `&&salary=${parseInt(fcp.salary)}` : ''
+    let res = await fetch(url,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson.course_posts;
+  } catch (error) {}
+};
+exports.getFilterTeacherPost = async function(tcp) {
+  try {
+    let url = `${GetListTeacherPostsUrl}?page=1`;
+    url += tcp.grade ? `&&grade=${parseInt(tcp.grade)}` : ''
+    url += tcp.subject ? `&&subject=${parseInt(tcp.subject)}` : ''
+    url += tcp.address ? `&&address=${parseInt(tcp.address)}` : ''
+    url += tcp.degree_require ? `&&degree_require=${parseInt(tcp.degree_require)}` : ''
+    let res = await fetch(url)
+    let resJson = await res.json();
+    return resJson.teacher_post;
+  } catch (error) {}
+};
+exports.getFilterProfile = async function(profile,token,is_teacher) {
+  try {
+    let url = `${GetListProfilesUrl}?page=1`;
+    url += profile.sex ? `&&sex=${parseInt(profile.sex)}` : ''
+    url += profile.degree_require ? `&&degree=${parseInt(profile.degree_require)}` : ''
+    url += is_teacher ? `&&teacher=${is_teacher}` : ''
+    let res = await fetch(url,{
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson.users;
+  } catch (error) {}
+};
+
 
 

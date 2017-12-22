@@ -62,7 +62,6 @@ export const filter_teacher_posts = t.struct({
 });
 export const filter_profile = t.struct({
   sex_require: t.maybe(Sex),
-  salary: t.maybe(t.Number),
   degree_require: t.maybe(Degree),
 });
 

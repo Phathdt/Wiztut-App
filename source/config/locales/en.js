@@ -53,5 +53,7 @@ export default {
   add_conversation: 'Add',
   send_message: 'Send',
   search: 'Search',
-  create_new_cp: 'Create new Cp'
+  create_new_cp: 'Create new Cp',
+  filter_button: 'Filter',
+  is_teacher: 'Teacher'
 };
