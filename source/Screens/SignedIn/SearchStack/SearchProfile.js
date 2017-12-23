@@ -48,18 +48,18 @@ class SearchProfile extends Component {
     return (
       <Container style={styles.container}>
         <Content>
-          <Form
-            ref="form"
-            type={filter_profile}
-            options={options}
-            onChange={() => this.refs.form.validate()}
-          />
           <ListItem>
             <CheckBox checked={this.state.teacher} onPress={() => this.setState({ teacher: !this.state.teacher })} />
             <Body>
               <Text>{I18n.t("is_teacher")}</Text>
             </Body>
           </ListItem>
+          <Form
+            ref="form"
+            type={filter_profile}
+            options={options}
+            onChange={() => this.refs.form.validate()}
+          />
           <TouchableHighlight
             style={[styles.button, { marginTop: 20 }]}
             underlayColor="red"

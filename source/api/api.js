@@ -261,7 +261,7 @@ exports.createConversation = async function(token,id) {
 exports.getFilterCoursePost = async function(fcp,token) {
   try {
     let url = `${GetListCoursePostsUrl}?page=1`;
-    url += fcp.grade ? `&&grade=${parseInt(fcp.grade)}` : ''
+    url += fcp.grade ? `&&grade=${parseInt(fcp.grade)+1}` : ''
     url += fcp.subject ? `&&subject=${parseInt(fcp.subject)}` : ''
     url += fcp.address ? `&&address=${parseInt(fcp.address)}` : ''
     url += fcp.salary ? `&&salary=${parseInt(fcp.salary)}` : ''
@@ -279,7 +279,7 @@ exports.getFilterCoursePost = async function(fcp,token) {
 exports.getFilterTeacherPost = async function(tcp) {
   try {
     let url = `${GetListTeacherPostsUrl}?page=1`;
-    url += tcp.grade ? `&&grade=${parseInt(tcp.grade)}` : ''
+    url += tcp.grade ? `&&grade=${parseInt(tcp.grade)+1}` : ''
     url += tcp.subject ? `&&subject=${parseInt(tcp.subject)}` : ''
     url += tcp.address ? `&&address=${parseInt(tcp.address)}` : ''
     url += tcp.degree_require ? `&&degree_require=${parseInt(tcp.degree_require)}` : ''
@@ -292,6 +292,7 @@ exports.getFilterProfile = async function(profile,token,is_teacher) {
   try {
     let url = `${GetListProfilesUrl}?page=1`;
     url += profile.sex ? `&&sex=${parseInt(profile.sex)}` : ''
+    url += profile.salary ? `&&salary=${parseInt(profile.salary)}` : ''
     url += profile.degree_require ? `&&degree=${parseInt(profile.degree_require)}` : ''
     url += is_teacher ? `&&teacher=${is_teacher}` : ''
     let res = await fetch(url,{

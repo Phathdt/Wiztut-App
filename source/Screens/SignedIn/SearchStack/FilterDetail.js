@@ -119,7 +119,7 @@ export default class FilterDetail extends Component {
   render() {
     return (
       <Container>
-        <Content>
+        <Content style={{marginRight:15}}>
           {this.state.list ? this.renderListItem() : null}
         </Content>
       </Container>
