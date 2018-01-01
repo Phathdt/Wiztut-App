@@ -36,7 +36,7 @@ class Home extends Component {
       listTp: null,
       search: "",
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNDk0MjU4Nn0.P8aQy8KWz_j4MERsaOVXP7S0XDMaGVJC0pqvYn5yD9A'
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzQ0ODU1MH0.4eFSQdfLhXKu2GPP4S61X08lmRhwze9MKk7TEZTFYL4'
     };
     console.log(this.props.user)
     this.getData();
@@ -61,7 +61,7 @@ class Home extends Component {
   }
 
   getListTeacherPost(page) {
-    api.getListTeacherPost(page).then(data => this.addData(data));
+    api.getListTeacherPost(page, this.state.search).then(data => this.addData(data));
   }
 
   getData() {
@@ -77,20 +77,37 @@ class Home extends Component {
   }
 
   addData(data) {
-    switch (this.state.activeSegment) {
-      case "Teacher":
-        this.setState({
-          listTp: data
-        });
-        return null;
-      case "Course":
-        this.setState({
-          listCp: null,
-          listCp: data
-        });
+    if (this.state.search !== "") {
+      switch (this.state.activeSegment) {
+        case "Teacher":
+          this.setState({
+            listCp: data
+          });
+          return null;
+        case "Course":
+          this.setState({
+            listCp: data
+          });
 
-        return null;
-      case "Profile":
+          return null;
+        case "Profile":
+      }
+    } else {
+      switch (this.state.activeSegment) {
+        case "Teacher":
+          this.setState({
+            listTp: data
+          });
+          return null;
+        case "Course":
+          this.setState({
+            listCp: null,
+            listCp: data
+          });
+
+          return null;
+        case "Profile":
+      }
     }
   }
 
@@ -98,28 +115,35 @@ class Home extends Component {
   renderCom() {
     switch (this.state.activeSegment) {
       case "Teacher":
-        while(this.state.listTp !== null ) {
-          return (
-            <Container style={{ flex: 1, backgroundColor: "white" }}>
-              <ListTeacherPost
-                navigation={this.props.navigation}
-                listTp={this.state.listTp}
-                />
-            </Container>
-          );
-        }
+          if (this.state.listTp == []) {
+            console.log(123213)
+            return(<Text>No data</Text>)
+          } else {
+            return (
+              <Container style={{ flex: 1, backgroundColor: "white" }}>
+                <ListTeacherPost
+                  navigation={this.props.navigation}
+                  listTp={this.state.listTp}
+                  />
+              </Container>
+            );
+          }
         break;
       case "Course":
-        while(this.state.listCp !== null ) {
-          return (
-            <Container style={{ flex: 1, backgroundColor: "white" }}>
-              <ListCoursePost
-                navigation={this.props.navigation}
-                listCp={this.state.listCp}
-              />
-            </Container>
-          );
-        }
+          console.log(this.state.listCp)
+          if (this.state.listCp == null || this.state.listCp.length == 0) {
+            console.log(123213)
+            return(<Text>No data</Text>)
+          } else {
+            return (
+              <Container style={{ flex: 1, backgroundColor: "white" }}>
+                <ListCoursePost
+                  navigation={this.props.navigation}
+                  listCp={this.state.listCp}
+                />
+              </Container>
+            );
+          }
         break;
       case "Profile":
         return (
@@ -131,13 +155,23 @@ class Home extends Component {
   }
 
   changeSegment(segment){
-    this.setState({ activeSegment: segment })
-    this.getData()
+    Promise.resolve(
+      this.setState({
+        activeSegment: segment
+      }))
+    .then(function() {
+      this.getData()
+    }.bind(this));
   }
 
   changeTextSearch(text){
-    this.setState({search: text})
-    this.getData()
+    Promise.resolve(
+      this.setState({
+        search: text
+      }))
+    .then(function() {
+      this.getData()
+    }.bind(this));
   }
 
   renderSegment() {

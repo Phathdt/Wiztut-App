@@ -22,10 +22,9 @@ exports.getCoursePost = async function(q) {
   } catch (error) {}
 };
 
-exports.getListCoursePost = async function(q, title) {
+exports.getListCoursePost = async function(q, search) {
   try {
-    let url = `${GetListCoursePostsUrl}?page=${q}`;
-    url += title ? `&&title=${title}` : ''
+    let url = `${GetListCoursePostsUrl}?page=${q}&&title=${search.toLowerCase().replace(/ /g, '%20')}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.course_posts;
@@ -98,9 +97,9 @@ exports.AddCoursePost = async function(cp, token) {
     } catch (error) {}
 };
 
-exports.getListTeacherPost = async function(q) {
+exports.getListTeacherPost = async function(q, search) {
   try {
-    let url = `${GetListTeacherPostsUrl}?page=${q}`;
+    let url = `${GetListTeacherPostsUrl}?page=${q}&&title=${search.toLowerCase().replace(/ /g, '%20')}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.teacher_post;
