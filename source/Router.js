@@ -32,7 +32,7 @@ import FilterDetail from "./Screens/SignedIn/SearchStack/FilterDetail";
 import Location from "./Screens/SignedIn/LocationStack/Location";
 
 import Profile from "./Screens/SignedIn/ProfileStack/Profile";
-
+import AnotherProfile from "./Screens/AnotherProfile"
 import styles from "./src/stylesheet/style";
 
 export const createRootNavigator = (signedIn = false) => {
@@ -55,6 +55,30 @@ export const createRootNavigator = (signedIn = false) => {
         navigationOptions: {
           gesturesEnabled: false
         }
+      },
+      DetailCoursePost: {
+        screen: DetailCoursePost
+      },
+      AddCoursePost: {
+        screen: AddCoursePost,
+        navigationOptions: ({ navigation }) => ({
+          title: `Add Course Post`
+        })
+      },
+      DetailTeacherPost: {
+        screen: DetailTeacherPost
+      },
+      AddTeacherPost: {
+        screen: AddTeacherPost,
+        navigationOptions: ({ navigation }) => ({
+          title: `Add Teacher Post`
+        })
+      },
+      AnotherProfile: {
+        screen: AnotherProfile,
+        navigationOptions: ({ navigation }) => ({
+          title: `AnotherProfile`
+        })
       }
     },
     {
@@ -119,24 +143,6 @@ export const HomeStack = StackNavigator({
       header: null
     })
   },
-  DetailCoursePost: {
-    screen: DetailCoursePost
-  },
-  AddCoursePost: {
-    screen: AddCoursePost,
-    navigationOptions: ({ navigation }) => ({
-      title: `Add Course Post`
-    })
-  },
-  DetailTeacherPost: {
-    screen: DetailTeacherPost
-  },
-  AddTeacherPost: {
-    screen: AddTeacherPost,
-    navigationOptions: ({ navigation }) => ({
-      title: `Add Teacher Post`
-    })
-  }
 },{
   navigationOptions: {
     headerStyle: {

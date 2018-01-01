@@ -22,6 +22,8 @@ import ListTeacherPost from "./ListTeacherPost";
 import AddTeacherPost from "./AddTeacherPost";
 import DetailTeacherPost from "./DetailTeacherPost";
 
+import ListProfile from "./ListProfile"
+
 import styles from "../../../helper/styles";
 import api from "../../../api/api.js";
 
@@ -34,6 +36,7 @@ class Home extends Component {
       is_teacher: true,
       listCp: null,
       listTp: null,
+      listPf: null,
       search: "",
       page: 1,
       token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzQ0ODU1MH0.4eFSQdfLhXKu2GPP4S61X08lmRhwze9MKk7TEZTFYL4'
@@ -64,7 +67,12 @@ class Home extends Component {
     api.getListTeacherPost(page, this.state.search).then(data => this.addData(data));
   }
 
+  getListProfile(page) {
+    api.getListProfile(page, this.state.search, this.state.token).then(data => this.addData(data.users));
+  }
+
   getData() {
+    console.log(this.state.activeSegment)
     switch (this.state.activeSegment) {
       case "Teacher":
         this.getListTeacherPost(this.state.page)
@@ -73,6 +81,8 @@ class Home extends Component {
         this.getListCoursePost(this.state.page)
         break;
       case "Profile":
+        this.getListProfile(this.state.page)
+        break;
     }
   }
 
@@ -81,7 +91,7 @@ class Home extends Component {
       switch (this.state.activeSegment) {
         case "Teacher":
           this.setState({
-            listCp: data
+            listTp: data
           });
           return null;
         case "Course":
@@ -91,6 +101,11 @@ class Home extends Component {
 
           return null;
         case "Profile":
+          this.setState({
+            listPf: data
+          });
+
+          return null;
       }
     } else {
       switch (this.state.activeSegment) {
@@ -101,12 +116,16 @@ class Home extends Component {
           return null;
         case "Course":
           this.setState({
-            listCp: null,
             listCp: data
           });
 
           return null;
         case "Profile":
+          this.setState({
+            listPf: data
+          });
+
+          return null;
       }
     }
   }
@@ -115,8 +134,7 @@ class Home extends Component {
   renderCom() {
     switch (this.state.activeSegment) {
       case "Teacher":
-          if (this.state.listTp == []) {
-            console.log(123213)
+          if (this.state.listTp == null || this.state.listTp.length == 0) {
             return(<Text>No data</Text>)
           } else {
             return (
@@ -130,9 +148,7 @@ class Home extends Component {
           }
         break;
       case "Course":
-          console.log(this.state.listCp)
           if (this.state.listCp == null || this.state.listCp.length == 0) {
-            console.log(123213)
             return(<Text>No data</Text>)
           } else {
             return (
@@ -146,18 +162,27 @@ class Home extends Component {
           }
         break;
       case "Profile":
-        return (
-          <Container>
-            <Text>Profile</Text>
-          </Container>
-        );
+        if (this.state.listPf == null || this.state.listPf.length == 0) {
+            return(<Text>No data</Text>)
+          } else {
+            return (
+              <Container style={{ flex: 1, backgroundColor: "white" }}>
+                <ListProfile
+                  navigation={this.props.navigation}
+                  listPf={this.state.listPf}
+                />
+              </Container>
+            );
+          }
+        break;
     }
   }
 
   changeSegment(segment){
     Promise.resolve(
       this.setState({
-        activeSegment: segment
+        activeSegment: segment,
+        search: ''
       }))
     .then(function() {
       this.getData()

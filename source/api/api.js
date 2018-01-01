@@ -175,6 +175,7 @@ exports.getCast = async function(id) {
   } catch (error) {
   }
 };
+
 exports.getListConversation = async function(q,token) {
   try {
     let url = `${GetListConversationsUrl}?page=${q}`;
@@ -189,6 +190,7 @@ exports.getListConversation = async function(q,token) {
     return resJson.conversations;
   } catch (error) {}
 };
+
 exports.getConversation  = async function(q,token) {
   try {
     let url = `${GetListConversationsUrl}/${q}`;
@@ -203,6 +205,7 @@ exports.getConversation  = async function(q,token) {
     return resJson;
   } catch (error) {}
 };
+
 exports.createMessage = async function(token,_body,_conversation_id) {
   try {
     let url = `${CreateMessageUrl}`;
@@ -224,6 +227,21 @@ exports.createMessage = async function(token,_body,_conversation_id) {
   }
   catch (error) { }
 };
+
+exports.getListProfile = async function(page, search, token) {
+  try {
+    let url = `${GetListProfilesUrl}?page=${page}&&name=${search.toLowerCase().replace(/ /g, '%20')}`;
+    let res= await fetch(url, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson;
+  } catch (error) {}
+};
+
 exports.getListSearchProfile = async function(token,name) {
   try {
     let url = `${GetListProfilesUrl}?page=1&&name=${name.toLowerCase()}`;
@@ -237,6 +255,7 @@ exports.getListSearchProfile = async function(token,name) {
     return resJson;
   } catch (error) {}
 };
+
 exports.createConversation = async function(token,id) {
   try {
     let url = `${CreateConversationUrl}`;
