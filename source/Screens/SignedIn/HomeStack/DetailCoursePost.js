@@ -68,7 +68,7 @@ export default class DetailCoursePost extends Component {
               <Text style={styles.title}>Lớp</Text>
             </Left>
             <Body>
-              <Text style={styles.content}>{item.grade}</Text>
+              <Text style={styles.content}>{item.grade + 1}</Text>
             </Body>
           </CardItem>
           <CardItem>
