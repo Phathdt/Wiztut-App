@@ -10,7 +10,8 @@ import {
 
 import {
   Header,
-  Container
+  Container,
+  Body
 } from 'native-base'
 import I18n from "../config/i18n";
 import styles from "../helper/styles";
@@ -19,6 +20,8 @@ import api from "../api/api.js";
 import { teacher_posts } from "../helper/tcomb-form-model";
 import { options } from "../helper/tcomb-form-option";
 import { Form } from "../helper/tcomb-form";
+
+import HeaderCustom from '../Components/HeaderCustom'
 
 export default class AddTeacherPost extends Component {
   constructor(props) {
@@ -46,27 +49,49 @@ export default class AddTeacherPost extends Component {
     }
   }
 
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    return(
+      <Container style={{width: 300, flex: 1}}>
+        <Body>
+          <Text style={styles.heading}>Tạo lớp    </Text>
+        </Body>
+      </Container>
+      )
+  }
+
   render() {
     return (
-      <ScrollView>
-        <View style={styles.container}>
+      <View>
+        { this.renderHeader()}
+        <ScrollView style={{marginTop:5}}>
           <View style={styles.container}>
-            <Form
-              ref="form"
-              type={teacher_posts}
-              options={options}
-              onChange={() => this.refs.form.validate()}
-            />
-            <TouchableHighlight
-              style={[styles.button, { marginTop: 20 }]}
-              onPress={this.AddTeacherPost.bind(this)}
-              underlayColor="red"
-            >
-              <Text style={styles.buttonText}>{I18n.t('create_new_cp')}</Text>
-            </TouchableHighlight>
+            <View style={styles.container}>
+              <Form
+                ref="form"
+                type={teacher_posts}
+                options={options}
+                onChange={() => this.refs.form.validate()}
+              />
+              <TouchableHighlight
+                style={[styles.button, { marginTop: 20 }]}
+                onPress={this.AddTeacherPost.bind(this)}
+                underlayColor="red"
+              >
+                <Text style={styles.buttonText}>{I18n.t('create_new_cp')}</Text>
+              </TouchableHighlight>
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }

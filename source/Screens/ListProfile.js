@@ -47,6 +47,7 @@ class ListProfile extends Component {
   renderItem(item) {
     return (
       <ListItem
+        style={{marginVertical: 5 }}
         avatar
         button={true}
         onPress={() =>

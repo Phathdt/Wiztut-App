@@ -62,24 +62,15 @@ export const createRootNavigator = (signedIn = false) => {
       },
       AddCoursePost: {
         screen: AddCoursePost,
-        navigationOptions: ({ navigation }) => ({
-          title: `Add Course Post`
-        })
       },
       DetailTeacherPost: {
         screen: DetailTeacherPost
       },
       AddTeacherPost: {
         screen: AddTeacherPost,
-        navigationOptions: ({ navigation }) => ({
-          title: `Add Teacher Post`
-        })
       },
       AnotherProfile: {
         screen: AnotherProfile,
-        navigationOptions: ({ navigation }) => ({
-          title: `AnotherProfile`
-        })
       }
     },
     {

@@ -13,6 +13,11 @@ export default styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 30
   },
+  heading: {
+    marginTop: 10,
+    fontSize: 20,
+    alignSelf: "center"
+  },
   buttonText: {
     fontSize: 18,
     color: "white",
@@ -42,7 +47,7 @@ export default styles = StyleSheet.create({
     backgroundColor: "white",
     height: 50,
     paddingTop: -10,
-    borderBottomColor: 'black',
+    borderBottomColor: '#34C9B0',
     borderBottomWidth: 3,
   },
   contentHome: {
