@@ -208,8 +208,8 @@ class Home extends Component {
             first
             style={{
               backgroundColor:
-                activeSegment === "Course" ? "#34C9B0" : "#FFFFFF",
-              borderColor: "#34C9B0"
+                activeSegment === "Course" ? "#5D9A91" : "#FFFFFF",
+              borderColor: "#5D9A91"
             }}
             active={activeSegment === "Course"}
             onPress={() => this.changeSegment("Course")}
@@ -226,8 +226,8 @@ class Home extends Component {
           <Button
             style={{
               backgroundColor:
-                activeSegment === "Teacher" ? "#34C9B0" : "#FFFFFF",
-              borderColor: "#34C9B0"
+                activeSegment === "Teacher" ? "#5D9A91" : "#FFFFFF",
+              borderColor: "#5D9A91"
             }}
             active={activeSegment === "Teacher"}
             onPress={() => this.changeSegment("Teacher")}
@@ -246,8 +246,8 @@ class Home extends Component {
             last
             style={{
               backgroundColor:
-                activeSegment === "Profile" ? "#34C9B0" : "#FFFFFF",
-              borderColor: "#34C9B0"
+                activeSegment === "Profile" ? "#5D9A91" : "#FFFFFF",
+              borderColor: "#5D9A91"
             }}
             active={activeSegment === "Profile"}
             onPress={() => this.changeSegment("Profile")}
