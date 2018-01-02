@@ -155,7 +155,7 @@ export default class DetailCoursePost extends Component {
   }
   render() {
     return (
-      <Container>
+      <Container style={{ flex: 1, backgroundColor: "white" }}>
         <HeaderCustom
           title='hello world'
           navigation={this.props.navigation}

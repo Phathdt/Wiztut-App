@@ -23,6 +23,8 @@ import {
   subjects
 } from "../../../helper/constain";
 
+import HeaderCustom from '../../../Components/HeaderCustom'
+
 export default class DetailTeacherPost extends Component {
   static navigationOptions = {
     title: "Thông tin bài đăng"
@@ -154,6 +156,10 @@ export default class DetailTeacherPost extends Component {
   render() {
     return (
       <Container style={{ flex: 1, backgroundColor: "white" }}>
+        <HeaderCustom
+          title='hello world'
+          navigation={this.props.navigation}
+        />
         {this.state.loaded ? this.renderItem() : null}
       </Container>
     );
