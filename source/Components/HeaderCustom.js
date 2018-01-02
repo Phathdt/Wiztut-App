@@ -4,20 +4,16 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'nativ
 class HeaderCustom extends Component {
   render() {
     return (
-        <Header>
-          <Left>
-            <Button
-              transparent
-              onPress={() => this.props.navigation.goBack(null)}
-            >
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
+        <Header style={{marginBottom: -10}}>
+          <Button
+            transparent
+            onPress={() => this.props.navigation.goBack(null)}
+          >
+            <Icon name='arrow-back' />
+          </Button>
           <Body>
-            <Title>{this.props.title}</Title>
+            {this.props.titleComponent}
           </Body>
-          <Right>
-          </Right>
         </Header>
     );
   }

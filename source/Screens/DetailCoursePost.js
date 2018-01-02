@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, Button, StyleSheet } from "react-native";
+import { View, Button, StyleSheet, Image } from "react-native";
 import {
   Container,
   Header,
@@ -10,7 +10,7 @@ import {
   Text,
   Body,
   Left,
-  Right
+  Right,
 } from "native-base";
 
 import api from "../api/api.js";
@@ -47,6 +47,7 @@ export default class DetailCoursePost extends Component {
         course_post: data.course_post,
         profile_id: data.profile_id,
         profile_name: data.profile_name,
+        avatar: data.avatar,
         loaded: true
       });
     });
@@ -153,13 +154,44 @@ export default class DetailCoursePost extends Component {
       </Content>
     );
   }
+
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    let name = this.state.profile_name
+    let avatar = this.state.avatar
+    return(
+      <Container style={{width: 300, flex: 1, flexDirection: 'row'}}>
+        <Container style={{flex: 1}}>
+          <Image
+            style={{width: 35, height: 35, borderRadius: 17}}
+            source={{uri: avatar}}
+          />
+        </Container>
+        <Container style={{flex: 6}}>
+          <Text style={{paddingTop: 10}}> Đăng bởi: {name}</Text>
+        </Container>
+        <Container style={{flex: 1}}>
+           <Image
+            style={{width: 40, height: 40}}
+            source={require('../src/images/icon_app.png')}
+          />
+        </Container>
+      </Container>
+      )
+  }
+
   render() {
     return (
       <Container style={{ flex: 1, backgroundColor: "white" }}>
-        <HeaderCustom
-          title='hello world'
-          navigation={this.props.navigation}
-          />
+        {this.state.loaded ? this.renderHeader() : null}
         {this.state.loaded ? this.renderItem() : null}
       </Container>
     );
