@@ -19,7 +19,7 @@ import {
   Input
 } from "native-base";
 
-import { address } from '../../../helper/constain'
+import { address } from '../helper/constain'
 
 export default class FilterDetail extends Component {
   constructor(props) {

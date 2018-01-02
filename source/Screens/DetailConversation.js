@@ -18,9 +18,9 @@ import {
   Right,
 } from "native-base";
 
-import I18n from "../../config/i18n";
-import { CreateMessageUrl } from "../../helper/LinkUrl";
-import api from "../../api/api";
+import I18n from "../config/i18n";
+import { CreateMessageUrl } from "../helper/LinkUrl";
+import api from "../api/api";
 import { connect } from 'react-redux';
 
 class DetailConversation extends Component {
@@ -53,12 +53,12 @@ class DetailConversation extends Component {
       });
     });
   }
-  
+
   renderScrollComponent = ({ style, refreshing, ...props }) => (
-    <ScrollView 
-      
-      style={[style, styles.flip]} 
-      {...props} 
+    <ScrollView
+
+      style={[style, styles.flip]}
+      {...props}
     />
   );
 
@@ -69,7 +69,7 @@ _onRefresh() {
     this.setState({refreshing: false})
   });
   }
-  
+
 }
   renderListItem() {
     return (
@@ -125,9 +125,9 @@ _onRefresh() {
     return (
       <Container >
         <Content>
-          
+
           {this.state.loaded ? this.renderListItem() : null}
-          
+
         </Content>
         <Item rounded>
             <Input

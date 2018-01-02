@@ -7,16 +7,16 @@ import {
   Content,
 } from "native-base";
 
-import I18n from "../../../config/i18n";
-import styles from "../../../helper/styles";
-import api from "../../../api/api.js";
+import I18n from "../config/i18n";
+import styles from "../helper/styles";
+import api from "../api/api.js";
 
 import { connect } from 'react-redux';
-import { setUser} from '../../../redux/actionCreators';
+import { setUser} from '../redux/actionCreators';
 
-import { filter_teacher_posts } from "../../../helper/tcomb-form-model";
-import { options } from "../../../helper/tcomb-form-option";
-import { Form } from "../../../helper/tcomb-form";
+import { filter_teacher_posts } from "../helper/tcomb-form-model";
+import { options } from "../helper/tcomb-form-option";
+import { Form } from "../helper/tcomb-form";
 
 export default class FilterTeacherPost extends Component {
   constructor(props) {
@@ -55,7 +55,7 @@ export default class FilterTeacherPost extends Component {
           >
           <Text style={styles.buttonText}>{I18n.t("filter_button")}</Text>
           </TouchableHighlight>
-         </Content> 
+         </Content>
       </Container>
     );
   }

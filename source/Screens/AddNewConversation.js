@@ -19,8 +19,8 @@ import {
   Icon,
 } from "native-base";
 
-import I18n from "../../config/i18n";
-import api from "../../api/api";
+import I18n from "../config/i18n";
+import api from "../api/api";
 import { connect } from 'react-redux';
 
 class AddNewConversation extends Component {
@@ -78,7 +78,7 @@ class AddNewConversation extends Component {
         })
       }
     });
-    
+
   }
   renderListItem() {
     return (
@@ -89,7 +89,7 @@ class AddNewConversation extends Component {
         data={this.state.listSearchProfile}
         keyExtractor={item => item.id}
         renderItem={({ item }) => this.renderItem(item)}
-        
+
       />
     );
   }
@@ -122,14 +122,14 @@ class AddNewConversation extends Component {
         <Header searchBar rounded>
           <Item>
             <Icon name="ios-search" />
-            <Input 
+            <Input
               placeholder="Search"
               value={this.state.name}
-              onChangeText={name => this.setState({ name })} 
+              onChangeText={name => this.setState({ name })}
             />
             <Icon name="ios-people" />
           </Item>
-          <Button 
+          <Button
             transparent
             onPress={() => this.Search()}
           >

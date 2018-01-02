@@ -18,21 +18,21 @@ import {
   Input
 } from "native-base";
 
-import { address } from '../../../helper/constain'
+import { address } from '../helper/constain'
 
 const images = [
-  { id: 0, uriPhoto: require("../../../src/images/one.png") },
-  { id: 1, uriPhoto: require("../../../src/images/two.png") },
-  { id: 2, uriPhoto: require("../../../src/images/three.png") },
-  { id: 3, uriPhoto: require("../../../src/images/four.png") },
-  { id: 4, uriPhoto: require("../../../src/images/five.png") },
-  { id: 5, uriPhoto: require("../../../src/images/six.png") },
-  { id: 6, uriPhoto: require("../../../src/images/seven.png") },
-  { id: 7, uriPhoto: require("../../../src/images/eight.png") },
-  { id: 8, uriPhoto: require("../../../src/images/nine.png") },
-  { id: 9, uriPhoto: require("../../../src/images/ten.png") },
-  { id: 10, uriPhoto: require("../../../src/images/eleven.png") },
-  { id: 11, uriPhoto: require("../../../src/images/twelve.png") }
+  { id: 0, uriPhoto: require("../src/images/one.png") },
+  { id: 1, uriPhoto: require("../src/images/two.png") },
+  { id: 2, uriPhoto: require("../src/images/three.png") },
+  { id: 3, uriPhoto: require("../src/images/four.png") },
+  { id: 4, uriPhoto: require("../src/images/five.png") },
+  { id: 5, uriPhoto: require("../src/images/six.png") },
+  { id: 6, uriPhoto: require("../src/images/seven.png") },
+  { id: 7, uriPhoto: require("../src/images/eight.png") },
+  { id: 8, uriPhoto: require("../src/images/nine.png") },
+  { id: 9, uriPhoto: require("../src/images/ten.png") },
+  { id: 10, uriPhoto: require("../src/images/eleven.png") },
+  { id: 11, uriPhoto: require("../src/images/twelve.png") }
 ]
 
 export default class ListCoursePost extends Component {
@@ -61,6 +61,7 @@ export default class ListCoursePost extends Component {
     image = images.find( x => x.id == item.grade)
     return (
       <ListItem
+        style={{marginVertical: 5 }}
         avatar
         button={true}
         onPress={() =>
@@ -85,10 +86,8 @@ export default class ListCoursePost extends Component {
   render() {
     return (
       <Container>
-
-      <Content>
-
-        {this.state.ListCoursePost ? this.renderListItem() : null}
+        <Content>
+          {this.state.ListCoursePost ? this.renderListItem() : null}
         </Content>
       </Container>
     );

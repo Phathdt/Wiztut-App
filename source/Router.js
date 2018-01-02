@@ -3,35 +3,35 @@ import React, { Component } from "react";
 import { StackNavigator, TabNavigator } from "react-navigation";
 
 // Signed Out
-import SignIn from "./Screens/SignedOut/SignIn";
-import SignUp from "./Screens/SignedOut/SignUp";
+import SignIn from "./Screens/SignIn";
+import SignUp from "./Screens/SignUp";
 
 // Conversation
-import AddNewConversation from "./Screens/Conversation/AddNewConversation";
-import DetailConversation from "./Screens/Conversation/DetailConversation";
-import InformationConversation from "./Screens/Conversation/InformationConversation";
-import ListConversation from "./Screens/Conversation/ListConversation";
-import UpdateConversation from "./Screens/Conversation/UpdateConversation";
+import AddNewConversation from "./Screens/AddNewConversation";
+import DetailConversation from "./Screens/DetailConversation";
+import InformationConversation from "./Screens/InformationConversation";
+import ListConversation from "./Screens/ListConversation";
+import UpdateConversation from "./Screens/UpdateConversation";
 
 // Signed In
-import Home from "./Screens/SignedIn/HomeStack/Home";
-import ListCoursePost from "./Screens/SignedIn/HomeStack/ListCoursePost";
-import ListTeacherPost from "./Screens/SignedIn/HomeStack/ListTeacherPost";
-import ListProfile from "./Screens/SignedIn/HomeStack/ListProfile";
-import AddCoursePost from "./Screens/SignedIn/HomeStack/AddCoursePost";
-import DetailCoursePost from "./Screens/SignedIn/HomeStack/DetailCoursePost";
-import AddTeacherPost from "./Screens/SignedIn/HomeStack/AddTeacherPost";
-import DetailTeacherPost from "./Screens/SignedIn/HomeStack/DetailTeacherPost";
+import Home from "./Screens/Home";
+import ListCoursePost from "./Screens/ListCoursePost";
+import ListTeacherPost from "./Screens/ListTeacherPost";
+import ListProfile from "./Screens/ListProfile";
+import AddCoursePost from "./Screens/AddCoursePost";
+import DetailCoursePost from "./Screens/DetailCoursePost";
+import AddTeacherPost from "./Screens/AddTeacherPost";
+import DetailTeacherPost from "./Screens/DetailTeacherPost";
 
-import Filter from "./Screens/SignedIn/SearchStack/Filter";
-import FilterCoursePost from "./Screens/SignedIn/SearchStack/FilterCoursePost";
-import FilterTeacherPost from "./Screens/SignedIn/SearchStack/FilterTeacherPost";
-import SearchProfile from "./Screens/SignedIn/SearchStack/SearchProfile";
-import FilterDetail from "./Screens/SignedIn/SearchStack/FilterDetail";
+import Filter from "./Screens/Filter";
+import FilterCoursePost from "./Screens/FilterCoursePost";
+import FilterTeacherPost from "./Screens/FilterTeacherPost";
+import SearchProfile from "./Screens/SearchProfile";
+import FilterDetail from "./Screens/FilterDetail";
 
-import Location from "./Screens/SignedIn/LocationStack/Location";
+import Location from "./Screens/Location";
 
-import Profile from "./Screens/SignedIn/ProfileStack/Profile";
+import Profile from "./Screens/Profile";
 import AnotherProfile from "./Screens/AnotherProfile"
 import styles from "./src/stylesheet/style";
 

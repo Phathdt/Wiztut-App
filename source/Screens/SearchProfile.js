@@ -11,16 +11,16 @@ import {
   Content,
 } from 'native-base'
 
-import I18n from "../../../config/i18n";
-import styles from "../../../helper/styles";
-import api from "../../../api/api.js";
+import I18n from "../config/i18n";
+import styles from "../helper/styles";
+import api from "../api/api.js";
 
 import { connect } from 'react-redux';
-import { setUser } from '../../../redux/actionCreators';
+import { setUser } from '../redux/actionCreators';
 
-import { filter_profile } from "../../../helper/tcomb-form-model";
-import { options } from "../../../helper/tcomb-form-option";
-import { Form } from "../../../helper/tcomb-form";
+import { filter_profile } from "../helper/tcomb-form-model";
+import { options } from "../helper/tcomb-form-option";
+import { Form } from "../helper/tcomb-form";
 
 class SearchProfile extends Component {
   constructor(props) {

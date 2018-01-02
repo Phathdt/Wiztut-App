@@ -41,7 +41,9 @@ export default styles = StyleSheet.create({
   segment: {
     backgroundColor: "white",
     height: 50,
-    paddingTop: -10
+    paddingTop: -10,
+    borderBottomColor: 'black',
+    borderBottomWidth: 3,
   },
   contentHome: {
     marginTop: -10,

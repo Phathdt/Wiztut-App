@@ -17,9 +17,9 @@ import {
   Icon
 } from "native-base";
 
-import I18n from "../../config/i18n";
+import I18n from "../config/i18n";
 import { connect } from 'react-redux';
-import api from "../../api/api";
+import api from "../api/api";
 
 class ListConversation extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -30,7 +30,7 @@ class ListConversation extends Component {
     this.state = {
       ListConversations: null,
       page: 1,
-      token: this.props.user.authentication_token
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU'
 
     };
     this.getListConversation(this.state.page);
@@ -87,8 +87,8 @@ class ListConversation extends Component {
           avatar
           button={true}
           onPress={() =>
-            this.props.navigation.navigate("DetailConversation", { 
-              id: item.id, 
+            this.props.navigation.navigate("DetailConversation", {
+              id: item.id,
               user_name: item.user_name,
             })}
         >

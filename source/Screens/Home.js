@@ -24,8 +24,8 @@ import DetailTeacherPost from "./DetailTeacherPost";
 
 import ListProfile from "./ListProfile"
 
-import styles from "../../../helper/styles";
-import api from "../../../api/api.js";
+import styles from "../helper/styles";
+import api from "../api/api.js";
 
 class Home extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class Home extends Component {
       listPf: null,
       search: "",
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzQ0ODU1MH0.4eFSQdfLhXKu2GPP4S61X08lmRhwze9MKk7TEZTFYL4'
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU'
     };
     console.log(this.props.user)
     this.getData();

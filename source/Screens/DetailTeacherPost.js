@@ -13,7 +13,7 @@ import {
   Right
 } from "native-base";
 
-import api from "../../../api/api.js";
+import api from "../api/api.js";
 import {
   address,
   time,
@@ -21,9 +21,9 @@ import {
   sex_require,
   grades,
   subjects
-} from "../../../helper/constain";
+} from "../helper/constain";
 
-import HeaderCustom from '../../../Components/HeaderCustom'
+import HeaderCustom from '../Components/HeaderCustom'
 
 export default class DetailTeacherPost extends Component {
   static navigationOptions = {

@@ -18,7 +18,7 @@ import {
   Input
 } from "native-base";
 
-import { address } from '../../../helper/constain'
+import { address } from '../helper/constain'
 
 export default class ListTeacherPost extends Component {
   constructor(props) {

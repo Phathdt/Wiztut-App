@@ -18,8 +18,8 @@ import {
   Input
 } from "native-base";
 
-import I18n from "../../../config/i18n";
-import api from "../../../api/api";
+import I18n from "../config/i18n";
+import api from "../api/api";
 import { connect } from 'react-redux';
 
 class ListProfile extends Component {
