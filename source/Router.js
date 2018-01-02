@@ -56,6 +56,7 @@ export const createRootNavigator = (signedIn = false) => {
           gesturesEnabled: false
         }
       },
+      // Common Screen
       DetailCoursePost: {
         screen: DetailCoursePost
       },
