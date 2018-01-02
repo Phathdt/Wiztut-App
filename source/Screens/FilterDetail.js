@@ -19,6 +19,10 @@ import {
   Input
 } from "native-base";
 
+import ListCoursePost from './ListCoursePost'
+import ListTeacherPost from './ListTeacherPost'
+import ListProfile from './ListProfile'
+
 import { address } from '../helper/constain'
 
 export default class FilterDetail extends Component {
@@ -28,76 +32,38 @@ export default class FilterDetail extends Component {
       case: this.props.navigation.state.params.case,
       list: this.props.navigation.state.params.list
     }
+    console.log(this.state.list)
   }
   renderItem(item) {
     switch (this.state.case) {
       case "Course":
         return (
-          <ListItem
-            avatar
-            button={true}
-            onPress={() =>
-              this.props.navigation.navigate("DetailCoursePost", {
-                id: item.id,
-              })}
-          >
-            <Left>
-              <Thumbnail source={{ uri: "https://reactjs.org/logo-og.png" }} />
-            </Left>
-            <Body>
-              <Text>{item.title}</Text>
-              <Text note>
-                {item.real_address}, {address[item.address]}
-              </Text>
-            </Body>
-            <Right style={{ justifyContent: "center" }}>
-              <Text>></Text>
-            </Right>
-          </ListItem>
+          <Container style={{ flex: 1, backgroundColor: "white" }}>
+            <ListCoursePost
+              navigation={this.props.navigation}
+              listCp={this.state.list}
+              />
+          </Container>
         );
         break;
       case "Teacher":
         return (
-          <ListItem
-            avatar
-            button={true}
-            onPress={() =>
-              this.props.navigation.navigate("DetailTeacherPost", { id: item.id })}
-          >
-            <Left>
-              <Thumbnail source={{ uri: item.avatar }} />
-            </Left>
-            <Body>
-              <Text>{item.title}</Text>
-              <Text note>
-                {address[item.address]}
-              </Text>
-            </Body>
-            <Right style={{ justifyContent: "center" }}>
-              <Text>></Text>
-            </Right>
-          </ListItem>
+          <Container style={{ flex: 1, backgroundColor: "white" }}>
+            <ListTeacherPost
+              navigation={this.props.navigation}
+              listTp={this.state.list}
+              />
+          </Container>
         );
         break;
         case "Profile":
           return (
-            <ListItem
-            avatar
-            button={true}
-          >
-            <Left>
-              <Thumbnail source={{ uri: item.avatar }} />
-            </Left>
-            <Body>
-              <Text>{item.name}</Text>
-              <Text note>
-                {item.about_me}
-              </Text>
-            </Body>
-            <Right style={{ justifyContent: "center" }}>
-              <Text>{item.degree}</Text>
-            </Right>
-          </ListItem>
+            <Container style={{ flex: 1, backgroundColor: "white" }}>
+              <ListProfile
+                navigation={this.props.navigation}
+                listPf={this.state.list}
+              />
+            </Container>
           )
         break;
         default:
@@ -119,9 +85,7 @@ export default class FilterDetail extends Component {
   render() {
     return (
       <Container>
-        <Content style={{marginRight:15}}>
           {this.state.list ? this.renderListItem() : null}
-        </Content>
       </Container>
     );
   }

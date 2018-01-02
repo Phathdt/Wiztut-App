@@ -34,7 +34,7 @@ class FilterCoursePost extends Component {
           list: data
         })
       })
-      this.props.navigation.navigate("FilterDetail",{list:this.state.list,case:`Course`});
+      this.props.navigation.navigate("FilterDetail",{ list:this.state.list, case:`Course`});
     } else {
       return false;
     }

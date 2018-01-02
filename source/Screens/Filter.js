@@ -7,15 +7,15 @@ export default class Filter extends Component {
     return (
       <View>
         <Button
-          title="FilterCoursePost"
+          title="Filter Course Post"
           onPress={() => this.props.navigation.navigate("FilterCoursePost")}
         />
         <Button
-          title="FilterTeacherPost"
+          title="Filter Teacher Post"
           onPress={() => this.props.navigation.navigate("FilterTeacherPost")}
         />
         <Button
-          title="SearchProfile"
+          title="Filter Profile"
           onPress={() => this.props.navigation.navigate("SearchProfile")}
         />
       </View>

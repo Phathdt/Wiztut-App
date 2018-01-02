@@ -172,25 +172,25 @@ export const SignedIn = TabNavigator(
         Filter: {
           screen: Filter,
           navigationOptions: ({ navigation }) => ({
-            title: `Filter`
+            title: `Filter tất cả`
           })
         },
         FilterCoursePost: {
           screen: FilterCoursePost,
           navigationOptions: ({ navigation }) => ({
-            title: `FilterCoursePost`
+            title: `Filter CoursePost`
           })
         },
         FilterTeacherPost: {
           screen: FilterTeacherPost,
           navigationOptions: ({ navigation }) => ({
-            title: `FilterTeacherPost`
+            title: `Filter TeacherPost`
           })
         },
         SearchProfile: {
           screen: SearchProfile,
           navigationOptions: ({ navigation }) => ({
-            title: `SearchProfile`
+            title: `Filter Profile`
           })
         },
         FilterDetail: {
