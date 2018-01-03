@@ -11,7 +11,8 @@ import {
   GetTeacherPostUrl,
   CreateTeacherPostUrl,
   GetListCoursesUrl,
-  GetProfileUrl
+  GetProfileUrl,
+  CreateRatingUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function(q) {
@@ -256,6 +257,26 @@ exports.getListProfile = async function(page, search, token) {
     let resJson = await res.json();
     return resJson;
   } catch (error) {}
+};
+
+exports.createRating = async function(user_id, rating, comment,token) {
+  try {
+    let res = await fetch(CreateRatingUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        ratings: {
+          rated_id: user_id ,
+          rate: rating,
+          comment: comment
+        }
+      })
+    });
+    return res
+    } catch (error) {}
 };
 
 exports.getListSearchProfile = async function(token,name) {
