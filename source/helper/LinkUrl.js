@@ -44,6 +44,6 @@ export const CreateMessageUrl = `${HOST}/api/v1//messages`
 export const DestroyMessageUrl = `${HOST}/api/v1/messages/`
 
 // Rating
-export const CreateRatingUrl = `${HOST}/api/v1/users/ratings`
-export const DestroyRatingUrl = `${HOST}/api/v1/users/ratings/`
+export const CreateRatingUrl = `${HOST}/api/v1/ratings`
+export const DestroyRatingUrl = `${HOST}/api/v1/ratings/`
 
