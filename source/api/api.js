@@ -11,6 +11,7 @@ import {
   GetTeacherPostUrl,
   CreateTeacherPostUrl,
   GetListCoursesUrl,
+  GetProfileUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function(q) {
@@ -226,6 +227,21 @@ exports.createMessage = async function(token,_body,_conversation_id) {
     return resJson;
   }
   catch (error) { }
+};
+
+exports.getProfile = async function(user_id, token) {
+  try {
+    let url = `${GetProfileUrl}${user_id}`;
+    let res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    });
+    let resJson = await res.json();
+    return resJson;
+  } catch (error) {}
 };
 
 exports.getListProfile = async function(page, search, token) {
