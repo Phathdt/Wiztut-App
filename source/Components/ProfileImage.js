@@ -17,48 +17,23 @@ import {
   Left,
   Right,
 } from "native-base";
-
+import StarRating from 'react-native-star-rating';
 class ProfileImage extends Component {
-  renderStar()
-  {
+
+  renderStar(star) {
     return(
-      <Container style={{flex: 1}}>
-        <Image
-          style={{width: 40, height: 30}}
-          source={require('../src/images/plane.png')}
-        />
-      </Container>
-    )
-  }
-  renderStarFill()
-  {
-    return(
-      <Container style={{flex: 1}}>
-        <Image
-          style={{width: 40, height: 30}}
-          source={require('../src/images/signout.png')}
-        />
-      </Container>
-    )
-  }
-  renderTeacher()
-  {
-    data = this.props.data
-    return(
-        <Container style={{flexDirection: 'row'}}>
-            {this.renderStar()}
-            {this.renderStar()}
-            {this.renderStar()}
-            {this.renderStarFill()}
-            {this.renderStarFill()}
-        </Container>
+      <StarRating
+        disabled={true}
+        maxStars={5}
+        rating={star}
+      />
     )
   }
 
   render() {
     data = this.props.data
     return (
-      <Container>
+      <Container style={{borderBottomWidth: 1}}>
         <Body>
           <Image
             style={{width: 100, height: 100, borderRadius: 50, marginTop: 50}}
@@ -67,10 +42,9 @@ class ProfileImage extends Component {
           <Text>
             {data.profile.name}
           </Text>
-          {true ? <Text>Teacher</Text> : null}
+          {data.is_teacher ? <Text>Teacher</Text> : null}
         </Body>
-        { true ? this.renderTeacher() : null}
-        { true ? this.renderTeacher() : null}
+        { this.renderStar(data.rate)}
       </Container>
     );
   }

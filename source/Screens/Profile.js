@@ -87,7 +87,6 @@ class Profile extends Component {
       <Container>
         <ProfileImage data={this.state.data} />
         <ProfileInfo data={this.state.data} />
-        <ProfileCourses data={this.state.data} />
       </Container>
     )
   }
