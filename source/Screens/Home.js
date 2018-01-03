@@ -39,9 +39,8 @@ class Home extends Component {
       listPf: null,
       search: "",
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU'
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzODg5MH0.RmkoM6Dw_gtmUt3gLOv3XR4BZpw2XZKg4Acq7R1Q_LI'
     };
-    console.log(this.props.user)
     this.getData();
   }
 
@@ -72,7 +71,6 @@ class Home extends Component {
   }
 
   getData() {
-    console.log(this.state.activeSegment)
     switch (this.state.activeSegment) {
       case "Teacher":
         this.getListTeacherPost(this.state.page)
