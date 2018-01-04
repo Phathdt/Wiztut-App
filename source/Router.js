@@ -29,7 +29,8 @@ import FilterTeacherPost from "./Screens/FilterTeacherPost";
 import SearchProfile from "./Screens/SearchProfile";
 import FilterDetail from "./Screens/FilterDetail";
 
-import Location from "./Screens/Location";
+import Notification from "./Screens/Notification";
+import EditProfile from "./Screens/EditProfile";
 
 import Profile from "./Screens/Profile";
 import AnotherProfile from "./Screens/AnotherProfile"
@@ -71,7 +72,10 @@ export const createRootNavigator = (signedIn = false) => {
       },
       AnotherProfile: {
         screen: AnotherProfile,
-      }
+      },
+      EditProfile: {
+        screen: EditProfile,
+      },
     },
     {
       headerMode: "none",
@@ -213,10 +217,10 @@ export const SignedIn = TabNavigator(
         )
       })
     },
-    LocationStack: {
+    NotificationStack: {
       screen: StackNavigator({
-        Location: {
-          screen: Location,
+        Notification: {
+          screen: Notification,
           navigationOptions: ({ navigation }) => ({
             title: `Notification`
           })
