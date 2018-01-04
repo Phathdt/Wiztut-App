@@ -66,3 +66,17 @@ export const filter_profile = t.struct({
   degree_require: t.maybe(Degree),
 });
 
+export const edit_profile = t.struct({
+  name: t.String, 
+  dob: t.String, 
+  sex: Sex,
+  school: t.String, 
+  degree: Degree, 
+  graduation_year: t.Number, 
+  salary: t.Number, 
+  about_me: t.String, 
+  phone: t.String, 
+  grades: Grade, 
+  subjects: Subject
+});
+

@@ -27,8 +27,8 @@ class Profile extends Component {
     this.state = {
       loaded: false,
       data: null,
-      user_id: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzYyNDQ4M30.ubULSZLSEi5xHmy7ceEZu2KcbG6-DaQccQmzN0RLPKA'
+      user_id: this.props.user.id,
+      token: this.props.user.authentication_token
     };
     this.getData();
   }

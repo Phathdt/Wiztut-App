@@ -15,28 +15,29 @@ import {
   CreateRatingUrl,
   FindConversationWithUserUrl,
   CreateCourseUrl,
-  ToggleProfileUrl
+  ToggleProfileUrl,
+  CreateProfileUrl
 } from "../helper/LinkUrl";
 
-exports.getCoursePost = async function(q) {
+exports.getCoursePost = async function (q) {
   try {
     let url = `${GetCoursePostUrl}${q}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getListCoursePost = async function(q, search) {
+exports.getListCoursePost = async function (q, search) {
   try {
     let url = `${GetListCoursePostsUrl}?page=${q}&&title=${search.toLowerCase().replace(/ /g, '%20')}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.course_posts;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.signIn = async function(user) {
+exports.signIn = async function (user) {
   try {
     let res = await fetch(SignInUrl, {
       method: "POST",
@@ -51,10 +52,10 @@ exports.signIn = async function(user) {
       })
     });
     return res
-    } catch (error) {}
+  } catch (error) { }
 };
 
-exports.signUp = async function(user) {
+exports.signUp = async function (user) {
   try {
     let res = await fetch(SignUpUrl, {
       method: "POST",
@@ -70,10 +71,10 @@ exports.signUp = async function(user) {
       })
     });
     return res
-    } catch (error) {}
+  } catch (error) { }
 };
 
-exports.AddCoursePost = async function(cp, token) {
+exports.AddCoursePost = async function (cp, token) {
   try {
     let res = await fetch(CreateCoursePostUrl, {
       method: "POST",
@@ -99,28 +100,28 @@ exports.AddCoursePost = async function(cp, token) {
       })
     });
     return res
-    } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getListTeacherPost = async function(q, search) {
+exports.getListTeacherPost = async function (q, search) {
   try {
     let url = `${GetListTeacherPostsUrl}?page=${q}&&title=${search.toLowerCase().replace(/ /g, '%20')}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.teacher_post;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getTeacherPost = async function(q) {
+exports.getTeacherPost = async function (q) {
   try {
     let url = `${GetTeacherPostUrl}${q}`;
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.AddTeacherPost = async function(tp, token) {
+exports.AddTeacherPost = async function (tp, token) {
   try {
     let res = await fetch(CreateTeacherPostUrl, {
       method: "POST",
@@ -141,12 +142,12 @@ exports.AddTeacherPost = async function(tp, token) {
       })
     });
     return res
-    } catch (error) {}
+  } catch (error) { }
 };
 
-exports.toggleTeacher = async function(token) {
+exports.toggleTeacher = async function (token) {
   try {
-    let res = await fetch(ToggleProfileUrl,{
+    let res = await fetch(ToggleProfileUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -155,13 +156,13 @@ exports.toggleTeacher = async function(token) {
     });
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getListConversation = async function(q,token) {
+exports.getListConversation = async function (q, token) {
   try {
     let url = `${GetListConversationsUrl}?page=${q}`;
-    let res = await fetch(url,{
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -170,13 +171,13 @@ exports.getListConversation = async function(q,token) {
     });
     let resJson = await res.json();
     return resJson.conversations;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getConversation  = async function(q,token) {
+exports.getConversation = async function (q, token) {
   try {
     let url = `${GetListConversationsUrl}/${q}`;
-    let res = await fetch(url,{
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -185,10 +186,10 @@ exports.getConversation  = async function(q,token) {
     });
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.createMessage = async function(token,_body,_conversation_id) {
+exports.createMessage = async function (token, _body, _conversation_id) {
   try {
     let url = `${CreateMessageUrl}`;
     let res = await fetch(url, {
@@ -210,7 +211,7 @@ exports.createMessage = async function(token,_body,_conversation_id) {
   catch (error) { }
 };
 
-exports.createCourse = async function(teacher_id, token) {
+exports.createCourse = async function (teacher_id, token) {
   try {
     let url = `${CreateCourseUrl}`;
     let res = await fetch(url, {
@@ -231,7 +232,7 @@ exports.createCourse = async function(teacher_id, token) {
   catch (error) { }
 };
 
-exports.getProfile = async function(user_id, token) {
+exports.getProfile = async function (user_id, token) {
   try {
     let url = `${GetProfileUrl}${user_id}`;
     let res = await fetch(url, {
@@ -243,13 +244,13 @@ exports.getProfile = async function(user_id, token) {
     });
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getListProfile = async function(page, search, token) {
+exports.getListProfile = async function (page, search, token) {
   try {
     let url = `${GetListProfilesUrl}?page=${page}&&name=${search.toLowerCase().replace(/ /g, '%20')}`;
-    let res= await fetch(url, {
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -257,10 +258,10 @@ exports.getListProfile = async function(page, search, token) {
     });
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.createRating = async function(user_id, rating, comment,token) {
+exports.createRating = async function (user_id, rating, comment, token) {
   try {
     let res = await fetch(CreateRatingUrl, {
       method: "POST",
@@ -270,20 +271,20 @@ exports.createRating = async function(user_id, rating, comment,token) {
       },
       body: JSON.stringify({
         ratings: {
-          rated_id: user_id ,
+          rated_id: user_id,
           rate: rating,
           comment: comment
         }
       })
     });
     return res
-    } catch (error) {}
+  } catch (error) { }
 };
 
-exports.getListSearchProfile = async function(token,name) {
+exports.getListSearchProfile = async function (token, name) {
   try {
     let url = `${GetListProfilesUrl}?page=1&&name=${name.toLowerCase()}`;
-    let res= await fetch(url, {
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -291,10 +292,10 @@ exports.getListSearchProfile = async function(token,name) {
     });
     let resJson = await res.json();
     return resJson;
-  } catch (error) {}
+  } catch (error) { }
 };
 
-exports.createConversation = async function(token,id) {
+exports.createConversation = async function (token, id) {
   try {
     let url = `${CreateConversationUrl}`;
     let res = await fetch(url, {
@@ -315,28 +316,28 @@ exports.createConversation = async function(token,id) {
   catch (error) { }
 };
 
-exports.findConversationWithUser = async function(id, token) {
+exports.findConversationWithUser = async function (id, token) {
   try {
     let url = `${FindConversationWithUserUrl}${id}`;
-    let res= await fetch(url, {
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
       }
     });
     return res;
-  } catch (error) {}
+  } catch (error) { }
 };
 
 
-exports.getFilterCoursePost = async function(fcp,token) {
+exports.getFilterCoursePost = async function (fcp, token) {
   try {
     let url = `${GetListCoursePostsUrl}?page=1`;
-    url += fcp.grade ? `&&grade=${parseInt(fcp.grade)+1}` : ''
+    url += fcp.grade ? `&&grade=${parseInt(fcp.grade) + 1}` : ''
     url += fcp.subject ? `&&subject=${parseInt(fcp.subject)}` : ''
     url += fcp.address ? `&&address=${parseInt(fcp.address)}` : ''
     url += fcp.salary ? `&&salary=${parseInt(fcp.salary)}` : ''
-    let res = await fetch(url,{
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -345,28 +346,28 @@ exports.getFilterCoursePost = async function(fcp,token) {
     });
     let resJson = await res.json();
     return resJson.course_posts;
-  } catch (error) {}
+  } catch (error) { }
 };
-exports.getFilterTeacherPost = async function(tcp) {
+exports.getFilterTeacherPost = async function (tcp) {
   try {
     let url = `${GetListTeacherPostsUrl}?page=1`;
-    url += tcp.grade ? `&&grade=${parseInt(tcp.grade)+1}` : ''
+    url += tcp.grade ? `&&grade=${parseInt(tcp.grade) + 1}` : ''
     url += tcp.subject ? `&&subject=${parseInt(tcp.subject)}` : ''
     url += tcp.address ? `&&address=${parseInt(tcp.address)}` : ''
     url += tcp.degree_require ? `&&degree_require=${parseInt(tcp.degree_require)}` : ''
     let res = await fetch(url)
     let resJson = await res.json();
     return resJson.teacher_post;
-  } catch (error) {}
+  } catch (error) { }
 };
-exports.getFilterProfile = async function(profile,token,is_teacher) {
+exports.getFilterProfile = async function (profile, token, is_teacher) {
   try {
     let url = `${GetListProfilesUrl}?page=1`;
     url += profile.sex ? `&&sex=${parseInt(profile.sex)}` : ''
     url += profile.salary ? `&&salary=${parseInt(profile.salary)}` : ''
     url += profile.degree_require ? `&&degree=${parseInt(profile.degree_require)}` : ''
     url += is_teacher ? `&&teacher=${is_teacher}` : ''
-    let res = await fetch(url,{
+    let res = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -374,8 +375,35 @@ exports.getFilterProfile = async function(profile,token,is_teacher) {
     });
     let resJson = await res.json();
     return resJson.users;
-  } catch (error) {}
+  } catch (error) { }
 };
-
+exports.editProfile = async function (edp, token) {
+  try {
+    let res = await fetch(CreateProfileUrl, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        profiles: {
+          "name": edp.name,
+          "dob": edp.dob.match(/\d{4}-\d{2}-\d{2}/i)[0]
+          .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1"),
+          "sex": parseInt(edp.sex),
+          "school": edp.school,
+          "degree": parseInt(edp.degree),
+          "graduation_year": edp.graduation_year,
+          "salary": edp.salary,
+          "about_me": edp.about_me,
+          "phone": edp.phone,
+          "grades": `{${parseInt(edp.grade)}}`,
+          "subjects": `{${parseInt(edp.subject)}}`,
+        }
+      })
+    });
+    return res
+  } catch (error) { }
+};
 
 
