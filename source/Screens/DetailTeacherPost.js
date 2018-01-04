@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, Button, StyleSheet, Image } from "react-native";
+import { View, Button, StyleSheet, TouchableHighlight, Image } from "react-native";
 import {
   Container,
   Header,
@@ -36,7 +36,9 @@ export default class DetailTeacherPost extends Component {
       profile_id: null,
       profile_name: null,
       Teacher_post: null,
-      loaded: false
+      loaded: false,
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzYyNDQ4M30.ubULSZLSEi5xHmy7ceEZu2KcbG6-DaQccQmzN0RLPKA'
+
     };
     this.getTeacherPost();
   }
@@ -51,6 +53,24 @@ export default class DetailTeacherPost extends Component {
         loaded: true
       });
     });
+  }
+
+  findConversationWithUser() {
+    api.findConversationWithUser( this.state.profile_id, this.state.token)
+      .then( data => this.processWithData(data))
+  }
+
+  async processWithData(data) {
+    if (data.status == 404) {
+      Alert.alert(I18n.t("error"), I18n.t("something_wrong"));
+    } else {
+      let dataJson = await data.json();
+      console.log(dataJson)
+      this.props.navigation.navigate("DetailConversation", {
+        id: dataJson.conversation.id,
+        user_name: dataJson.user_name
+      })
+    }
   }
 
   renderItem() {
@@ -179,10 +199,13 @@ export default class DetailTeacherPost extends Component {
           <Text style={{paddingTop: 10}}> Đăng bởi: {name}</Text>
         </Container>
         <Container style={{flex: 1}}>
-           <Image
-            style={{width: 40, height: 40}}
-            source={require('../src/images/icon_app.png')}
-          />
+          <TouchableHighlight
+            onPress={() => this.findConversationWithUser()}>
+            <Image
+              style={{width: 40, height: 30}}
+              source={require('../src/images/plane.png')}
+            />
+          </TouchableHighlight>
         </Container>
       </Container>
       )
