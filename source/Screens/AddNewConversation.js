@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { FlatList, Alert } from "react-native";
+import { FlatList, Alert, TouchableHighlight, Image } from "react-native";
 import {
   Button,
   Input,
@@ -18,6 +18,7 @@ import {
   Right,
   Icon,
 } from "native-base";
+import HeaderCustom from '../Components/HeaderCustom'
 
 import I18n from "../config/i18n";
 import api from "../api/api";
@@ -32,7 +33,8 @@ class AddNewConversation extends Component {
       name: ``,
       listSearchProfile: null,
       page: 1,
-      token: this.props.user.authentication_token,
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU',
+      // token: this.props.user.authentication_token,
       refreshing:false,
       loaded:false
     };
@@ -70,7 +72,6 @@ class AddNewConversation extends Component {
       this.setState({
         idConversation: data.conversation.id
       });
-      Alert.alert(data.message)
       if(this.state.idConversation!=null){
         this.props.navigation.navigate("DetailConversation", {
           id: this.state.idConversation,
@@ -93,6 +94,7 @@ class AddNewConversation extends Component {
       />
     );
   }
+
   renderItem(item) {
     return (
       <ListItem
@@ -116,10 +118,20 @@ class AddNewConversation extends Component {
       </ListItem>
     );
   }
-  render() {
-    return (
-      <Container>
-        <Header searchBar rounded>
+
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    return(
+      <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
+        <Container style={{flex: 4}}>
           <Item>
             <Icon name="ios-search" />
             <Input
@@ -127,17 +139,27 @@ class AddNewConversation extends Component {
               value={this.state.name}
               onChangeText={name => this.setState({ name })}
             />
-            <Icon name="ios-people" />
           </Item>
-          <Button
-            transparent
-            onPress={() => this.Search()}
-          >
-            <Text>{I18n.t("search")}</Text>
-          </Button>
-        </Header>
-      <Content style={{marginRight:15}}>
-        {this.renderListItem()}
+        </Container>
+        <Container style={{flex: 1}}>
+          <TouchableHighlight
+            onPress={() => this.Search()}>
+            <Image
+              style={{width: 40, height: 30}}
+              source={require('../src/images/plane.png')}
+            />
+          </TouchableHighlight>
+        </Container>
+      </Container>
+      )
+  }
+
+  render() {
+    return (
+      <Container>
+        {this.renderHeader()}
+        <Content style={{marginTop: 5, marginLeft: -10}}>
+          {this.renderListItem()}
         </Content>
       </Container>
     );

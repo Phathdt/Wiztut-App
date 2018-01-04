@@ -99,9 +99,9 @@ export const Conversation = StackNavigator({
   },
   AddNewConversation: {
     screen: AddNewConversation,
-    navigationOptions: ({ navigation }) => ({
-      title: `AddNewConversation`
-    })
+    navigationOptions: {
+      header: null
+    }
   },
   UpdateConversation: {
     screen: UpdateConversation,

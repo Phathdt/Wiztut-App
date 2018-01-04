@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 
-import { FlatList, Alert } from "react-native";
+import { FlatList, Alert, TouchableHighlight, Image } from "react-native";
 import {
   Container,
   Header,
@@ -20,6 +20,7 @@ import {
 import I18n from "../config/i18n";
 import { connect } from 'react-redux';
 import api from "../api/api";
+import HeaderCustom from '../Components/HeaderCustom'
 
 class ListConversation extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -110,24 +111,40 @@ class ListConversation extends Component {
     );
   }
 
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    return(
+      <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
+        <Container style={{flex: 1}}></Container>
+        <Container style={{flex: 3, marginTop: 10}}>
+          <Text>List Conversation</Text>
+        </Container>
+        <Container style={{flex: 1}}>
+          <TouchableHighlight
+            onPress={() => this.props.navigation.navigate("AddNewConversation")}>
+            <Image
+              style={{width: 40, height: 30}}
+              source={require('../src/images/plane.png')}
+            />
+          </TouchableHighlight>
+        </Container>
+      </Container>
+      )
+  }
+
   render() {
     return (
       <Container>
-        <Header style={{height:65}}>
-          <Body>
-            <Text>List Conversation</Text>
-            </Body>
-          <Right>
-        <Button
-          iconLeft success
-          onPress={() => this.props.navigation.navigate("AddNewConversation")}
-        >
-          <Icon name='add' />
-          <Text>{I18n.t("add_conversation")}</Text>
-        </Button>
-        </Right>
-        </Header>
-        <Content style={{marginRight:15}}>
+        {this.renderHeader()}
+        <Content style={{marginTop: 5, marginLeft: -10}}>
           {this.state.ListConversations ? this.renderListItem() : null}
         </Content>
       </Container>
