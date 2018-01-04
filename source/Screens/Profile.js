@@ -57,9 +57,17 @@ class Profile extends Component {
   CustomTitle() {
     return(
       <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
-        <Container style={{flex: 1}}></Container>
         <Container style={{flex: 3, marginTop: 10}}>
           <Text>My Profile</Text>
+        </Container>
+        <Container style={{flex: 1}}>
+          <TouchableHighlight
+            onPress={() => this.props.navigation.navigate("EditProfile")}>
+            <Image
+              style={{width: 30, height: 30}}
+              source={require('../src/images/signout.png')}
+            />
+          </TouchableHighlight>
         </Container>
         <Container style={{flex: 2}}>
           <Switch
