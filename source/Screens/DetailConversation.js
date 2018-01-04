@@ -114,11 +114,12 @@ _onRefresh() {
     if (this.state.message == "") {
       return false;
     }
-    api.createMessage(this.state.token, this.state.message, this.state.conversation.id)
-    this.getConversation(this.state.token)
+    await api.createMessage(this.state.token, this.state.message, this.state.conversation.id)
+    await this.getConversation(this.state.token)
     this.setState({
       refreshing:true,
-      loading: true
+      loading: true,
+      message: ''
     })
   }
   render() {
