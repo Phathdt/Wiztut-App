@@ -91,6 +91,7 @@ class ListConversation extends Component {
             this.props.navigation.navigate("DetailConversation", {
               id: item.id,
               user_name: item.user_name,
+              user_id: item.user_id
             })}
         >
           <Left>
