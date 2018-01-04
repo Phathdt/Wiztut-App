@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Button, Image, TouchableHighlight } from 'react-native';
+import { View, Button, Image, TouchableHighlight, Switch, Alert } from 'react-native';
 import {
   Container,
   Header,
@@ -40,6 +40,7 @@ class Profile extends Component {
   addData(data) {
     this.setState({
       data: data,
+      is_teacher: data.is_teacher,
       loaded: true
     });
   }
@@ -56,9 +57,14 @@ class Profile extends Component {
   CustomTitle() {
     return(
       <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
-        <Container style={{flex: 2}}></Container>
+        <Container style={{flex: 1}}></Container>
         <Container style={{flex: 3, marginTop: 10}}>
           <Text>My Profile</Text>
+        </Container>
+        <Container style={{flex: 2}}>
+          <Switch
+            onValueChange = {() => this.toggleTeacher()}
+            value = {this.state.is_teacher}/>
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
@@ -89,6 +95,18 @@ class Profile extends Component {
         <ProfileInfo data={this.state.data} />
       </Container>
     )
+  }
+
+  toggleTeacher() {
+    api.toggleTeacher(this.state.token).then( data => this.processWithData(data))
+  }
+
+  processWithData(data) {
+    let state = this.state.is_teacher
+    this.setState({
+      is_teacher: !state
+    });
+    Alert.alert(data.message);
   }
 
   render() {
