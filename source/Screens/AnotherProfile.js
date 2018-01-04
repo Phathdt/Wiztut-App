@@ -47,6 +47,24 @@ class AnotherProfile extends Component {
     });
   }
 
+  findConversationWithUser() {
+    api.findConversationWithUser( this.state.user_id, this.state.token)
+      .then( data => this.processWithData(data))
+  }
+
+  async processWithData(data) {
+    if (data.status == 404) {
+      Alert.alert(I18n.t("error"), I18n.t("something_wrong"));
+    } else {
+      let dataJson = await data.json();
+      console.log(dataJson)
+      this.props.navigation.navigate("DetailConversation", {
+        id: dataJson.conversation.id,
+        user_name: dataJson.user_name
+      })
+    }
+  }
+
   renderHeader(){
     return(
       <HeaderCustom
@@ -65,7 +83,7 @@ class AnotherProfile extends Component {
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
-            onPress={() => this.props.navigation.navigate("ListConversation")}>
+            onPress={() => this.findConversationWithUser()}>
             <Image
               style={{width: 40, height: 30}}
               source={require('../src/images/plane.png')}

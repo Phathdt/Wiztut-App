@@ -12,7 +12,8 @@ import {
   CreateTeacherPostUrl,
   GetListCoursesUrl,
   GetProfileUrl,
-  CreateRatingUrl
+  CreateRatingUrl,
+  FindConversationWithUserUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function(q) {
@@ -313,6 +314,21 @@ exports.createConversation = async function(token,id) {
   }
   catch (error) { }
 };
+
+exports.findConversationWithUser = async function(id, token) {
+  try {
+    let url = `${FindConversationWithUserUrl}${id}`;
+    let res= await fetch(url, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    return res;
+  } catch (error) {}
+};
+
+
 exports.getFilterCoursePost = async function(fcp,token) {
   try {
     let url = `${GetListCoursePostsUrl}?page=1`;
