@@ -13,7 +13,9 @@ import {
   GetListCoursesUrl,
   GetProfileUrl,
   CreateRatingUrl,
-  FindConversationWithUserUrl
+  FindConversationWithUserUrl,
+  CreateCourseUrl,
+  ToggleProfileUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function(q) {
@@ -142,41 +144,18 @@ exports.AddTeacherPost = async function(tp, token) {
     } catch (error) {}
 };
 
-exports.upcoming = async function(q) {
+exports.toggleTeacher = async function(token) {
   try {
-    let url = `${upcomingURL}?api_key=${KEY}&page=${q}`;
-    let res = await fetch(url);
-    let resJson = await res.json();
-    return resJson.results;
-  } catch (error) {}
-};
-
-exports.search = async function(query, page) {
-  try {
-    let url = `${searchURL}?api_key=${KEY}&query=${query}&page=${page}`;
-    let res = await fetch(url);
-    let resJson = await res.json();
-    return resJson.results;
-  } catch (error) {}
-};
-
-exports.getById = async function(id) {
-  try {
-    let url = `${getByIdURL}${id}?api_key=${KEY}`;
-    let res = await fetch(url);
+    let res = await fetch(ToggleProfileUrl,{
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
     let resJson = await res.json();
     return resJson;
   } catch (error) {}
-};
-
-exports.getCast = async function(id) {
-  try {
-    let url = `${getCastURL}${id}/credits?api_key=${KEY}`;
-    let res = await fetch(url);
-    let resJson = await res.json();
-    return resJson;
-  } catch (error) {
-  }
 };
 
 exports.getListConversation = async function(q,token) {
@@ -222,6 +201,27 @@ exports.createMessage = async function(token,_body,_conversation_id) {
         messages: {
           body: _body,
           conversation_id: _conversation_id
+        }
+      })
+    });
+    let resJson = await res.json();
+    return resJson;
+  }
+  catch (error) { }
+};
+
+exports.createCourse = async function(teacher_id, token) {
+  try {
+    let url = `${CreateCourseUrl}`;
+    let res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        courses: {
+          teacher_id: teacher_id
         }
       })
     });

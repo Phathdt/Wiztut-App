@@ -11,6 +11,7 @@ export const CreateProfileUrl = `${HOST}/api/v1/profiles`
 export const GetListProfilesUrl = `${HOST}/api/v1/profiles`
 export const GetProfileUrl = `${HOST}/api/v1/profiles/`
 export const UpdateProfileUrl = `${HOST}/api/v1/profiles`
+export const ToggleProfileUrl = `${HOST}/api/v1/profiles/toggle`
 
 // Course Post
 export const CreateCoursePostUrl = `${HOST}/api/v1/course_posts`
