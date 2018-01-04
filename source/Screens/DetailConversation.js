@@ -28,7 +28,7 @@ class DetailConversation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_id: this.props.user.id,
+      user_id: this.props.navigation.state.params.user_id,
       id: this.props.navigation.state.params.id,
       refreshing: false,
       listmessages: null,
@@ -47,6 +47,7 @@ class DetailConversation extends Component {
       this.setState({
         conversation: data.conversation,
         listmessages: data.messages,
+        is_teacher: data.is_teacher,
         refreshing: false,
         loaded: true
       });
@@ -139,16 +140,28 @@ _onRefresh() {
           <Text>{this.props.navigation.state.params.user_name}</Text>
         </Container>
         <Container style={{flex: 1}}>
-          <TouchableHighlight
-            onPress={() => this.props.navigation.navigate("AddNewConversation")}>
-            <Image
-              style={{width: 40, height: 30}}
-              source={require('../src/images/plane.png')}
-            />
-          </TouchableHighlight>
+          { this.state.is_teacher ? this.renderButtonAddCourse() : null}
+
         </Container>
       </Container>
       )
+  }
+
+  renderButtonAddCourse() {
+    return(
+      <TouchableHighlight
+        onPress={() => this.createCourse()}>
+        <Image
+          style={{width: 40, height: 30}}
+          source={require('../src/images/plane.png')}
+        />
+      </TouchableHighlight>
+    )
+  }
+
+  createCourse() {
+    api.createCourse(this.state.user_id, this.state.token)
+      .then( data => Alert.alert(data.message))
   }
 
 

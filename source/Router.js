@@ -90,6 +90,9 @@ export const Conversation = StackNavigator({
   },
   DetailConversation: {
     screen: DetailConversation,
+    navigationOptions: {
+      header: null
+    }
   },
   InformationConversation: {
     screen: InformationConversation,
