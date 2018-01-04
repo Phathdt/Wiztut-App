@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { View, StyleSheet, FlatList, ScrollView, Alert,RefreshControl, Animated } from "react-native";
+import { View, StyleSheet, FlatList, ScrollView, Alert,RefreshControl, Animated, TouchableHighlight, Image } from "react-native";
 import {
   Button,
   Input,
@@ -22,11 +22,9 @@ import I18n from "../config/i18n";
 import { CreateMessageUrl } from "../helper/LinkUrl";
 import api from "../api/api";
 import { connect } from 'react-redux';
+import HeaderCustom from '../Components/HeaderCustom'
 
 class DetailConversation extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `${navigation.state.params.user_name}`
-  });
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +36,8 @@ class DetailConversation extends Component {
       loaded: false,
       loading: false,
       message: "",
-      token: this.props.user.authentication_token
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzYyNDQ4M30.ubULSZLSEi5xHmy7ceEZu2KcbG6-DaQccQmzN0RLPKA'
+      // token: this.props.user.authentication_token
     };
     this.getConversation(this.state.token);
   }
@@ -122,26 +121,56 @@ _onRefresh() {
       message: ''
     })
   }
+
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    return(
+      <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
+        <Container style={{flex: 1}}></Container>
+        <Container style={{flex: 3, marginTop: 10}}>
+          <Text>{this.props.navigation.state.params.user_name}</Text>
+        </Container>
+        <Container style={{flex: 1}}>
+          <TouchableHighlight
+            onPress={() => this.props.navigation.navigate("AddNewConversation")}>
+            <Image
+              style={{width: 40, height: 30}}
+              source={require('../src/images/plane.png')}
+            />
+          </TouchableHighlight>
+        </Container>
+      </Container>
+      )
+  }
+
+
   render() {
     return (
       <Container >
+          {this.renderHeader()}
         <Content>
-
           {this.state.loaded ? this.renderListItem() : null}
-
         </Content>
         <Item rounded>
-            <Input
-              placeholder='Write message'
-              value={this.state.message}
-              onChangeText={message => this.setState({ message })}
-            />
-            <Button
-              rounded info
-              onPress={() => this.Send()}>
-              <Text>{I18n.t("send_message")}</Text>
-            </Button>
-          </Item>
+          <Input
+            placeholder='Write message'
+            value={this.state.message}
+            onChangeText={message => this.setState({ message })}
+          />
+          <Button
+            rounded info
+            onPress={() => this.Send()}>
+            <Text>{I18n.t("send_message")}</Text>
+          </Button>
+        </Item>
       </Container>
     );
   }
