@@ -56,5 +56,6 @@ export default {
   create_new_cp: 'Create new Cp',
   filter_button: 'Filter',
   is_teacher: 'Teacher',
-  edit_profile: 'Edit'
+  edit_profile: 'Edit Profile',
+  create_profile: 'Create Profile',
 };

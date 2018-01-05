@@ -19,6 +19,7 @@ import HeaderCustom from '../Components/HeaderCustom'
 import ProfileImage from '../Components/ProfileImage'
 import ProfileInfo from '../Components/ProfileInfo'
 import ProfileCourses from '../Components/ProfileCourses'
+import I18n from "../config/i18n";
 
 class Profile extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Profile extends Component {
   }
 
   getData() {
-    api.getProfile( this.state.user_id, this.state.token).then( data => this.addData(data))
+    api.getProfile(this.state.user_id, this.state.token).then(data => this.addData(data))
   }
 
   addData(data) {
@@ -45,8 +46,8 @@ class Profile extends Component {
     });
   }
 
-  renderHeader(){
-    return(
+  renderHeader() {
+    return (
       <HeaderCustom
         titleComponent={this.CustomTitle()}
         navigation={this.props.navigation}
@@ -55,49 +56,49 @@ class Profile extends Component {
   }
 
   CustomTitle() {
-    return(
-      <Container style={{width: 320, flex: 1, flexDirection: 'row'}}>
-        <Container style={{flex: 3, marginTop: 10}}>
+    return (
+      <Container style={{ width: 320, flex: 1, flexDirection: 'row' }}>
+        <Container style={{ flex: 3, marginTop: 10 }}>
           <Text>My Profile</Text>
         </Container>
-        <Container style={{flex: 1}}>
+        <Container style={{ flex: 1 }}>
           <TouchableHighlight
-            onPress={() => this.props.navigation.navigate("EditProfile")}>
+            onPress={() => this.props.navigation.navigate("EditProfile", {isEdit: true})}>
             <Image
-              style={{width: 30, height: 30}}
+              style={{ width: 30, height: 30 }}
               source={require('../src/images/signout.png')}
             />
           </TouchableHighlight>
         </Container>
-        <Container style={{flex: 2}}>
+        <Container style={{ flex: 2 }}>
           <Switch
-            onValueChange = {() => this.toggleTeacher()}
-            value = {this.state.is_teacher}/>
+            onValueChange={() => this.toggleTeacher()}
+            value={this.state.is_teacher} />
         </Container>
-        <Container style={{flex: 1}}>
+        <Container style={{ flex: 1 }}>
           <TouchableHighlight
             onPress={() => this.props.navigation.navigate("SignedOut")}>
             <Image
-              style={{width: 30, height: 30}}
+              style={{ width: 30, height: 30 }}
               source={require('../src/images/signout.png')}
             />
           </TouchableHighlight>
         </Container>
-        <Container style={{flex: 1}}>
+        <Container style={{ flex: 1 }}>
           <TouchableHighlight
             onPress={() => this.props.navigation.navigate("ListConversation")}>
             <Image
-              style={{width: 40, height: 30}}
+              style={{ width: 40, height: 30 }}
               source={require('../src/images/plane.png')}
             />
           </TouchableHighlight>
         </Container>
       </Container>
-      )
+    )
   }
 
   renderData() {
-    return(
+    return (
       <Container>
         <ProfileImage data={this.state.data} />
         <ProfileInfo data={this.state.data} />
@@ -106,7 +107,7 @@ class Profile extends Component {
   }
 
   toggleTeacher() {
-    api.toggleTeacher(this.state.token).then( data => this.processWithData(data))
+    api.toggleTeacher(this.state.token).then(data => this.processWithData(data))
   }
 
   processWithData(data) {
@@ -116,11 +117,21 @@ class Profile extends Component {
     });
     Alert.alert(data.message);
   }
-
+  renderCreateProfile() {
+    return (
+        <TouchableHighlight
+          style={[styles.button, { marginTop: 20 }]}
+          underlayColor="red"
+          onPress={() => this.props.navigation.navigate("EditProfile", {isEdit: false})}
+        >
+          <Text style={styles.buttonText}>{I18n.t("create_profile")}</Text>
+        </TouchableHighlight>
+    )
+  }
   render() {
     return (
       <Container>
-        {this.state.loaded ? this.renderHeader() : null}
+        {this.state.loaded ? this.renderHeader() : this.renderCreateProfile()}
         {this.state.loaded ? this.renderData() : null}
       </Container>
     );
@@ -128,9 +139,9 @@ class Profile extends Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.user,
-    };
+  return {
+    user: state.user,
+  };
 }
 
 export default connect(mapStateToProps)(Profile);

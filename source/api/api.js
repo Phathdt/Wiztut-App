@@ -16,7 +16,8 @@ import {
   FindConversationWithUserUrl,
   CreateCourseUrl,
   ToggleProfileUrl,
-  CreateProfileUrl
+  CreateProfileUrl,
+  UpdateProfileUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function (q) {
@@ -379,7 +380,12 @@ exports.getFilterProfile = async function (profile, token, is_teacher) {
 };
 exports.editProfile = async function (edp, token) {
   try {
-    let res = await fetch(CreateProfileUrl, {
+    var date = new Date(edp.dob);
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+    var formattedDate = year + '/' + month + '/' + day
+    let res = await fetch(UpdateProfileUrl, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -388,8 +394,7 @@ exports.editProfile = async function (edp, token) {
       body: JSON.stringify({
         profiles: {
           "name": edp.name,
-          "dob": edp.dob.match(/\d{4}-\d{2}-\d{2}/i)[0]
-          .replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1"),
+          "dob": formattedDate,
           "sex": parseInt(edp.sex),
           "school": edp.school,
           "degree": parseInt(edp.degree),
@@ -399,6 +404,39 @@ exports.editProfile = async function (edp, token) {
           "phone": edp.phone,
           "grades": `{${parseInt(edp.grade)}}`,
           "subjects": `{${parseInt(edp.subject)}}`,
+        }
+      })
+    });
+    return res
+  } catch (error) { }
+};
+
+exports.createProfile = async function (cp, token) {
+  try {
+    var date = new Date(cp.dob);
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+    var formattedDate = year + '/' + month + '/' + day
+    let res = await fetch(CreateProfileUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        profiles: {
+          "name": cp.name,
+          "dob": formattedDate,
+          "sex": parseInt(cp.sex),
+          "school": cp.school,
+          "degree": parseInt(cp.degree),
+          "graduation_year": cp.graduation_year,
+          "salary": cp.salary,
+          "about_me": cp.about_me,
+          "phone": cp.phone,
+          "grades": `{${parseInt(cp.grade)}}`,
+          "subjects": `{${parseInt(cp.subject)}}`,
         }
       })
     });

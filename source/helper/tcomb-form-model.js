@@ -68,7 +68,7 @@ export const filter_profile = t.struct({
 
 export const edit_profile = t.struct({
   name: t.String, 
-  dob: t.String, 
+  dob: t.Date, 
   sex: Sex,
   school: t.String, 
   degree: Degree, 

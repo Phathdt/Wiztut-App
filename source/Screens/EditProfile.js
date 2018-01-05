@@ -22,14 +22,22 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isEdit: this.props.navigation.state.params.isEdit,
       token: this.props.user.authentication_token
     };
   }
   async EditClick() {
     const edp = this.refs.form.getValue();
     if (edp) {
-      const res = await api.editProfile(edp,this.state.token)
-
+      var res = null
+      if(this.state.isEdit)
+      {
+         res = await api.editProfile(edp,this.state.token)
+      }
+      else
+      {
+        res = await api.createProfile(edp,this.state.token)
+      }
       if (res.status == 200) {
         const resJson = await res.json();
         this.props.navigation.navigate("Profile");
@@ -57,7 +65,7 @@ class EditProfile extends Component {
             underlayColor="red"
             onPress={() => this.EditClick()}
           >
-          <Text style={styles.buttonText}>{I18n.t("edit_profile")}</Text>
+          <Text style={styles.buttonText}>{this.state.isEdit?I18n.t("edit_profile"):I18n.t("create_profile")}</Text>
           </TouchableHighlight>
          </Content>
       </Container>
