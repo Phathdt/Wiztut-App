@@ -1,5 +1,5 @@
 import t from "tcomb-form-native";
-import { Email, Password } from "./tcomb-form-validate";
+import { Email, Password,Graduation_year } from "./tcomb-form-validate";
 import { Address, Time, Degree, Sex, Grade, Subject, Frequency } from "./tcomb-form-enum";
 
 function samePasswords(x) {
@@ -68,11 +68,11 @@ export const filter_profile = t.struct({
 
 export const edit_profile = t.struct({
   name: t.String, 
-  dob: t.Date, 
+  dob: t.Date,
   sex: Sex,
   school: t.String, 
   degree: Degree, 
-  graduation_year: t.Number, 
+  graduation_year: Graduation_year, 
   salary: t.Number, 
   about_me: t.String, 
   phone: t.String, 

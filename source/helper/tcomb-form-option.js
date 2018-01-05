@@ -81,5 +81,10 @@ export const options = {
       error: I18n.t("phone_error"),
       label: I18n.t("phone")
     },
+    graduation_year: {
+      placeholder: I18n.t("your_graduation_year"),
+      error: I18n.t("graduation_year_error"),
+      label: I18n.t("graduation_year")
+    },
   }
 };

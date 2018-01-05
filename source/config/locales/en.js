@@ -58,4 +58,7 @@ export default {
   is_teacher: 'Teacher',
   edit_profile: 'Edit Profile',
   create_profile: 'Create Profile',
+  your_graduation_year: 'Your graduation year',
+  graduation_year: 'Graduation year',
+  graduation_year_error: 'graduation year >= 1910'
 };

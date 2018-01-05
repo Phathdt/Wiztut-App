@@ -9,3 +9,7 @@ export const Email = t.refinement(t.String, email => {
 export const Password = t.refinement(t.String, function(s) {
   return s.length >= 6;
 });
+
+export const  Graduation_year = t.refinement(t.Number, function(year) {
+  return year >= 1910;
+});
