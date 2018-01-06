@@ -88,7 +88,7 @@ _onRefresh() {
     );
   }
   renderItem(item) {
-    if (this.state.user_id== item.user_id) {
+    if (this.state.user_id!= item.user_id) {
       return (
         <Button
           rounded
