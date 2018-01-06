@@ -369,7 +369,7 @@ exports.findConversationWithUser = async function (id, token) {
 exports.getFilterCoursePost = async function (fcp, token) {
   try {
     let url = `${GetListCoursePostsUrl}?page=1`;
-    url += fcp.grade ? `&&grade=${parseInt(fcp.grade) + 1}` : ''
+    url += fcp.grade ? `&&grade=${parseInt(fcp.grade)}` : ''
     url += fcp.subject ? `&&subject=${parseInt(fcp.subject)}` : ''
     url += fcp.address ? `&&address=${parseInt(fcp.address)}` : ''
     url += fcp.salary ? `&&salary=${parseInt(fcp.salary)}` : ''
@@ -387,7 +387,7 @@ exports.getFilterCoursePost = async function (fcp, token) {
 exports.getFilterTeacherPost = async function (tcp) {
   try {
     let url = `${GetListTeacherPostsUrl}?page=1`;
-    url += tcp.grade ? `&&grade=${parseInt(tcp.grade) + 1}` : ''
+    url += tcp.grade ? `&&grade=${parseInt(tcp.grade)}` : ''
     url += tcp.subject ? `&&subject=${parseInt(tcp.subject)}` : ''
     url += tcp.address ? `&&address=${parseInt(tcp.address)}` : ''
     url += tcp.degree_require ? `&&degree_require=${parseInt(tcp.degree_require)}` : ''
@@ -437,8 +437,8 @@ exports.editProfile = async function (edp, token) {
           "salary": edp.salary,
           "about_me": edp.about_me,
           "phone": edp.phone,
-          "grades": `{${parseInt(edp.grade)}}`,
-          "subjects": `{${parseInt(edp.subject)}}`,
+          "grades": `{${parseInt(edp.grades)}}`,
+          "subjects": `{${parseInt(edp.subjects)}}`,
         }
       })
     });
@@ -470,8 +470,8 @@ exports.createProfile = async function (cp, token) {
           "salary": cp.salary,
           "about_me": cp.about_me,
           "phone": cp.phone,
-          "grades": `{${parseInt(cp.grade)}}`,
-          "subjects": `{${parseInt(cp.subject)}}`,
+          "grades": `{${parseInt(cp.grades)}}`,
+          "subjects": `{${parseInt(cp.subjects)}}`,
         }
       })
     });
