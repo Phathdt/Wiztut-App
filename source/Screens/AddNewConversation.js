@@ -33,8 +33,7 @@ class AddNewConversation extends Component {
       name: ``,
       listSearchProfile: null,
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU',
-      // token: this.props.user.authentication_token,
+      token: this.props.user.authentication_token,
       refreshing:false,
       loaded:false
     };

@@ -39,7 +39,7 @@ class Home extends Component {
       listPf: null,
       search: "",
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzODg5MH0.RmkoM6Dw_gtmUt3gLOv3XR4BZpw2XZKg4Acq7R1Q_LI'
+      token: this.props.user.authentication_token,
     };
     this.getData();
   }

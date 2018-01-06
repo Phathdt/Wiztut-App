@@ -17,7 +17,8 @@ import {
   CreateCourseUrl,
   ToggleProfileUrl,
   CreateProfileUrl,
-  UpdateProfileUrl
+  UpdateProfileUrl,
+  UpdateTeacherPostUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function (q) {
@@ -35,6 +36,40 @@ exports.getListCoursePost = async function (q, search) {
     let res = await fetch(url);
     let resJson = await res.json();
     return resJson.course_posts;
+  } catch (error) { }
+};
+
+exports.getListCourse = async function (token) {
+  try {
+    let res = await fetch(GetListCoursesUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson.courses;
+  } catch (error) { }
+};
+
+exports.changeStatusCourse = async function (id, token, status) {
+  try {
+    let url = `${UpdateTeacherPostUrl}${id}`;
+    console.log(url)
+    let res = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        courses: {
+          status: status
+        }
+      })
+    });
+    return res
   } catch (error) { }
 };
 

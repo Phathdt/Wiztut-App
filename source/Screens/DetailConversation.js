@@ -36,8 +36,7 @@ class DetailConversation extends Component {
       loaded: false,
       loading: false,
       message: "",
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzYyNDQ4M30.ubULSZLSEi5xHmy7ceEZu2KcbG6-DaQccQmzN0RLPKA'
-      // token: this.props.user.authentication_token
+      token: this.props.user.authentication_token,
     };
     this.getConversation(this.state.token);
   }

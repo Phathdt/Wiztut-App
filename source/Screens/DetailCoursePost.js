@@ -24,8 +24,9 @@ import {
 } from "../helper/constain";
 
 import HeaderCustom from '../Components/HeaderCustom'
+import { connect } from 'react-redux';
 
-export default class DetailCoursePost extends Component {
+class DetailCoursePost extends Component {
   static navigationOptions = {
     title: "Thông tin bài đăng"
   };
@@ -37,7 +38,8 @@ export default class DetailCoursePost extends Component {
       profile_name: null,
       course_post: null,
       loaded: false,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzYyNDQ4M30.ubULSZLSEi5xHmy7ceEZu2KcbG6-DaQccQmzN0RLPKA'
+      token: this.props.user.authentication_token,
+
     };
     this.getCoursePost();
   }
@@ -232,3 +234,12 @@ const styles = StyleSheet.create({
     color: "#8B95A0",
   }
 });
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+    };
+}
+
+export default connect(mapStateToProps)(DetailCoursePost);
+
