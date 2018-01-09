@@ -35,7 +35,6 @@ class ProfileInfoRating extends Component {
   async onStarRatingPress(rating) {
     data = this.props.data
     await api.createRating( data.user_id, rating, '' , this.state.token)
-    Alert.alert("Bạn đã vote");
   }
 
   renderStar(star) {
