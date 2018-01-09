@@ -57,9 +57,9 @@ class AnotherProfile extends Component {
       Alert.alert(I18n.t("error"), I18n.t("something_wrong"));
     } else {
       let dataJson = await data.json();
-      console.log(dataJson)
       this.props.navigation.navigate("DetailConversation", {
         id: dataJson.conversation.id,
+        user_id: dataJson.user_id,
         user_name: dataJson.user_name
       })
     }
