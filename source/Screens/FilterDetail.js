@@ -24,6 +24,7 @@ import ListTeacherPost from './ListTeacherPost'
 import ListProfile from './ListProfile'
 
 import { address } from '../helper/constain'
+import Nodata from '../Components/Nodata'
 
 export default class FilterDetail extends Component {
   constructor(props) {
@@ -32,7 +33,6 @@ export default class FilterDetail extends Component {
       case: this.props.navigation.state.params.case,
       list: this.props.navigation.state.params.list
     }
-    console.log(this.state.list)
   }
   renderItem(item) {
     switch (this.state.case) {
@@ -85,7 +85,7 @@ export default class FilterDetail extends Component {
   render() {
     return (
       <Container>
-          {this.state.list ? this.renderListItem() : null}
+          {this.state.list.length ? this.renderListItem() : <Nodata />}
       </Container>
     );
   }
