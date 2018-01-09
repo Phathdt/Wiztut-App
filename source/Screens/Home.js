@@ -23,6 +23,7 @@ import AddTeacherPost from "./AddTeacherPost";
 import DetailTeacherPost from "./DetailTeacherPost";
 
 import ListProfile from "./ListProfile"
+import Nodata from '../Components/Nodata'
 
 import styles from "../helper/styles";
 import api from "../api/api.js";
@@ -137,7 +138,7 @@ class Home extends Component {
     switch (this.state.activeSegment) {
       case "Teacher":
           if (this.state.listTp == null || this.state.listTp.length == 0) {
-            return(<Text>No data</Text>)
+            return(<Nodata />)
           } else {
             return (
               <Container style={{ flex: 1, backgroundColor: "white" }}>
@@ -151,7 +152,7 @@ class Home extends Component {
         break;
       case "Course":
           if (this.state.listCp == null || this.state.listCp.length == 0) {
-            return(<Text>No data</Text>)
+            return(<Nodata />)
           } else {
             return (
               <Container style={{ flex: 1, backgroundColor: "white" }}>
@@ -165,7 +166,7 @@ class Home extends Component {
         break;
       case "Profile":
         if (this.state.listPf == null || this.state.listPf.length == 0) {
-            return(<Text>No data</Text>)
+            return(<Nodata />)
           } else {
             return (
               <Container style={{ flex: 1, backgroundColor: "white" }}>
