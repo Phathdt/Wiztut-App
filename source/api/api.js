@@ -18,7 +18,9 @@ import {
   ToggleProfileUrl,
   CreateProfileUrl,
   UpdateProfileUrl,
-  UpdateTeacherPostUrl
+  UpdateTeacherPostUrl,
+  SignUpUrl,
+  UpdateCourseUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function (q) {
@@ -55,10 +57,9 @@ exports.getListCourse = async function (token) {
 
 exports.changeStatusCourse = async function (id, token, status) {
   try {
-    let url = `${UpdateTeacherPostUrl}${id}`;
-    console.log(url)
+    let url = `${UpdateCourseUrl}${id}`;
     let res = await fetch(url, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
@@ -453,6 +454,7 @@ exports.createProfile = async function (cp, token) {
     var month = date.getMonth()+1;
     var day = date.getDate();
     var formattedDate = year + '/' + month + '/' + day
+    console.log(formattedDate)
     let res = await fetch(CreateProfileUrl, {
       method: "POST",
       headers: {
