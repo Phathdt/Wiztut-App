@@ -83,7 +83,9 @@ class AnotherProfile extends Component {
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
-            onPress={() => this.findConversationWithUser()}>
+            onPress={() => this.findConversationWithUser()}
+            underlayColor="white"
+            >
             <Image
               style={{width: 40, height: 30}}
               source={require('../src/images/plane.png')}

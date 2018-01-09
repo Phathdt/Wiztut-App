@@ -149,7 +149,9 @@ _onRefresh() {
   renderButtonAddCourse() {
     return(
       <TouchableHighlight
-        onPress={() => this.createCourse()}>
+        onPress={() => this.createCourse()}
+        underlayColor="white"
+        >
         <Image
           style={{width: 40, height: 30}}
           source={require('../src/images/plane.png')}

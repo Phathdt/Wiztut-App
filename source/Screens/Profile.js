@@ -63,6 +63,7 @@ class Profile extends Component {
         </Container>
         <Container style={{ flex: 1 }}>
           <TouchableHighlight
+            underlayColor="white"
             onPress={() => this.props.navigation.navigate("EditProfile", {isEdit: true})}>
             <Image
               style={{ width: 30, height: 30 }}
@@ -77,6 +78,7 @@ class Profile extends Component {
         </Container>
         <Container style={{ flex: 1 }}>
           <TouchableHighlight
+            underlayColor="white"
             onPress={() => this.props.navigation.navigate("SignedOut")}>
             <Image
               style={{ width: 30, height: 30 }}

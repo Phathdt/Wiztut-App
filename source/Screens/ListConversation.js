@@ -130,6 +130,7 @@ class ListConversation extends Component {
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
+            underlayColor="white"
             onPress={() => this.props.navigation.navigate("AddNewConversation")}>
             <Image
               style={{width: 40, height: 30}}

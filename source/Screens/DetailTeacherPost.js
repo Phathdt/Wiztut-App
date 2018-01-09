@@ -202,6 +202,7 @@ class DetailTeacherPost extends Component {
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
+            underlayColor="white"
             onPress={() => this.findConversationWithUser()}>
             <Image
               style={{width: 40, height: 30}}

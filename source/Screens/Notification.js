@@ -93,6 +93,7 @@ class Notification extends Component {
   renderItem(item) {
     return (
       <TouchableHighlight
+        underlayColor="white"
         onPress={() => this.props.navigation.navigate("DetailCourse", {
           id: item.id
         })}

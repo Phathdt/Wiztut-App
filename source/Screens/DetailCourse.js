@@ -70,6 +70,7 @@ class DetailCourse extends Component {
         </Container>
         <Container style={{flex: 1}}>
           <TouchableHighlight
+            underlayColor="white"
             onPress={() => this.findConversationWithUser()}>
             <Image
               style={{width: 40, height: 30}}
@@ -108,14 +109,14 @@ class DetailCourse extends Component {
         <TouchableHighlight
           style={[styles.button, { marginTop: 20 }]}
           onPress={() => this.changeStatusCourse(item.id, 'success')}
-          underlayColor="red"
+          underlayColor="white"
           >
           <Text style={styles.buttonText}>Đồng ý </Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={[styles.button, { marginTop: 20 }]}
           onPress={() => this.changeStatusCourse(item.id, 'canceled')}
-          underlayColor="red"
+          underlayColor="white"
           >
           <Text style={styles.buttonText}>Huỷ course</Text>
         </TouchableHighlight>
