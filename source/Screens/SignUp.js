@@ -26,8 +26,8 @@ class SignUp extends Component {
 
       if (res.status == 200) {
         const resJson = await res.json();
-        this.props.setUser(resJson.data)
-        this.props.navigation.navigate("SignedIn");
+        await this.props.setUser(resJson.data)
+        this.props.navigation.navigate("CreateProfile");
       } else {
         Alert.alert(I18n.t("error"), I18n.t("something_wrong"));
       }
