@@ -99,13 +99,13 @@ class Notification extends Component {
         })}
       >
       <View style={{flex: 1, flexDirection: 'row', borderBottomColor: '#34C9B0', borderBottomWidth: 3, paddingBottom: 10,}}>
-        <View style={{flex: 1}}>
+        <View style={{flex: 2}}>
           <Text>Mã lớp {item.id}</Text>
           <Text >
-            {item.teacher}
+            Tên giáo viên: {item.teacher}
           </Text>
           <Text >
-            {item.student}
+            Tên học sinh: {item.student}
           </Text>
         </View>
         <View style={{flex: 1}}>
