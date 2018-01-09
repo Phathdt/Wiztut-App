@@ -32,6 +32,7 @@ import FilterDetail from "./Screens/FilterDetail";
 import Notification from "./Screens/Notification";
 import EditProfile from "./Screens/EditProfile";
 import CreateProfile from "./Screens/CreateProfile";
+import DetailCourse from "./Screens/DetailCourse";
 
 import Profile from "./Screens/Profile";
 import AnotherProfile from "./Screens/AnotherProfile"
@@ -79,6 +80,9 @@ export const createRootNavigator = (signedIn = false) => {
       },
       CreateProfile: {
         screen: CreateProfile,
+      },
+      DetailCourse: {
+        screen: DetailCourse,
       }
     },
     {
@@ -255,7 +259,7 @@ export const SignedIn = TabNavigator(
   },
   {
     tabBarPosition: "bottom",
-    animationEnabled: true,
+    animationEnabled: false,
     tabBarOptions: {
       showIcon: true,
       showLabel: false,

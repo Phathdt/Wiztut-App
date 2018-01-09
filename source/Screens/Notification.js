@@ -92,7 +92,12 @@ class Notification extends Component {
 
   renderItem(item) {
     return (
-      <View style={{flex: 1, flexDirection: 'row',     borderBottomColor: '#34C9B0', borderBottomWidth: 3}}>
+      <TouchableHighlight
+        onPress={() => this.props.navigation.navigate("DetailCourse", {
+          id: item.id
+        })}
+      >
+      <View style={{flex: 1, flexDirection: 'row', borderBottomColor: '#34C9B0', borderBottomWidth: 3, paddingBottom: 10,}}>
         <View style={{flex: 1}}>
           <Text>Mã lớp {item.id}</Text>
           <Text >
@@ -106,6 +111,7 @@ class Notification extends Component {
           {item.status == 0 && item.teacher_id == this.state.user_id ? this.render2Button(item) : this.renderStatus(item)}
         </View>
       </View>
+      </TouchableHighlight>
     );
   }
 
@@ -114,11 +120,11 @@ class Notification extends Component {
       <View >
           <Button
             title="Dong y Course"
-            onPress={() => this.changeStatusCourse(item.id, course_status[1])}
+            onPress={() => this.changeStatusCourse(item.id, 'success')}
           />
           <Button
             title="Huy Course"
-            onPress={() => this.changeStatusCourse(item.id, course_status[2])}
+            onPress={() => this.changeStatusCourse(item.id, 'canceled')}
           />
       </View>
     )
