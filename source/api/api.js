@@ -20,7 +20,8 @@ import {
   UpdateProfileUrl,
   UpdateTeacherPostUrl,
   SignUpUrl,
-  UpdateCourseUrl
+  UpdateCourseUrl,
+  GetCourseUrl
 } from "../helper/LinkUrl";
 
 exports.getCoursePost = async function (q) {
@@ -52,6 +53,21 @@ exports.getListCourse = async function (token) {
     });
     let resJson = await res.json();
     return resJson.courses;
+  } catch (error) { }
+};
+
+exports.getCourse = async function (id, token) {
+  try {
+    let url = `${GetCourseUrl}${id}`;
+    let res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    let resJson = await res.json();
+    return resJson;
   } catch (error) { }
 };
 
