@@ -82,3 +82,9 @@ export const frequency = {
   5: "6",
   6: "7"
 };
+
+export const course_status = {
+  0: "Đang xử lí",
+  1: "Thành công",
+  2: "Bị huỷ"
+}
