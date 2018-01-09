@@ -67,7 +67,7 @@ class Profile extends Component {
             onPress={() => this.props.navigation.navigate("EditProfile", {isEdit: true})}>
             <Image
               style={{ width: 30, height: 30 }}
-              source={require('../src/images/signout.png')}
+              source={require('../src/images/edit.png')}
             />
           </TouchableHighlight>
         </Container>
@@ -108,8 +108,9 @@ class Profile extends Component {
     )
   }
 
-  toggleTeacher() {
-    api.toggleTeacher(this.state.token).then(data => this.processWithData(data))
+  async toggleTeacher() {
+    await api.toggleTeacher(this.state.token).then(data => this.processWithData(data))
+    this.getData();
   }
 
   processWithData(data) {
@@ -117,7 +118,6 @@ class Profile extends Component {
     this.setState({
       is_teacher: !state
     });
-    Alert.alert(data.message);
   }
   renderCreateProfile() {
     return (
