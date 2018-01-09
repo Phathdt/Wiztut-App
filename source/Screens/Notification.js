@@ -20,14 +20,19 @@ import { connect } from 'react-redux';
 import api from "../api/api";
 import HeaderCustom from '../Components/HeaderCustom'
 
-export default class Notification extends Component {
+import {
+  course_status
+} from '../helper/constain.js'
+
+class Notification extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ListCourse: null,
       page: 1,
-      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImV4cCI6MTUxNzUzMDI0NX0.FeaxlzxoQFsfWd5MPf6vdljsheA-QNemF0gr3asc_mU'
-
+      token: this.props.user.authentication_token,
+      user_id: this.props.user.id,
+      refreshing: false
     };
     this.getListCourse(this.state.page);
   }
@@ -39,30 +44,34 @@ export default class Notification extends Component {
   addData(data) {
     if (this.state.page > 1) {
       this.setState({
-        ListCourse: [...this.state.ListConversations, ...data]
+        ListCourse: [...this.state.ListConversations, ...data],
+        refreshing:  false
       });
     } else {
       this.setState({
-        ListCourse: data
+        ListCourse: data,
+        refreshing:  false
       });
     }
   }
 
-  changeStatusCourse(id, status) {
-    console.log(1)
+  async changeStatusCourse(id, status) {
     if (status =="success") {
-      api.changeStatusCourse(id, this.state.token, status)
-        .then(data => this.getListCourse(this.state.page));
+      await api.changeStatusCourse(id, this.state.token, status)
+      this.getListCourse(1)
     } else {
-      api.changeStatusCourse(id, this.state.token, status)
-        .then(data => this.getListCourse(this.state.page));
+      await api.changeStatusCourse(id, this.state.token, status)
+      this.getListCourse(this.state.page)
     }
   }
+
+
 
   renderListItem() {
     return (
       <FlatList
-        refreshing={false}
+        onRefresh={() => this.handleRefresh()}
+        refreshing={this.state.refreshing}
         onEndReachedThreshold={-0.2}
         extraData={this.state}
         data={this.state.ListCourse}
@@ -72,17 +81,29 @@ export default class Notification extends Component {
     );
   }
 
+  handleRefresh() {
+    this.setState(
+      {
+      refreshing: true,
+      },
+      () => {this.getListCourse(this.state.page)}
+    );
+  }
+
   renderItem(item) {
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <View style={{flex: 1, flexDirection: 'row',     borderBottomColor: '#34C9B0', borderBottomWidth: 3}}>
         <View style={{flex: 1}}>
-          <Text>{item.id}</Text>
+          <Text>Mã lớp {item.id}</Text>
           <Text >
-            {item.teacher_id}, {item.student_id}
+            {item.teacher}
+          </Text>
+          <Text >
+            {item.student}
           </Text>
         </View>
         <View style={{flex: 1}}>
-          {item.status == "waiting_teacher_approval" ? this.render2Button(item) : this.renderStatus(item)}
+          {item.status == 0 && item.teacher_id == this.state.user_id ? this.render2Button(item) : this.renderStatus(item)}
         </View>
       </View>
     );
@@ -93,11 +114,11 @@ export default class Notification extends Component {
       <View >
           <Button
             title="Dong y Course"
-            onPress={() => this.changeStatusCourse(item.id, "success")}
+            onPress={() => this.changeStatusCourse(item.id, course_status[1])}
           />
           <Button
             title="Huy Course"
-            onPress={() => this.changeStatusCourse(item.id, "canceled")}
+            onPress={() => this.changeStatusCourse(item.id, course_status[2])}
           />
       </View>
     )
@@ -105,19 +126,25 @@ export default class Notification extends Component {
 
   renderStatus(item) {
     return(
-      <Container>
-        <Text>{item.status}</Text>
-      </Container>
+      <View>
+        <Text>{course_status[item.status]}</Text>
+      </View>
     )
   }
 
   render() {
     return (
       <Container>
-        <Content>
           {this.state.ListCourse ? this.renderListItem() : null}
-        </Content>
       </Container>
     );
   }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+    };
+}
+
+export default connect(mapStateToProps)(Notification);
