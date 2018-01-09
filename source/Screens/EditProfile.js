@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 
-import { View, Button,TouchableHighlight,Text,Alert } from 'react-native';
+import {
+  View,
+  Button,
+  TouchableHighlight,
+  Text,
+  ScrollView,
+  Alert
+} from 'react-native';
 
 import {
   Container,
   Content,
+  Body,
 } from "native-base";
 
 import I18n from "../config/i18n";
@@ -17,6 +25,8 @@ import { setUser} from '../redux/actionCreators';
 import { edit_profile } from "../helper/tcomb-form-model";
 import { options } from "../helper/tcomb-form-option";
 import { Form } from "../helper/tcomb-form";
+
+import HeaderCustom from '../Components/HeaderCustom'
 
 class EditProfile extends Component {
   constructor(props) {
@@ -50,10 +60,33 @@ class EditProfile extends Component {
       return false;
     }
   }
+
+  renderHeader(){
+    return(
+      <HeaderCustom
+        titleComponent={this.CustomTitle()}
+        navigation={this.props.navigation}
+      />
+    )
+  }
+
+  CustomTitle() {
+    return(
+      <Container style={{width: 300, flex: 1}}>
+        <Body>
+          <Text style={styles.heading}>Cập nhập thông tin    </Text>
+        </Body>
+      </Container>
+      )
+  }
+
   render() {
     return (
-      <Container style={styles.container}>
-        <Content>
+      <View>
+        { this.renderHeader()}
+        <ScrollView style={{marginTop:5}}>
+          <View style={styles.container}>
+            <View style={styles.container}>
           <Form
             ref="form"
             type={edit_profile}
@@ -67,8 +100,10 @@ class EditProfile extends Component {
           >
           <Text style={styles.buttonText}>{this.state.isEdit?I18n.t("edit_profile"):I18n.t("create_profile")}</Text>
           </TouchableHighlight>
-         </Content>
-      </Container>
+         </View>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
