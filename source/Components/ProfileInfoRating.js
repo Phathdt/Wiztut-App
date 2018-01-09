@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import {
@@ -15,7 +16,7 @@ import {
   Text,
   Body,
   Left,
-  Right,
+  Right
 } from "native-base";
 import { connect } from 'react-redux';
 import api from "../api/api.js";
@@ -31,9 +32,10 @@ class ProfileInfoRating extends Component {
     };
   }
 
-  onStarRatingPress(rating) {
+  async onStarRatingPress(rating) {
     data = this.props.data
-    api.createRating( data.user_id, rating, '' , this.state.token).then( )
+    await api.createRating( data.user_id, rating, '' , this.state.token)
+    Alert.alert("Bạn đã vote");
   }
 
   renderStar(star) {
@@ -59,9 +61,9 @@ class ProfileInfoRating extends Component {
           <Text>
             {data.profile.name}
           </Text>
-          {data.is_teacher ? <Text>Teacher</Text> : null}
+          {data.is_teacher ? <Text>Teacher</Text> : <Text>Student</Text>}
         </Body>
-        { this.renderStar(data.rate)}
+        { data.is_teacher ? this.renderStar(data.rate) : null}
       </Container>
     );
   }

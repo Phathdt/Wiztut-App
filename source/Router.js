@@ -31,6 +31,7 @@ import FilterDetail from "./Screens/FilterDetail";
 
 import Notification from "./Screens/Notification";
 import EditProfile from "./Screens/EditProfile";
+import CreateProfile from "./Screens/CreateProfile";
 
 import Profile from "./Screens/Profile";
 import AnotherProfile from "./Screens/AnotherProfile"
@@ -76,6 +77,9 @@ export const createRootNavigator = (signedIn = false) => {
       EditProfile: {
         screen: EditProfile,
       },
+      CreateProfile: {
+        screen: CreateProfile,
+      }
     },
     {
       headerMode: "none",
