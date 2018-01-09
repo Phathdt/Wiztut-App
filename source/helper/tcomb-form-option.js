@@ -1,4 +1,8 @@
 import I18n from "../config/i18n";
+import moment from "moment"
+let myFormatFunction = (format,date) =>{
+    return moment(date).format(format);
+}
 
 export const options = {
   fields: {
@@ -30,6 +34,21 @@ export const options = {
       placeholder: I18n.t("your_grade"),
       error: I18n.t("grade_error"),
       label: I18n.t("grade")
+    },
+    grades: {
+      placeholder: I18n.t("your_grade"),
+      error: I18n.t("grade_error"),
+      label: I18n.t("grade")
+    },
+    subjects: {
+      placeholder: I18n.t("your_subject"),
+      error: I18n.t("subject_error"),
+      label: I18n.t("subject")
+    },
+    about_me: {
+      placeholder: 'Giới thiệu',
+      error: 'nhập thông tin',
+      label: 'Giới thiệu'
     },
     subject: {
       placeholder: I18n.t("your_subject"),
@@ -66,10 +85,38 @@ export const options = {
       error: I18n.t("sex_require_error"),
       label: I18n.t("sex_require")
     },
+    sex: {
+      placeholder: I18n.t("your_sex_require"),
+      error: I18n.t("sex_require_error"),
+      label: I18n.t("sex_require")
+    },
     degree_require: {
       placeholder: I18n.t("your_degree_require"),
       error: I18n.t("degree_require_error"),
       label: I18n.t("degree_require")
+    },
+    degree: {
+      placeholder: I18n.t("your_degree_require"),
+      error: I18n.t("degree_require_error"),
+      label: I18n.t("degree_require")
+    },
+    school: {
+      placeholder: 'Trường học',
+      error: 'Chưa nhập trường học',
+      label: 'Trường học'
+    },
+    name: {
+      placeholder: 'Họ Tên',
+      error: 'Chưa nhập họ tên',
+      label: 'Họ tên'
+    },
+    dob: {
+      placeholder: 'Ngày sinh',
+      error: 'Chưa nhập ngày sinh',
+      label: 'Ngày sinh',
+      config:{
+        format:(date) => myFormatFunction("YYYY-MM-DD",date)
+      }
     },
     note: {
       placeholder: I18n.t("your_note"),

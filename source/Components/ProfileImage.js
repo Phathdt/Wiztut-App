@@ -42,7 +42,7 @@ class ProfileImage extends Component {
           <Text>
             {data.profile.name}
           </Text>
-          {data.is_teacher ? <Text>Teacher</Text> : null}
+          {data.is_teacher ? <Text>Teacher</Text> : <Text>Student</Text>}
         </Body>
         { this.renderStar(data.rate)}
       </Container>
