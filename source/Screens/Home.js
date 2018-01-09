@@ -88,21 +88,25 @@ class Home extends Component {
     if (this.state.search !== "") {
       switch (this.state.activeSegment) {
         case "Teacher":
-          this.setState({
-            listTp: data
-          });
+          Promise.resolve(
+            this.setState({
+              listTp: [],
+              listTp: data
+          }))
           return null;
         case "Course":
-          this.setState({
-            listCp: data
-          });
-
+          Promise.resolve(
+            this.setState({
+              listCp: [],
+              listCp: data
+          }))
           return null;
         case "Profile":
-          this.setState({
-            listPf: data
-          });
-
+          Promise.resolve(
+            this.setState({
+              listPf: [],
+              listPf: data
+          }))
           return null;
       }
     } else {
