@@ -302,7 +302,7 @@ exports.getProfile = async function (user_id, token) {
 
 exports.getListProfile = async function (page, search, token) {
   try {
-    let url = `${GetListProfilesUrl}?page=${page}&&name=${search.toLowerCase().replace(/ /g, '%20')}`;
+    let url = `${GetListProfilesUrl}?page=${page}&&teacher=true&&name=${search.toLowerCase().replace(/ /g, '%20')}`;
     let res = await fetch(url, {
       method: "GET",
       headers: {
