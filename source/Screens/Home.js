@@ -34,7 +34,7 @@ class Home extends Component {
 
     this.state = {
       activeSegment: "Course",
-      is_teacher: true,
+      is_teacher: this.props.user.teacher,
       listCp: null,
       listTp: null,
       listPf: null,
