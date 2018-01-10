@@ -153,8 +153,8 @@ _onRefresh() {
         underlayColor="white"
         >
         <Image
-          style={{width: 40, height: 30}}
-          source={require('../src/images/plane.png')}
+          style={{width: 40, height: 40}}
+          source={require('../src/images/add.png')}
         />
       </TouchableHighlight>
     )
